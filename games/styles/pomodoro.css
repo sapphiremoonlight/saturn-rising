@@ -1,0 +1,324 @@
+/* Import clean modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --text: #222222;
+  --primary: #a2d2ff;
+  --secondary: #cceeff;
+  --accent: #ffffff;
+  --border: #cccccc;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* === Layout === */
+.app {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--accent);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* === Buttons & Inputs === */
+button, select, input[type="number"], input[type="text"] {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  margin-top: 10px;
+}
+
+button:hover, select:hover {
+  background-color: var(--secondary);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+
+/* === Timer === */
+.timer-section {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--secondary);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+#timer {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* === Controls === */
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.durations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.durations label {
+  font-size: 0.9rem;
+}
+
+/* ==== NOTEBOOK====*/
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.editor-toolbar select,
+.editor-toolbar button {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.editor-toolbar button:hover,
+.editor-toolbar select:hover {
+  background-color: var(--secondary);
+}
+
+.rich-notes {
+  border: 1px solid var(--border);
+  background: var(--accent);
+  padding: 1rem;
+  border-radius: 8px;
+  min-height: 150px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.rich-notes:focus {
+  outline: 2px solid var(--primary);
+}
+
+.rich-notes h1, h2, h3, h4, h5, h6 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rich-notes p {
+  margin-bottom: 0.75rem;
+}
+
+.rich-notes ul, .rich-notes ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === Sections (Tasks & Notebook) === */
+.tasks-section,
+.notebook-section {
+  margin-top: 2rem;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  background-color: var(--secondary);
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+}
+
+.tasks-section h2,
+.notebook-section h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+/* === Task Input & List === */
+#taskInput {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+}
+
+.task-input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#taskList li {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background: var(--accent);
+  margin: 6px 0;
+  padding: 10px 10px 10px 50px;
+  border-left: 6px solid var(--primary); /* Fallback */
+  border-radius: 4px;
+}
+
+.delete-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background: #e74c3c;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+li.show-delete .delete-btn {
+  opacity: 1;
+}
+
+li.show-delete {
+  transform: translateX(40px);
+}
+
+#taskCategory {
+  flex-shrink: 0;
+}
+
+.task-completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+/* Category color variants (based on theme) */
+body[class*="blue"] .task-work { border-color: #74befe; }
+body[class*="blue"] .task-study { border-color: #89ccff; }
+body[class*="blue"] .task-chores { border-color: #a2d2ff; }
+body[class*="blue"] .task-health { border-color: #bee7ff; }
+body[class*="blue"] .task-misc { border-color: #d6f2ff; }
+
+/* Repeat for pink theme */
+body[class*="pink"] .task-work { border-color: #ff95c5; }
+body[class*="pink"] .task-study { border-color: #ffaacc; }
+body[class*="pink"] .task-chores { border-color: #ffc2da; }
+body[class*="pink"] .task-health { border-color: #ffd6e5; }
+body[class*="pink"] .task-misc { border-color: #ffeaf2; }
+
+body[class*="green"] .task-work {
+  background-color: rgba(112, 224, 0, 0.1);
+}
+
+/* GREEN theme variants */
+body[class*="green"] .task-work   { border-color: #70e000; }
+body[class*="green"] .task-study  { border-color: #9ef01a; }
+body[class*="green"] .task-chores { border-color: #b5ead7; }
+body[class*="green"] .task-health { border-color: #d4fbe2; }
+body[class*="green"] .task-misc   { border-color: #e5ffe9; }
+
+/* PURPLE theme variants */
+body[class*="purple"] .task-work   { border-color: #9d4edd; }
+body[class*="purple"] .task-study  { border-color: #c77dff; }
+body[class*="purple"] .task-chores { border-color: #d0bdf4; }
+body[class*="purple"] .task-health { border-color: #e8dffc; }
+body[class*="purple"] .task-misc   { border-color: #f5edff; }
+
+/* ORANGE theme variants */
+body[class*="orange"] .task-work   { border-color: #ff9f1c; }
+body[class*="orange"] .task-study  { border-color: #ffb347; }
+body[class*="orange"] .task-chores { border-color: #ffd6a5; }
+body[class*="orange"] .task-health { border-color: #ffeac7; }
+body[class*="orange"] .task-misc   { border-color: #fff3e0; }
+
+/* === Notebook === */
+#notebook {
+  width: 95%;
+  height: 150px;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  resize: vertical;
+  font-family: inherit;
+}
+
+::placeholder {
+  color: white;
+}
+
+/* === Theme Variants === */
+
+/* Light themes */
+body.blue-light { --bg: #e0f7ff; --text: #222; --primary: #a2d2ff; --secondary: #cceeff; --accent: #ffffff; --border: #a2d2ff66; }
+body.pink-light { --bg: #ffe0f0; --text: #222; --primary: #ffafcc; --secondary: #ffdce8; --accent: #ffffff; --border: #ffafcc66; }
+body.green-light { --bg: #e0ffe0; --text: #222; --primary: #b5ead7; --secondary: #d4fbe2; --accent: #ffffff; --border: #b5ead766; }
+body.purple-light { --bg: #f0e0ff; --text: #222; --primary: #d0bdf4; --secondary: #e8dffc; --accent: #ffffff; --border: #d0bdf466; }
+body.orange-light { --bg: #fff4e0; --text: #222; --primary: #ffd6a5; --secondary: #ffeac7; --accent: #ffffff; --border: #ffd6a566; }
+
+/* Dark themes */
+body.blue-dark { --bg: #1e2a38; --text: #f0f0f0; --primary: #4ea8de; --secondary: #3c4f66; --accent: #263243; --border: #4ea8de66; }
+body.pink-dark { --bg: #382128; --text: #f0f0f0; --primary: #e5989b; --secondary: #4a2c31; --accent: #442a30; --border: #e5989b66; }
+body.green-dark { --bg: #1f2d24; --text: #f0f0f0; --primary: #90be6d; --secondary: #2c3e30; --accent: #223328; --border: #90be6d66; }
+body.purple-dark { --bg: #2e1f47; --text: #f0f0f0; --primary: #9d4edd; --secondary: #3b2a5c; --accent: #26193b; --border: #9d4edd66; }
+body.orange-dark { --bg: #3a2e1f; --text: #f0f0f0; --primary: #ffb86b; --secondary: #4c3b2c; --accent: #3a2a1f; --border: #ffb86b66; }
