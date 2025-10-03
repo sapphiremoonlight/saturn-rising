@@ -1,8 +1,12 @@
+/*==============================================
+    		🌸  BASIC LAYOUT & THEME  🌸
+==============================================*/
+
 :root {
   --pink: #ffc4d6;
   --hot-pink: #ff8ab1;
   --blue: #b3cfe5;
-  --dark-blue: #4a7fa7;
+  --dark-blue: #202A44;
   --white: #ffffff;
   --text: #333;
 }
@@ -22,10 +26,13 @@ body {
   background-color: var(--white);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
-   padding-bottom: 50px; /* add extra space at the bottom */
+  padding-bottom: 50px; /* extra space at the bottom */
 }
 
-/* Header */
+/*==============================================
+    			🌸  HEADER  🌸
+==============================================*/
+
 header {
   text-align: center;
   margin-bottom: 20px;
@@ -37,12 +44,23 @@ h1 {
   color: var(--hot-pink);
 }
 
+h1 span {
+  transition: color 0.3s ease;
+}
+
+h1 span:hover {
+ color: #de5d83;
+}
+
 p {
   font-size: 1.2rem;
   color: #666;
 }
 
-/* Selection Section */
+/*==============================================
+    		🌸  SELECTION SECTION  🌸
+==============================================*/
+
 .selection-menu {
   text-align: center;
   margin: 30px 0;
@@ -75,7 +93,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--hot-pink);
+  background-color: #202A44;
   color: white;
 }
 
@@ -84,15 +102,20 @@ button:focus {
   box-shadow: 0 0 0 3px rgba(255, 138, 177, 0.4);
 }
 
-/* Puzzle Display */
+/*==============================================
+    		🌸  PUZZLE DISPLAY  🌸
+==============================================*/
+
 .puzzle-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 30px;
+  gap: 50px;
+  margin-right: 30px;
+  margin-left: 20px;
   margin-top: 30px;
- margin-bottom: 50px; /* add extra space below puzzle */
+  margin-bottom: 50px; /* extra space below puzzle */
 }
 
 #puzzle-preview {
@@ -109,7 +132,6 @@ button:focus {
   box-shadow: 0 6px 12px rgba(255, 170, 200, 0.4);
 }
 
-/* Puzzle Grid */
 .puzzle-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* 6 columns */
@@ -117,12 +139,12 @@ button:focus {
   gap: 5px;
   width: calc(78px * 6 + 25px); /* 6 pieces × piece width + gaps */
   height: calc(78px * 5 + 20px); /* 5 pieces × piece height + gaps */
+ padding-bottom: 50px;
 }
-
 
 .puzzle-piece {
   width: 78px;
-  height: 78px;
+  height: 90px;
   background-repeat: no-repeat;
   background-size: 600% 500%; /* 6 cols → 600%, 5 rows → 500% */
   border-radius: 5px;
@@ -134,7 +156,10 @@ button:focus {
   cursor: grabbing;
 }
 
-/* Modal */
+/*==============================================
+    			🌸  MODAL  🌸
+==============================================*/
+
 .modal {
   display: none;
   position: fixed;
@@ -169,23 +194,9 @@ button:focus {
   margin-top: 15px;
 }
 
-/* Animations */
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
+/*==============================================
+    		🌸  PUZZLE CONTROLS  🌸
+==============================================*/
 
 .puzzle-controls {
   margin-top: 15px;
@@ -215,4 +226,110 @@ button:focus {
   color: #1a3d63;
 }
 
+/*==============================================
+    		🌸  ANIMATIONS  🌸
+==============================================*/
 
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/*==============================================
+    		🌸  MOBILE RESPONSIVENESS  🌸
+==============================================*/
+
+@media (max-width: 900px) {
+  .game-container {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  .puzzle-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #puzzle-preview {
+    max-width: 100%;
+  }
+
+  .puzzle-grid {
+    width: calc(60px * 6 + 25px); /* smaller puzzle pieces */
+    height: calc(60px * 5 + 20px);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  .puzzle-piece {
+    width: 60px;
+    height: 60px;
+    background-size: 600% 500%; /* same scaling */
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .puzzle-controls button {
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+}
+
+// 🌸 SMALLER SCREENS🌸
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .theme-selection,
+  .difficulty-selection {
+    gap: 8px;
+  }
+
+  button {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .puzzle-grid {
+    width: calc(48px * 6 + 20px);
+    height: calc(48px * 5 + 15px);
+  }
+
+  .puzzle-piece {
+    width: 48px;
+    height: 48px;
+    background-size: 600% 500%;
+  }
+
+  .puzzle-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .puzzle-controls button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+}
