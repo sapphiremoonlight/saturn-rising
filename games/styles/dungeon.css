@@ -1,4 +1,8 @@
-/* Basic layout and theme with faerie-ish, pastel aesthetic */
+/*==============================================
+
+    🌸  BASIC LAYOUT & THEME  🌸
+
+==============================================*/
 body {
   display: flex;
   flex-direction: column;
@@ -20,7 +24,11 @@ h1 {
   font-family: 'Segoe UI Black', sans-serif;
 }
 
-/* Player selection styles */
+/*==============================================
+
+    🧚  PLAYER SELECTION STYLES  🧚
+
+==============================================*/
 #playerSelect {
   display: flex;
   flex-direction: column;
@@ -55,14 +63,19 @@ h1 {
   margin-bottom: 8px;
   filter: drop-shadow(0 0 3px #c5b6f7);
 }
-.player-option:hover, .player-option:focus {
+.player-option:hover,
+.player-option:focus {
   background: #b29ddb;
   transform: scale(1.1);
   outline: none;
   box-shadow: 0 12px 20px rgba(178,157,219, 0.7);
 }
 
-/* Game grid */
+/*==============================================
+
+    🧩  GAME GRID  🧩
+
+==============================================*/
 #game {
   display: grid;
   grid-template-columns: repeat(10, 44px);
@@ -91,10 +104,14 @@ h1 {
   filter: drop-shadow(0 0 3px #9e85d3);
 }
 
-/* Controls */
+/*==============================================
+
+    🎮  CONTROLS  🎮
+
+==============================================*/
 #controls {
   margin-bottom: 10px;
-  display: none; /* hidden until player selected */
+  display: none;
   gap: 10px;
   align-items: center;
   color: #6d529b;
@@ -112,7 +129,8 @@ select {
   box-shadow: 0 2px 6px rgba(130, 101, 220, 0.4);
   transition: background 0.3s;
 }
-select:hover, select:focus {
+select:hover,
+select:focus {
   background: #9c7ec6;
   outline: none;
 }
@@ -125,10 +143,15 @@ select:hover, select:focus {
   text-shadow: 1px 1px 6px #d6c5f9;
 }
 
-/* Touch controls */
+/*==============================================
+
+    		📱  TOUCH CONTROLS (MOBILE)  📱
+
+==============================================*/
+
 #touchControls {
   margin-top: 15px;
-  display: none; /* hidden until player selected */
+  display: none;
   gap: 12px;
 }
 .touch-btn {
@@ -144,14 +167,20 @@ select:hover, select:focus {
   transition: background 0.3s, transform 0.1s;
   user-select: none;
 }
-.touch-btn:active, .touch-btn:hover {
+.touch-btn:active,
+.touch-btn:hover {
   background: #7a54a2;
   transform: scale(1.05);
   box-shadow: 0 8px 18px rgba(122,84,162,0.9);
 }
 
-/* Lobby and Restart buttons */
-#lobbyBtn, #restartBtn {
+/*==============================================
+
+    		🏁  RESTART & LOBBY BUTTONS  🏁
+
+==============================================*/
+#lobbyBtn,
+#restartBtn {
   margin-top: 20px;
   padding: 12px 26px;
   background: #b68ddf;
@@ -165,14 +194,21 @@ select:hover, select:focus {
   transition: background 0.3s, transform 0.1s;
   user-select: none;
 }
-#lobbyBtn:hover, #restartBtn:hover {
+#lobbyBtn:hover,
+#restartBtn:hover {
   background: #7a54a2;
   transform: scale(1.05);
   box-shadow: 0 10px 28px rgba(122,84,162,0.9);
 }
-#restartBtn { display: none; }
+#restartBtn {
+  display: none;
+}
 
-/* Selected player info */
+/*==============================================
+
+    		🌟  SELECTED PLAYER DISPLAY  🌟
+
+==============================================*/
 #selectedPlayer {
   display: none;
   margin-bottom: 12px;
@@ -192,4 +228,160 @@ select:hover, select:focus {
 }
 #selectedPlayer span {
   vertical-align: middle;
+}
+
+/*==============================================
+
+    	🔙  BACK TO CHARACTER SELECT BUTTON  🔙
+
+==============================================*/
+#backToSelect {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(145deg, #e4ccff, #b68ddf);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(146, 104, 205, 0.6);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1000;
+}
+#backToSelect:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(122, 84, 162, 0.9);
+}
+#backToSelect:active {
+  transform: scale(0.98);
+}
+
+/*==============================================
+
+  		  ✨  SPARKLE EFFECT  ✨
+
+==============================================*/
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff8ff, #e0b8ff);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle-fade 0.8s ease-out forwards;
+  z-index: 9999;
+}
+@keyframes sparkle-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) translateY(-20px);
+  }
+}
+
+/*==============================================
+
+    		📐  MOBILE RESPONSIVENESS  📐
+
+==============================================*/
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+    margin: 15px 10px;
+  }
+
+  /* Player selection adjustments */
+  .player-options {
+    gap: 10px;
+    justify-content: center;
+  }
+  .player-option {
+    width: 80px;
+    padding: 8px;
+    font-size: 12px;
+  }
+  .player-option img {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 6px;
+  }
+
+  /* Game grid smaller and tighter */
+  #game {
+    grid-template-columns: repeat(10, 32px);
+    grid-template-rows: repeat(10, 32px);
+    gap: 2px;
+    padding: 8px;
+    margin: 15px 0;
+  }
+  .cell {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+  .cell img {
+    max-width: 28px;
+    max-height: 28px;
+  }
+
+  /* Controls stacked vertically */
+  #controls {
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+  }
+  select {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px 12px;
+  }
+
+  /* Touch controls bigger and spaced */
+  #touchControls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .touch-btn {
+    flex: 1 1 40%;
+    max-width: 120px;
+    padding: 16px 0;
+    font-size: 18px;
+  }
+
+  /* Buttons bigger and full width on small screens */
+  #lobbyBtn, #restartBtn {
+    width: 80%;
+    max-width: 300px;
+    font-size: 18px;
+    padding: 14px 0;
+  }
+
+  /* Selected player smaller and centered */
+  #selectedPlayer {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  #selectedPlayer img {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+  }
+
+  /* Back to select button smaller */
+  #backToSelect {
+    top: 15px;
+    left: 15px;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
 }
