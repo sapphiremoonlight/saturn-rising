@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
-  <title>Puzzle Game</title>
-  <link rel="stylesheet" href="styles/game.css" />
+  <link rel="icon" href="../assets/images/favicon.ico" type="image/png" />
+  <title>Zodiac Pieces</title>
+  <link rel="stylesheet" href="styles/puzzle.css" />
 </head>
 <body>
   <div class="game-container">
     <header>
-      <h1>Puzzle Game</h1>
+      <h1><span>Zodiac</span> <span>Pieces</span></h1>
       <p>Relax and unwind by solving puzzles!</p>
     </header>
 <main>
@@ -19,9 +19,9 @@
       <div class="theme-selection">
         <button class="theme-btn" data-theme="Nature">Nature</button>
         <button class="theme-btn" data-theme="Animals">Animals</button>
-        <button class="theme-btn" data-theme="Mandalas">Mandalas</button>
-        <button class="theme-btn" data-theme="Abstract">Abstract</button>
-        <button class="theme-btn" data-theme="Seasonal">Seasonal</button>
+        <button class="theme-btn" data-theme="Fictional-Characters">Fictional Characters</button>
+        <button class="theme-btn" data-theme="Anime">Anime</button>
+        <button class="theme-btn" data-theme="Cosmic">Cosmic</button>
       </div>
       <div class="difficulty-selection">
         <button class="difficulty-btn" data-level="Easy">Easy</button>
@@ -34,7 +34,7 @@
     <div class="puzzle-container">
       <div id="puzzle-preview">
         <h4>Preview:</h4>
-        <img id="preview-img" src="images/default-preview.jpg" alt="Puzzle Preview" />
+        <img id="preview-img" src="images/puzzle-banner.jpg" alt="Puzzle Preview" />
       </div>
 
       <div id="puzzle-grid" class="puzzle-grid">
@@ -48,7 +48,6 @@
   	<button id="back-lobby-btn">Back to Lobby</button>
 	</div>
 
-
     <div id="puzzle-completed" class="modal">
       <div class="modal-content">
         <h2>Congratulations! You solved the puzzle!</h2>
@@ -57,6 +56,6 @@
     </div>
   </div>
 </main>
-  <script src="scripts/game.js"></script>
+  <script src="scripts/puzzle.js"></script>
 </body>
 </html>
