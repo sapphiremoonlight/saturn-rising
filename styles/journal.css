@@ -1,0 +1,359 @@
+@font-face {
+      font-family: 'healing';
+      src: url('./fonts/healing.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #eef6ff, #ffffff);
+      padding: 30px;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      font-family: 'healing', serif;
+      color: #003366;
+      font-size: 3em;
+      margin-bottom: 40px;
+    }
+
+    .input-container {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 2px solid #cce0ff;
+      font-size: 1.1em;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    .mood-selector {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+    }
+
+    .mood-option {
+      font-size: 1.8em;
+      cursor: pointer;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: #d6ebff;
+      transition: background 0.25s ease;
+      user-select: none;
+    }
+
+    .mood-option.selected {
+      background: #4da6ff;
+      color: white;
+    }
+
+    .controls {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    button {
+      width: 150px;
+      padding: 12px 0;
+      font-size: 1.1em;
+      background-color: #4da6ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #3399ff;
+    }
+
+    .filters {
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    select, input[type="search"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    #entries {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .entry {
+      background: #f7faff;
+      border: 2px solid #cce0ff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+    }
+
+    .entry h3 {
+      margin: 0 0 8px 0;
+      color: #003366;
+    }
+
+    .entry .timestamp {
+      font-size: 0.85em;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+/* Limit image preview size */
+.entry img {
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* Limit text preview height, with overflow hidden and fade */
+.entry p {
+  max-height: 4.5em; /* about 3 lines */
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Fade out effect at bottom of text preview */
+.entry p::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.2em;
+  background: linear-gradient(to bottom, transparent, #f7faff);
+}
+
+/* Modal background */
+#modalOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal box */
+#modalContent {
+  background: white;
+  max-width: 600px;
+  max-height: 80vh;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* Modal close button */
+#modalCloseBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+}
+
+#modalContent img, #modalContent audio, #modalContent video {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+    .mood-chip {
+      display: inline-block;
+      padding: 5px 12px;
+      font-size: 1em;
+      border-radius: 20px;
+      background-color: #4da6ff;
+      color: white;
+      margin: 3px 4px 8px 0;
+    }
+
+    .entry p {
+      white-space: pre-wrap;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .entry img, .entry audio, .entry video {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    .entry .edit-btn,
+    .entry .delete-btn {
+  	margin-top: 10px;
+  	margin-right: 10px;
+  	padding: 8px 16px;      /* consistent padding */
+  	width: 100px;           /* fixed width for both */
+  	height: 36px;           /* fixed height for both */
+  	border: none;
+  	color: white;
+  	cursor: pointer;
+  	font-size: 14px;
+  	border-radius: 4px;
+  	box-sizing: border-box; /* ensure padding included in width */
+}
+
+    .entry .delete-btn {
+      background-color: #780606;
+    }
+
+    .entry .delete-btn:hover {
+      background-color: #d21f3c;
+    }
+
+.entry .edit-btn {
+      background-color: #1e2e4f; //#6baed6
+    }
+
+    .entry .edit-btn:hover {
+      background-color: #9ecae1;
+    }
+
+// MOBILE RESPONSIVENESS
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+nav {
+    width: 100vw;      /* full viewport width */
+    left: 0;           /* reset any positioning */
+    padding-left: 0;   /* remove any horizontal padding */
+    padding-right: 0;
+  }
+
+  .input-container,
+  .mood-selector,
+  .controls,
+  .filters,
+  #entries {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .input-container {
+    gap: 12px;
+  }
+
+  input[type="text"],
+  textarea,
+  select,
+  input[type="search"] {
+    font-size: 1em;
+  }
+
+  .mood-selector {
+    justify-content: flex-start;
+  }
+
+  .mood-option {
+    font-size: 1.5em;
+    padding: 10px 14px;
+  }
+
+  button {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 1.1em;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filters select,
+  .filters input[type="search"] {
+    width: 100%;
+  }
+
+  .entry .edit-btn,
+  .entry .delete-btn {
+    width: 48%;
+    height: 36px;
+    padding: 8px 0;
+    font-size: 14px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .entry .edit-btn {
+    margin-right: 4%;
+  }
+
+.entry-buttons .edit-btn,
+.entry-buttons .delete-btn {
+  flex: 1;           /* equal width */
+  padding: 8px 0;    /* vertical padding */
+  font-size: 14px;
+  margin: 0;         /* margin handled by gap */
+  height: 36px;
+}
+
+  /* Stack buttons vertically if still too narrow */
+  @media (max-width: 350px) {
+    .entry .edit-btn,
+    .entry .delete-btn {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+}
+
