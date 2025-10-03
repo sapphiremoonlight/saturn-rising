@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="styles/pomodoro.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Pomodoro Timer</h1>
+      <button id="lobbyBtn">🏠 Back to Lobby</button>
+      	<select id="themeSelector">
+  	<option value="blue">Blue</option>
+  	<option value="pink">Pink</option>
+  	<option value="green">Green</option>
+  	<option value="purple">Purple</option>
+  	<option value="orange">Orange</option>
+	</select>
+
+	<label>
+  	<input type="checkbox" id="darkModeToggle"> Dark Mode
+	</label>
+
+    </header>
+
+    <main>
+      <section class="timer-section">
+  	<div id="timer">25:00</div>
+
+  <div class="controls">
+    <button id="startTimerBtn">Start</button>
+    <button id="pauseTimerBtn">Pause</button>
+    <button id="resetTimerBtn">Reset</button>
+  </div>
+
+  <div class="durations">
+    <label for="workDuration">
+      Work: 
+      <input type="number" id="workDuration" value="25" min="1" autocomplete="off" /> min
+    </label>
+
+    <label for="shortBreak">
+      Short Break: 
+      <input type="number" id="shortBreak" value="5" min="1" autocomplete="off" /> min
+    </label>
+
+    <label for="longBreak">
+      Long Break: 
+      <input type="number" id="longBreak" value="15" min="1" autocomplete="off" /> min
+    </label>
+
+    <label for="autoStart">
+      Auto-Start 
+      <input type="checkbox" id="autoStart" />
+    </label>
+  </div>
+<br>
+  <div id="sessionCount">Pomodoros Today: 0</div>
+</section>
+
+<section class="tasks-section">
+  <h2>📝 Tasks</h2>
+
+  <div class="task-input-row">
+    <input type="text" id="taskInput" placeholder="Task description..." />
+    <select id="taskCategory"></select>
+    <button id="addTaskBtn">Add</button>
+  </div>
+
+  <ul id="taskList"></ul>
+  <br>
+  <section class="category-management">
+    <h3>Manage Categories</h3>
+    <input type="text" id="newCategoryInput" placeholder="New category name" />
+    <button id="addCategoryBtn">Add Category</button>
+
+    <select id="editCategorySelect"></select>
+    <button id="editCategoryBtn">Edit Selected</button>
+    <button id="deleteCategoryBtn">Delete Selected</button>
+  </section>
+</section>
+
+      <section class="notebook-section">
+  <h2>📓 Notebook</h2>
+
+  <div class="editor-toolbar">
+    <select id="formatBlock">
+      <option value="p">Paragraph</option>
+      <option value="h1">Heading 1</option>
+      <option value="h2">Heading 2</option>
+      <option value="h3">Heading 3</option>
+      <option value="h4">Heading 4</option>
+      <option value="h5">Heading 5</option>
+      <option value="h6">Heading 6</option>
+    </select>
+    <button data-cmd="bold"><b>B</b></button>
+    <button data-cmd="italic"><i>I</i></button>
+    <button data-cmd="underline"><u>U</u></button>
+    <button data-cmd="insertUnorderedList">List</button>
+    <button data-cmd="insertOrderedList">Numbered List</button>
+    <button data-cmd="removeFormat">✖</button>
+  </div>
+
+  <div id="notebook" contenteditable="true" class="rich-notes">
+    <p>Start writing your notes here...</p>
+  </div>
+  <input type="text" id="notebookName" placeholder="Notebook Name">
+  <button id="saveNotesBtn"><i class="fas fa-save"></i> Save Notes</button>
+  <button id="loadNotesBtn"><i class="fas fa-file-import"></i> Load Notes</button>
+
+  <button id="downloadNotebookBtn">
+  <i class="fas fa-download"></i> Download Notes
+</button>
+
+</section>
+
+    </main>
+  </div>
+
+  <script src="scripts/pomodoro.js"></script>
+</body>
+</html>
