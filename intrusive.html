@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrusive Thoughts & Behaviors Tracker</title>
+   <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/intrusive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<!-- PIE CHART-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header and Navigation Bar -->
+        <header class="navbar">
+            <h1>Intrusive Thoughts & Behaviors Tracker</h1>
+            <nav>
+                <a href="index.html" title="Dashboard" class="active"><i class="fas fa-home"></i></a>
+                <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
+                <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
+                <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+                <a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a>
+            </nav>
+        </header>
+
+        <!-- Quick Log Form -->
+        <section class="log-form">
+            <h2>Log an Incident</h2>
+            <form id="logForm">
+                <label for="category">Category</label>
+                <select id="category" required>
+                    <option value="intrusiveThoughts">Intrusive Thought</option>
+                    <option value="compulsion">Compulsion</option>
+                    <option value="impulse">ADHD Impulse</option>
+                    <option value="forgetfulness">Forgetfulness</option>
+                    <option value="trichotillomania">Trichotillomania / Skin Picking</option>
+                </select>
+
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Describe what happened..." required></textarea>
+
+                <label for="trigger">Trigger</label>
+                <textarea id="trigger" placeholder="What triggered it?" required></textarea>
+
+                <label for="intensity">Intensity / Distress Level (1-10)</label>
+                <input type="number" id="intensity" min="1" max="10" required>
+
+                <label for="coping">Coping/Response</label>
+                <textarea id="coping" placeholder="What did you do to cope?" required></textarea>
+
+                <label for="outcome">Outcome</label>
+                <select id="outcome" required>
+                    <option value="improved">Improved</option>
+                    <option value="neutral">Neutral</option>
+                    <option value="struggling">Still Struggling</option>
+                </select>
+
+                <button type="submit">Save Entry</button>
+            </form>
+        </section>
+
+        <!-- Behavior Log Section -->
+        <section class="behavior-log">
+            <h2>Behavior Log</h2>
+            <div id="logEntries">
+                <!-- Dynamic log entries will appear here -->
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="analytics">
+            <h2>Patterns & Analytics</h2>
+            <h3>Behavior Distribution</h3>
+            <canvas id="pieChart"></canvas>
+            <h3>Distress Levels Over Time</h3>
+           <canvas id="lineGraph"></canvas>
+        </section>
+
+        <!-- Coping Tools Section -->
+        <section class="coping-tools">
+            <h2>Suggested Coping Tools</h2>
+            <ul>
+                <li><button onclick="showTool('fidget')">Fidgeting / Stress Ball</button></li>
+                <li><button onclick="showTool('breathing')">Breathing Exercises</button></li>
+                <li><button onclick="showTool('distraction')">Distraction Activities</button></li>
+            </ul>
+        </section>
+
+        <!-- Affirmations Section -->
+        <section class="affirmations" id="affirmationsSection">
+            <h2>Affirmations</h2>
+            <button onclick="showAffirmation()">Give me an affirmation 💙</button>
+            <div class="affirmation-box" id="affirmationBox">Click the button for a calming thought.</div>
+        </section>
+    </div>
+ <footer>
+    <p>© 2025 Saturn Rising. You are safe and supported here.</p>
+  </footer>
+    <script src="scripts/intrusive.js"></script>
+</body>
+</html>

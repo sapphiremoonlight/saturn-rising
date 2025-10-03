@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+  <title>Game Lobby</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* General Styles */
+    /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #4a7fa7, #7aabd2);
+  color: #fff; /* fixed typo */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+footer {
+  text-align: center;
+  font-size: 1em;
+  margin-top: 40px;
+  color: white;
+  padding: 20px 0;
+  background: linear-gradient(135deg, #1a3d63, #4a7fa7);
+  box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.15);
+  border-radius: 12px 12px 0 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* 🚀 NAVBAR STYLES */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(45deg, #0a1931, #b3cfe5, #4a7fa7, #1a3d63, #f6fafd);
+  color: white; /* fixed typo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.navbar nav a {
+  color: white; /* fixed typo */
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-size: 1.4rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.navbar nav a:hover,
+.navbar nav a:hover i {
+  color: #ffc4d6; /* fixed typo */
+}
+
+.navbar nav a i {
+  font-size: 1.6rem;
+  margin-right: 8px;
+  color: #fff;
+}
+
+/* Logo Section */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+}
+
+.logo span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* Main Game Lobby Container */
+.game-lobby-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1); /* fixed typo */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Game Options Section */
+.game-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.game-option {
+  background-color: rgba(255, 255, 255, 0.15); /* fixed typo */
+  padding: 20px;
+  border-radius: 15px;
+  width: 30%;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-option:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-option h3 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.game-option p {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 15px 25px;
+  background-color: #4a7fa7; /* fixed typo */
+  color: white; /* fixed typo */
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #7aabd2; /* fixed typo */
+}
+
+button:focus {
+  outline: none;
+}
+
+button i {
+  margin-right: 10px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Fix */
+@media (max-width: 900px) {
+  .game-option {
+    width: 100%;
+  }
+}
+
+/* Mobile Navbar Stack */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .navbar nav {
+    margin-top: 10px;
+  }
+  .navbar nav a {
+    margin-left: 0.8rem;
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile padding and spacing */
+@media (max-width: 480px) {
+  .game-lobby-container {
+    padding: 20px;
+  }
+  button {
+    width: 100%;
+    padding: 15px 0;
+  }
+  .game-option {
+    padding: 15px;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Main Container -->
+  <div class="game-lobby-container">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <div class="logo">
+        <img src="https://www.pngmart.com/files/22/Saturn-PNG-Clipart.png" alt="Saturn Rising Logo" />
+        <span>Saturn Rising</span>
+      </div>
+      <nav>
+        <a href="index.html" title="Dashboard"><i class="fas fa-home"></i></a> 
+	<a href="journal.html" title="Journal"><i class="fas fa-book"></i></a> 
+	<a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a> 
+	<a href="#" title="Games" class="active"><i class="fas fa-gamepad"></i></a> 
+	<a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a> </nav>
+      </nav>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <h1>Select a Game</h1>
+      <p>Choose a game to unwind and have some fun!</p>
+    </header>
+
+    <!-- Game Options -->
+    <section class="game-options">
+      <div class="game-option" id="puzzle-option">
+        <h3>Puzzle Game</h3>
+        <p>Relax and challenge yourself with beautiful puzzles.</p>
+        <button onclick="startGame('puzzle')">
+          <i class="fas fa-puzzle-piece"></i>Play Puzzle
+        </button>
+      </div>
+      <div class="game-option" id="pet-option">
+        <h3>Virtual Pet</h3>
+        <p>Take care of your little pet and watch it grow!</p>
+        <button onclick="startGame('pet')">
+          <i class="fas fa-paw"></i>Play Pet Game
+        </button>
+      </div>
+      <div class="game-option" id="chess-option">
+        <h3>Chess</h3>
+        <p>Express your creativity with calming colouring.</p>
+        <button onclick="startGame('colouring')">
+          <i class="fas fa-palette"></i>Play Chess
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Saturn Rising 🪐</p>
+    </footer>
+  </div>
+
+  <!-- JS: Handle Game Navigation -->
+  <script>
+    function startGame(gameType) {
+      switch(gameType) {
+        case 'puzzle':
+          window.location.href = 'games/puzzle.html';
+          break;
+        case 'pet':
+          window.location.href = 'games/saturn.html';
+          break;
+        case 'colouring':
+          window.location.href = 'games/chess.html';
+          break;
+        default:
+          console.error('Unknown game type');
+      }
+    }
+  </script>
+</body>
+</html>

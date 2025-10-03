@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Breathe | Saturn Rising</title>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+  <link rel="stylesheet" href="styles/breathe.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+
+<body>
+  <!-- 🔻 Bottom Nav -->
+  <nav>
+    <a href="index.html" title="Dashboard"><i class="fas fa-home"></i></a>
+    <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
+    <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
+    <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+    <a href="#" title="Breathe" class="active"><i class="fas fa-wind"></i></a>
+  </nav>
+
+  <!-- 🔹 Main Breathing Bubble -->
+  <main>
+    <h1 class="screen-title">Breathing Bubble</h1>
+    <div class="bubble-container">
+      <div class="bubble">
+        <div class="prompt" id="prompt-text">Breathe in...</div>
+      </div>
+    </div>
+
+    <div class="instructions">
+      Follow the bubble as it grows and shrinks.<br>
+      Inhale → Hold → Exhale → Hold
+    </div>
+
+    <!-- 🎧 Background Audio Controls -->
+    <section class="controls">
+      <div class="audio-controls">
+        <label for="sound-select">Background Sound:</label>
+        <select id="sound-select">
+          <option value="rain.mp3">Rain</option>
+          <option value="reiki.mp3">Reiki</option>
+          <option value="waves.mp3">Waves</option>
+          <option value="guided-meditation.mp3">Guided Meditation</option>
+          <option value="pink-noise.mp3">Pink Noise</option>
+        </select>
+
+        <button id="play-pause"><i class="fas fa-play"></i></button>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" />
+      </div>
+    </section>
+
+  <audio id="bg-audio" loop></audio>
+  </main>
+<div class="sparkles"> </div>
+  <!-- 🔽 Scripts -->
+  <script src="scripts/breathe.js"></script>
+  <script>
+    const promptText = document.getElementById('prompt-text');
+    const prompts = ["Breathe in...", "Hold...", "Breathe out...", "Hold..."];
+    let i = 0;
+
+    setInterval(() => {
+      promptText.textContent = prompts[i];
+      promptText.style.opacity = 0;
+      setTimeout(() => {
+        promptText.style.opacity = 1;
+        promptText.textContent = prompts[i];
+      }, 200);
+      i = (i + 1) % prompts.length;
+    }, 3000);
+  </script>
+</body>
+</html>

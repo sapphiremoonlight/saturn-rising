@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saturn Rising Dashboard 🌙</title>
+<link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+<link rel="stylesheet" href="styles/styles.css?v=1" />
+<!-- Font Awesome 6 -->
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  </head>
+<body>
+    <header class="navbar">
+    <div class="logo">
+        <img src="assets/images/logo.png" alt="Saturn Rising Logo" />
+        <span>Saturn Rising</span>
+    </div>
+    <nav>
+        <a href="#" title="Dashboard" class="active"><i class="fas fa-home"></i></a>
+        <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
+        <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
+        <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+        <a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a>
+    </nav>
+</header>
+<main class="content">
+    <div class="dashboard-container">
+   	<h1>Saturn Rising Dashboard🌙</h1>
+  	<p>Welcome back. Choose where you want to go today:</p>
+   </div>
+
+<div class="catalogue-wrapper">
+     <!-- Catalogue Container -->
+    <div class="catalogue-container">
+        <div class="card" onclick="goTo('journal.html')">
+            <span>📔</span>
+            <h2>Journal Entries</h2>
+            <p>Write your thoughts, reflect, release.</p>
+        </div>
+
+        <!-- Card to navigate to the Affirmations section in intrusive.html -->
+	<div class="card" onclick="scrollToAffirmations()">
+ 		<span>💙</span>
+  		<h2>Affirmations</h2>
+  		<p>Kind reminders for your mind and soul.</p>
+	</div>
+
+        <div class="card" onclick="goTo('breathe.html')">
+            <span>🌬</span>
+            <h2>Breathing</h2>
+            <p>Calm your nervous system gently.</p>
+        </div>
+
+        <div class="card" onclick="goTo('intrusive.html')">
+            <span>🧠</span>
+            <h2>Thought Reframer</h2>
+            <p>Reframe and let go of intrusive thoughts.</p>
+        </div>
+    </div>
+  </div>
+
+  <!-- 🎧 Vibe Music Section -->
+  <section id="music">
+    <h2>Vibe Music</h2>
+    <label for="moodPlaylist">Choose a mood:</label>
+    <select id="moodPlaylist">
+      <option value="default">Default Chill</option>
+      <option value="happy">Happy</option>
+      <option value="sad">Sad</option>
+      <option value="anxious">Anxious</option>
+      <option value="reflective">Reflective</option>
+      <option value="energetic">Energetic</option>
+    </select>
+
+    <div id="spotifyEmbed" class="spotify-player"></div>
+  </section>
+</main>
+
+  <footer>
+    <p>© 2025 Saturn Rising. You are safe and supported here.</p>
+  </footer>
+
+  <script>
+    function goTo(page) {
+      window.location.href = page;
+    }
+
+    const playlistURIs = {
+      default: "https://open.spotify.com/embed/playlist/0izlnveXyc7iw8uLZ87acj?utm_source=generator",
+      happy: "https://open.spotify.com/embed/playlist/37i9dQZF1EIdt7tQbR8QDN?utm_source=generator",
+      sad: "https://open.spotify.com/embed/playlist/37i9dQZF1EIg85EO6f7KwU?utm_source=generator",
+      anxious: "https://open.spotify.com/embed/playlist/7ll3l128TqTXbtyZGF7WR7?utm_source=generator",
+      reflective: "https://open.spotify.com/embed/playlist/7gSLEvRrbHItuwYvpnPW8V?utm_source=generator",
+      energetic: "https://open.spotify.com/embed/playlist/1xM2YVBpc6WS89NfMCHnxu?utm_source=generator"
+    };
+
+    function updateSpotifyPlayer(mood) {
+      const uri = playlistURIs[mood] || playlistURIs.default;
+      document.getElementById("spotifyEmbed").innerHTML = `
+        <iframe
+          style="border-radius:12px"
+          src="${uri}"
+          width="100%"
+          height="352"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
+      `;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateSpotifyPlayer("default");
+      document.getElementById("moodPlaylist").addEventListener("change", e => {
+        updateSpotifyPlayer(e.target.value);
+      });
+    });
+  </script>
+
+<script>
+  // Function to scroll to the Affirmations section
+  function scrollToAffirmations() {
+    const affirmationSection = document.getElementById('affirmationsSection');
+    if (affirmationSection) {
+      affirmationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>
+</body>
+</html>

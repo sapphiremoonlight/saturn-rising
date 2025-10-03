@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendar</title>
+  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+  <link rel="stylesheet" href="styles/styles.css" />
+<!-- Font Awesome 6 (latest free version) -->
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="Saturn Rising Logo" />
+      <span>Saturn Rising</span>
+    </div>
+    <nav>
+      <a href="index.html" title="Dashboard"><i class="fas fa-home"></i></a>
+      <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
+      <a href="#" title="Calendar" class="active"><i class="fas fa-calendar-alt"></i></a>
+      <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+      <a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <section id="welcome">
+      <h1>Welcome Back to Saturn Rising</h1>
+      <p>Your personal space for tracking moods, reflecting on your journey, and nurturing growth.</p>
+    </section>
+
+    <section id="mood-calendar">
+      <h2>Mood Calendar</h2>
+      <div class="calendar-controls">
+  <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+  <h3 id="calendarMonthYear"></h3>
+  <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+</div>
+<div id="calendarGrid" class="calendar-grid"></div>
+
+<!-- Mood selection modal -->
+<div id="moodModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Select Moods</h3>
+    <div id="moodOptions" class="mood-options">
+
+	</div>
+    <button id="saveMoodsBtn">Save</button>
+    <button id="closeModalBtn">Cancel</button>
+  </div>
+</div>
+</section>
+  <footer>
+    <p> Saturn Rising 🪐 </p>
+  </footer>
+  <script src="scripts/script.js"></script>
+</body>
+</html>
