@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+  <title>Puzzle Game</title>
+  <link rel="stylesheet" href="styles/game.css" />
+</head>
+<body>
+  <div class="game-container">
+    <header>
+      <h1>Puzzle Game</h1>
+      <p>Relax and unwind by solving puzzles!</p>
+    </header>
+<main>
+    <div class="selection-menu">
+      <h3>Select Puzzle Theme & Difficulty:</h3>
+      <div class="theme-selection">
+        <button class="theme-btn" data-theme="Nature">Nature</button>
+        <button class="theme-btn" data-theme="Animals">Animals</button>
+        <button class="theme-btn" data-theme="Mandalas">Mandalas</button>
+        <button class="theme-btn" data-theme="Abstract">Abstract</button>
+        <button class="theme-btn" data-theme="Seasonal">Seasonal</button>
+      </div>
+      <div class="difficulty-selection">
+        <button class="difficulty-btn" data-level="Easy">Easy</button>
+        <button class="difficulty-btn" data-level="Medium">Medium</button>
+        <button class="difficulty-btn" data-level="Hard">Hard</button>
+        <button class="difficulty-btn" data-level="Expert">Expert</button>
+      </div>
+    </div>
+
+    <div class="puzzle-container">
+      <div id="puzzle-preview">
+        <h4>Preview:</h4>
+        <img id="preview-img" src="images/default-preview.jpg" alt="Puzzle Preview" />
+      </div>
+
+      <div id="puzzle-grid" class="puzzle-grid">
+        <!-- Puzzle pieces go here -->
+      </div>
+    </div>
+
+	<div class="puzzle-controls">
+ 	 <button id="undo-btn" disabled>Undo</button>
+  	<button id="redo-btn" disabled>Redo</button>
+  	<button id="back-lobby-btn">Back to Lobby</button>
+	</div>
+
+
+    <div id="puzzle-completed" class="modal">
+      <div class="modal-content">
+        <h2>Congratulations! You solved the puzzle!</h2>
+        <button id="next-puzzle">Next Puzzle</button>
+      </div>
+    </div>
+  </div>
+</main>
+  <script src="scripts/game.js"></script>
+</body>
+</html>
