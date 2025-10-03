@@ -1,0 +1,195 @@
+/* Basic layout and theme with faerie-ish, pastel aesthetic */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top left, #e0d7f5, #b6d1d8);
+  color: #4a3f55;
+  margin: 0;
+  min-height: 100vh;
+  user-select: none;
+}
+
+h1 {
+  margin: 20px;
+  font-size: 32px;
+  color: #b29ddb;
+  text-shadow: 0 0 6px #d8c9f7;
+  font-weight: 700;
+  font-family: 'Segoe UI Black', sans-serif;
+}
+
+/* Player selection styles */
+#playerSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+}
+.player-options {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.player-option {
+  cursor: pointer;
+  background: #d0b8f0;
+  border-radius: 12px;
+  padding: 10px;
+  width: 110px;
+  text-align: center;
+  box-shadow: 0 8px 12px rgba(178,157,219, 0.4);
+  transition: background 0.3s, transform 0.3s;
+  color: #3a2f4d;
+  user-select: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+.player-option img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 3px #c5b6f7);
+}
+.player-option:hover, .player-option:focus {
+  background: #b29ddb;
+  transform: scale(1.1);
+  outline: none;
+  box-shadow: 0 12px 20px rgba(178,157,219, 0.7);
+}
+
+/* Game grid */
+#game {
+  display: grid;
+  grid-template-columns: repeat(10, 44px);
+  grid-template-rows: repeat(10, 44px);
+  gap: 3px;
+  margin: 20px 0;
+  background: #f3eafa;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(178,157,219, 0.5);
+}
+.cell {
+  width: 44px;
+  height: 44px;
+  background: #b68ddf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px #b7a9d9;
+  transition: background 0.3s;
+}
+.cell img {
+  max-width: 40px;
+  max-height: 40px;
+  filter: drop-shadow(0 0 3px #9e85d3);
+}
+
+/* Controls */
+#controls {
+  margin-bottom: 10px;
+  display: none; /* hidden until player selected */
+  gap: 10px;
+  align-items: center;
+  color: #6d529b;
+  font-weight: 700;
+  font-size: 16px;
+}
+select {
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  background: #b29ddb;
+  color: #3a2f4d;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(130, 101, 220, 0.4);
+  transition: background 0.3s;
+}
+select:hover, select:focus {
+  background: #9c7ec6;
+  outline: none;
+}
+
+#status {
+  margin: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #7a54a2;
+  text-shadow: 1px 1px 6px #d6c5f9;
+}
+
+/* Touch controls */
+#touchControls {
+  margin-top: 15px;
+  display: none; /* hidden until player selected */
+  gap: 12px;
+}
+.touch-btn {
+  padding: 14px 24px;
+  background: #a086d6;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 6px 12px rgba(160,134,214,0.6);
+  transition: background 0.3s, transform 0.1s;
+  user-select: none;
+}
+.touch-btn:active, .touch-btn:hover {
+  background: #7a54a2;
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(122,84,162,0.9);
+}
+
+/* Lobby and Restart buttons */
+#lobbyBtn, #restartBtn {
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: #b68ddf;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(182,141,223,0.7);
+  transition: background 0.3s, transform 0.1s;
+  user-select: none;
+}
+#lobbyBtn:hover, #restartBtn:hover {
+  background: #7a54a2;
+  transform: scale(1.05);
+  box-shadow: 0 10px 28px rgba(122,84,162,0.9);
+}
+#restartBtn { display: none; }
+
+/* Selected player info */
+#selectedPlayer {
+  display: none;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #6c52a3;
+  font-weight: 700;
+  font-size: 22px;
+  text-shadow: 0 0 8px #cfc1fb;
+}
+#selectedPlayer img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  vertical-align: middle;
+  margin-right: 14px;
+  filter: drop-shadow(0 0 5px #b5a6f8);
+}
+#selectedPlayer span {
+  vertical-align: middle;
+}
