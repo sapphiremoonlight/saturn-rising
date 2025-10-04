@@ -23,7 +23,7 @@ playPauseBtn.addEventListener('click', () => {
 
 // Sound change
 soundSelect.addEventListener('change', () => {
-  audio.src = `assets/audio/${soundSelect.value}`;
+  audio.src = `assets/audios/${soundSelect.value}`;
   if (isPlaying) audio.play();
 });
 
@@ -31,3 +31,4 @@ soundSelect.addEventListener('change', () => {
 volumeSlider.addEventListener('input', () => {
   audio.volume = volumeSlider.value;
 });
+
