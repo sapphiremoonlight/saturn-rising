@@ -19,7 +19,7 @@ body {
 
 @font-face {
       font-family: 'healing';
-      src: url('./fonts/healing.otf') format('opentype');
+      src: url('../assets/fonts/healing.otf') format('opentype');
       font-weight: normal;
       font-style: normal;
     }
@@ -489,3 +489,4 @@ body.dark footer,
 body.dark .navbar {
   background-color: #4b3b8d;
 }
+
