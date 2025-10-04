@@ -1,6 +1,6 @@
 @font-face {
       font-family: 'healing';
-      src: url('./assets/fonts/healing.otf') format('opentype');
+      src: url('../assets/fonts/healing.otf') format('opentype');
       font-weight: normal;
       font-style: normal;
     }
@@ -356,5 +356,6 @@ nav {
     }
   }
 }
+
 
 
