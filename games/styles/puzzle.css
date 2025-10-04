@@ -253,18 +253,13 @@ button:focus {
 @media (max-width: 900px) {
   /* Ensure the game container stays centered */
   .game-container {
-    margin: 20px;
+    margin: 20px 10px;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+   }
 
   /* Adjust the puzzle container to stack vertically and align left */
   .puzzle-container {
     display: flex;
-    flex-direction: row; /* Keep it horizontal for mobile */
-    justify-content: flex-start; /* Align to left */
     gap: 20px;
     width: 100%; /* Take up full width */
     padding-right: 0; /* Remove right padding to avoid overflow */
@@ -334,146 +329,127 @@ justify-content: left; /* Center the preview within its container */
 
 /* Mobile responsiveness for screens <= 480px */
 @media (max-width: 480px) {
-  .game-container {
-    margin: 20px;
+
+.game-container {
+    margin: 20px 10px;
     padding: 20px;
-  }
+   }
 
-  h1 {
-    font-size: 2rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .selection-menu h3 {
-    font-size: 1.2rem;
-  }
-
-  .theme-selection,
-  .difficulty-selection {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px;
-  }
-
-  button {
-    width: 100%; /* Full-width buttons for better tap area */
-    padding: 14px;
-    font-size: 1.1rem;
-  }
-
-  .puzzle-container {
-    flex-direction: column; /* Stack puzzles vertically */
+   .puzzle-container {
+    display: flex;
     gap: 20px;
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 20px;
+    width: 100%;
+    padding-right: 0;
+    box-sizing: border-box;
   }
 
   #puzzle-preview {
     max-width: 100%;
+    padding: 10px;
+    padding-right: 20px;
   }
 
   .puzzle-grid {
-    grid-template-columns: repeat(4, 1fr); /* Reduce columns to 4 for smaller screens */
-    grid-template-rows: repeat(4, 1fr);   
-    width: 40%; /* Let the width auto-adjust */
-    height: auto; /* Let the height auto-adjust */
-    gap: 8px;
+    width: 100%;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
+    flex-grow: 1;
   }
 
   .puzzle-piece {
-    width: 50px;  /* Smaller puzzle pieces */
+    width: 60px;
     height: 60px;
-    background-size: 400% 400%; /* Adjust background size for smaller pieces */
+    background-size: 600% 500%;
   }
 
-  .modal-content {
-    padding: 20px 30px;
-    max-width: 90%; /* Ensure modal doesn't overflow on small screens */
-  }
-
-  .puzzle-controls {
-    flex-direction: column; /* Stack controls vertically */
-    gap: 10px;
+  button {
+    font-size: 0.9rem;
+    padding: 10px 18px;
   }
 
   .puzzle-controls button {
-    width: 100%; /* Full-width buttons for mobile */
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+
+  .theme-btn, .difficulty-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .selection-menu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .difficulty-selection, .theme-selection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
 }
 
 /* Mobile responsiveness for screens <= 380px */
 @media (max-width: 380px) {
-  .game-container {
-    margin: 15px;
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 1.6rem; /* Smaller heading */
-  }
-
-  p {
-    font-size: 0.9rem; /* Smaller text for better fit */
-  }
-
-  .selection-menu h3 {
-    font-size: 1rem; /* Smaller sub-heading */
-  }
-
-  .theme-selection,
-  .difficulty-selection {
-    flex-direction: column; /* Stack vertically */
-    gap: 8px;
-  }
-
-  button {
-    padding: 10px 16px;
-    font-size: 0.9rem; /* Smaller buttons */
-    width: 100%; /* Full-width buttons */
+ .game-container {
+    margin: 20px 10px;
+    padding: 20px;
   }
 
   .puzzle-container {
-    flex-direction: column; /* Stack puzzle pieces vertically */
-    gap: 15px;
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding-right: 0;
+    box-sizing: border-box;
   }
 
   #puzzle-preview {
     max-width: 100%;
+    padding: 10px;
+    padding-right: 20px;
   }
 
   .puzzle-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for really small screens */
-    grid-template-rows: repeat(3, 1fr);   /* 3 rows */
-    width: auto; /* Let the width auto-adjust */
-    height: auto; /* Let the height auto-adjust */
+    width: 100%;
+    display: grid;
     gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Adjust grid for smaller screens */
+    grid-template-rows: repeat(auto-fill, minmax(50px, 1fr)); /* Keep the pieces square */
+    flex-grow: 1;
   }
 
   .puzzle-piece {
-    width: 50px;  /* Even smaller puzzle pieces */
-    height: 60px;
-    background-size: 300% 300%; /* Adjust the background size for smaller pieces */
+    width: 50px; /* Reduce piece size for smaller screens */
+    height: 50px;
+    background-size: 600% 500%;
   }
 
-  .modal-content {
-    padding: 15px 20px;
-    max-width: 90%; /* Ensure modal fits within the screen */
-  }
-
-  .puzzle-controls {
-    flex-direction: column; /* Stack puzzle controls vertically */
-    gap: 8px;
+  button {
+    font-size: 0.85rem;
+    padding: 8px 16px; /* Reduce padding for smaller buttons */
   }
 
   .puzzle-controls button {
-    width: 100%; /* Full-width buttons */
-    padding: 8px 15px; /* Smaller button padding */
-    font-size: 1rem;
+    font-size: 0.9rem;
+    padding: 6px 16px; /* Adjust padding */
+  }
+
+  .theme-btn, .difficulty-btn {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .selection-menu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .difficulty-selection, .theme-selection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
 }
