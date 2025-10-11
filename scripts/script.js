@@ -1,4 +1,4 @@
-// Mood tag color definitions
+/* 🎨🎨🎨 MOOD COLORS 🎨🎨🎨 */
 const moodColors = {
   angry: "#ff4e4e",
   average: "#b0b0b0",
@@ -17,15 +17,12 @@ const moodColors = {
   focused: "#5ab2ff"
 };
 
-// Light/Dark mode toggle setup (optional — future enhancement)
+/* 🌙🌙🌙 LIGHT/DARK THEME TOGGLE 🌙🌙🌙 */
 function toggleTheme() {
   document.body.classList.toggle("dark");
 }
 
-// You can call toggleTheme() from a button later
-
-// CALENDER
-// moodColors already defined previously
+/* 📅📅📅 CALENDAR 📅📅📅 */
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
@@ -39,12 +36,20 @@ const saveMoodsBtn = document.getElementById("saveMoodsBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
 
 let selectedDate = null;
-
-// Mood storage format: { "YYYY-MM-DD": ["happy", "sad"] }
 let moodData = JSON.parse(localStorage.getItem("moodData")) || {};
 
 function renderCalendar(month, year) {
   calendarGrid.innerHTML = "";
+
+  /* 🗓️ Weekday labels */
+  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  weekdays.forEach(day => {
+    const label = document.createElement("div");
+    label.className = "weekday-label";
+    label.textContent = day;
+    calendarGrid.appendChild(label);
+  });
+
   monthYearText.textContent = `${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
 
   const firstDay = new Date(year, month, 1).getDay();
@@ -63,8 +68,9 @@ function renderCalendar(month, year) {
     calendarGrid.appendChild(createDayCell(date, false));
   }
 
-  // Next month's head to fill the grid
-  const remaining = 42 - calendarGrid.childNodes.length;
+  // Next month's head to fill grid
+  const totalCells = 7 * 6; // 6 rows of 7 days
+  const remaining = totalCells - calendarGrid.childNodes.length;
   for (let i = 1; i <= remaining; i++) {
     const date = new Date(year, month + 1, i);
     calendarGrid.appendChild(createDayCell(date, true));
@@ -94,7 +100,6 @@ function createDayCell(date, isInactive) {
   day.appendChild(dayNum);
   day.appendChild(dotsContainer);
 
-  // Only allow current month to be editable
   if (!isInactive) {
     day.addEventListener("click", () => {
       selectedDate = key;
@@ -171,47 +176,34 @@ nextMonthBtn.addEventListener("click", () => {
 
 renderCalendar(currentMonth, currentYear);
 
-
-// JavaScript to handle scrolling and markers
-let currentIndex = 0; // To keep track of which card is currently visible
-const scrollAmount = 300; // Amount to scroll per click (adjust as needed)
-const extraScrollAmount = 150; // Extra scroll amount when scrolling left to reveal the first card
+/* 🏷️🏷️🏷️ SCROLLING & CATALOGUE 🏷️🏷️🏷️ */
+let currentIndex = 0;
+const scrollAmount = 300;
+const extraScrollAmount = 150;
 
 function scrollCatalogue(direction) {
   const container = document.querySelector('.catalogue-container');
   const totalCards = document.querySelectorAll('.catalogue-container .card').length;
 
   if (direction === 'right') {
-    // Scroll the container right by the scrollAmount
-    container.scrollBy({
-      left: scrollAmount,  // Scroll right by a fixed amount
-      behavior: 'smooth',   // Smooth scroll effect
-    });
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   } else {
-    // Scroll the container left by the scrollAmount + extraScrollAmount
-    container.scrollBy({
-      left: -(scrollAmount + extraScrollAmount),  // Scroll left by an extra amount to reveal the first card
-      behavior: 'smooth',   // Smooth scroll effect
-    });
+    container.scrollBy({ left: -(scrollAmount + extraScrollAmount), behavior: 'smooth' });
   }
 
-  // Ensure the currentIndex stays within bounds after scrolling
   if (direction === 'right') {
     currentIndex = (currentIndex + 1) % totalCards;
   } else {
     currentIndex = (currentIndex - 1 + totalCards) % totalCards;
   }
 
-  // Update markers
   updateMarkers();
 }
 
-// Update scroll markers based on the current card
 function updateMarkers() {
   const markers = document.querySelectorAll('.scroll-markers .marker');
-  markers.forEach(marker => marker.classList.remove('active'));  // Remove active class from all markers
-  markers[currentIndex].classList.add('active');  // Add active class to the current marker
+  markers.forEach(marker => marker.classList.remove('active'));
+  markers[currentIndex].classList.add('active');
 }
 
-// Call updateMarkers on initial load to set the first marker as active
 document.addEventListener('DOMContentLoaded', updateMarkers);
