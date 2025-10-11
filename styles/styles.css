@@ -137,6 +137,10 @@ footer {
   color: white;
 }
 
+footer p {
+color: white;
+}
+
 /* 📅📅📅 CALENDAR STYLES 📅📅📅 */
 .calendar-controls {
   display: flex;
@@ -489,3 +493,4 @@ body.dark footer,
 body.dark .navbar {
   background-color: #4b3b8d;
 }
+
