@@ -6,7 +6,7 @@ const volumeSlider = document.getElementById('volume');
 let isPlaying = false;
 
 // Initial audio setup
-audio.src = `assets/audio/${soundSelect.value}`;
+audio.src = `assets/audios/${soundSelect.value}`;
 audio.volume = volumeSlider.value;
 
 // Toggle play/pause
@@ -31,4 +31,5 @@ soundSelect.addEventListener('change', () => {
 volumeSlider.addEventListener('input', () => {
   audio.volume = volumeSlider.value;
 });
+
 
