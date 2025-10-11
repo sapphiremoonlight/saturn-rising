@@ -248,21 +248,87 @@ button i {
           📱 RESPONSIVENESS 📱
 =========================================
 **/
+
+/* 📱 900 PX📱 */
 @media (max-width: 900px) {
   .game-option { width: 100%; }
 }
 
+/* 📱 600 PX📱 */
 @media (max-width: 600px) {
-  .navbar { flex-direction: column; align-items: center; gap: 10px; }
-  .navbar nav { margin-top: 10px; }
-  .navbar nav a { margin-left: 0.8rem; font-size: 1.2rem; }
+  /* Navbar full width */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 115%;           /* full width */
+    left: -5%;        
+    padding: 1rem;         /* inner spacing */
+    box-sizing: border-box; 
+  }
+
+  .navbar nav {
+    margin-top: 5px;
+    width: 100%;           /* nav links span full width */
+    display: flex;
+    justify-content: space-around; /* evenly spaced links */
+  }
+
+  .navbar nav a {
+    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
+  /* Footer full width */
+  footer {
+    width: 120%;    
+    left: -5%; 
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+  }
 }
 
+/* 📱 480 PX📱 */
 @media (max-width: 480px) {
-  .game-lobby-container { padding: 20px; }
-  button { width: 100%; padding: 15px 0; }
-  .game-option { padding: 15px; }
+  .game-lobby-container {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+    padding: 15px 0;
+  }
+
+  .game-option {
+    padding: 15px;
+  }
+
+ .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 110%;           /* full width */
+    left: -5%;     
+    padding: 1rem;         /* inner spacing */
+    box-sizing: border-box; 
+  }
+
+  .navbar nav {
+    margin-top: 10px;
+    width: 100%;           /* nav links span full width */
+    display: flex;
+    justify-content: space-around; /* evenly spaced links */
+  }
+
+  .navbar nav a {
+    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
 }
+
   </style>
 </head>
 <body>
