@@ -1,140 +1,271 @@
+/**
+=========================================
+
+          ✨ FONT & BASE STYLES ✨
+
+=========================================
+**/
 @font-face {
-      font-family: 'healing';
-      src: url('../assets/fonts/healing.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
+  font-family: 'healing';
+  src: url('../assets/fonts/healing.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #eef6ff, #ffffff);
-      padding: 30px;
-      text-align: center;
-      color: #333;
-    }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #eef6ff, #ffffff);
+  padding: 30px;
+  text-align: center;
+  color: #333;
+}
 
-    h1 {
-      font-family: 'healing', serif;
-      color: #003366;
-      font-size: 3em;
-      margin-bottom: 40px;
-    }
+h1 {
+  font-family: 'healing', serif;
+  color: #003366;
+  font-size: 3em;
+  margin-bottom: 40px;
+}
 
-    .input-container {
-      max-width: 600px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      text-align: left;
-    }
+/* ==========================================
+   🌙 JOURNAL HEADER & FOOTER STYLES
+   ========================================== */
 
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 8px;
-      border: 2px solid #cce0ff;
-      font-size: 1.1em;
-      box-sizing: border-box;
-      resize: vertical;
-    }
+.journal-header {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: linear-gradient(90deg, #0a1931, #b3cfe5,#4a7fa7, #1a3d63, #f6fafd);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
 
-    textarea {
-      min-height: 120px;
-    }
+.journal-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .mood-selector {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      max-width: 600px;
-      margin: 0 auto 20px auto;
-    }
+.journal-logo img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
 
-    .mood-option {
-      font-size: 1.8em;
-      cursor: pointer;
-      padding: 12px 18px;
-      border-radius: 10px;
-      background: #d6ebff;
-      transition: background 0.25s ease;
-      user-select: none;
-    }
+.journal-logo span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
-    .mood-option.selected {
-      background: #4da6ff;
-      color: white;
-    }
+.journal-nav a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
 
-    .controls {
-      max-width: 600px;
-      margin: 0 auto 30px auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
+.journal-nav a:hover {
+  color: #ffd6e8;
+  transform: translateY(-2px);
+}
 
-    button {
-      width: 150px;
-      padding: 12px 0;
-      font-size: 1.1em;
-      background-color: #4da6ff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+.journal-nav a.active {
+  color: #ffb3d9;
+}
 
-    button:hover {
-      background-color: #3399ff;
-    }
+/* 🌸 JOURNAL FOOTER 🌸 */
+.journal-footer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  text-align: center;
+  padding: 18px 10px;
+  background: linear-gradient(to right, #0a1931, #b3cfe5,#4a7fa7, #1a3d63, #f6fafd);
+  color: #f0f8ff;
+  font-size: 0.95rem;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-    .filters {
-      max-width: 600px;
-      margin: 0 auto 40px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
+.journal-footer strong {
+  color: #ffd6e8;
+}
 
-    select, input[type="search"] {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
+.journal-footer p {
+  margin: 0;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
 
-    #entries {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: left;
-    }
 
-    .entry {
-      background: #f7faff;
-      border: 2px solid #cce0ff;
-      padding: 20px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-    }
+/**
+=========================================
 
-    .entry h3 {
-      margin: 0 0 8px 0;
-      color: #003366;
-    }
+          🧠 INPUT & JOURNAL FORM 🧠
 
-    .entry .timestamp {
-      font-size: 0.85em;
-      color: #777;
-      margin-bottom: 10px;
-    }
+=========================================
+**/
+.input-container {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
 
-/* Limit image preview size */
+input[type="text"], textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 2px solid #cce0ff;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+/**
+=========================================
+
+          😊 MOOD SELECTOR 😊
+
+=========================================
+**/
+.mood-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.mood-option {
+  font-size: 1.8em;
+  cursor: pointer;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #d6ebff;
+  transition: background 0.25s ease;
+  user-select: none;
+}
+
+.mood-option.selected {
+  background: #4da6ff;
+  color: white;
+}
+
+/**
+=========================================
+
+          🎛️ CONTROLS & BUTTONS 🎛️
+
+=========================================
+**/
+.controls {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+button {
+  width: 150px;
+  padding: 12px 0;
+  font-size: 1.1em;
+  background-color: #4da6ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3399ff;
+}
+
+/**
+=========================================
+
+          🔍 FILTERS 🔍
+
+=========================================
+**/
+.filters {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+select, input[type="search"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+/**
+=========================================
+
+          📓 ENTRIES LIST 📓
+
+=========================================
+**/
+#entries {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.entry {
+  background: #f7faff;
+  border: 2px solid #cce0ff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+}
+
+.entry h3 {
+  margin: 0 0 8px 0;
+  color: #003366;
+}
+
+.entry .timestamp {
+  font-size: 0.85em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/**
+=========================================
+
+          🖼️ ENTRY MEDIA PREVIEW 🖼️
+
+=========================================
+**/
 .entry img {
   max-width: 200px;
   max-height: 150px;
@@ -143,15 +274,16 @@
   border-radius: 8px;
 }
 
-/* Limit text preview height, with overflow hidden and fade */
 .entry p {
-  max-height: 4.5em; /* about 3 lines */
+  max-height: 4.5em;
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  white-space: pre-wrap;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
-/* Fade out effect at bottom of text preview */
 .entry p::after {
   content: '';
   position: absolute;
@@ -162,7 +294,13 @@
   background: linear-gradient(to bottom, transparent, #f7faff);
 }
 
-/* Modal background */
+/**
+=========================================
+
+          🪞 MODAL VIEWER 🪞
+
+=========================================
+**/
 #modalOverlay {
   display: none;
   position: fixed;
@@ -176,7 +314,6 @@
   align-items: center;
 }
 
-/* Modal box */
 #modalContent {
   background: white;
   max-width: 600px;
@@ -188,7 +325,6 @@
   position: relative;
 }
 
-/* Modal close button */
 #modalCloseBtn {
   position: absolute;
   top: 10px;
@@ -200,67 +336,104 @@
   color: #333;
 }
 
-#modalContent img, #modalContent audio, #modalContent video {
+#modalContent img, 
+#modalContent audio, 
+#modalContent video {
   max-width: 100%;
   max-height: 300px;
   border-radius: 8px;
   margin-top: 15px;
 }
 
-    .mood-chip {
-      display: inline-block;
-      padding: 5px 12px;
-      font-size: 1em;
-      border-radius: 20px;
-      background-color: #4da6ff;
-      color: white;
-      margin: 3px 4px 8px 0;
-    }
+/**
+=========================================
 
-    .entry p {
-      white-space: pre-wrap;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
+          💙 MOOD CHIPS 💙
 
-    .entry img, .entry audio, .entry video {
-      max-width: 100%;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
-
-    .entry .edit-btn,
-    .entry .delete-btn {
-  	margin-top: 10px;
-  	margin-right: 10px;
-  	padding: 8px 16px;      /* consistent padding */
-  	width: 100px;           /* fixed width for both */
-  	height: 36px;           /* fixed height for both */
-  	border: none;
-  	color: white;
-  	cursor: pointer;
-  	font-size: 14px;
-  	border-radius: 4px;
-  	box-sizing: border-box; /* ensure padding included in width */
+=========================================
+**/
+.mood-chip {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 1em;
+  border-radius: 20px;
+  background-color: #4da6ff;
+  color: white;
+  margin: 3px 4px 8px 0;
 }
 
-    .entry .delete-btn {
-      background-color: #780606;
-    }
+.entry img, 
+.entry audio, 
+.entry video {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 8px;
+}
 
-    .entry .delete-btn:hover {
-      background-color: #d21f3c;
-    }
+/**
+=========================================
+
+          🧰 ENTRY ACTION BUTTONS 🧰
+
+=========================================
+**/
+.entry .edit-btn,
+.entry .delete-btn {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 16px;
+  width: 100px;
+  height: 36px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.entry .delete-btn {
+  background-color: #780606;
+}
+
+.entry .delete-btn:hover {
+  background-color: #d21f3c;
+}
 
 .entry .edit-btn {
-      background-color: #1e2e4f; //#6baed6
-    }
+  background-color: #1e2e4f;
+}
 
-    .entry .edit-btn:hover {
-      background-color: #9ecae1;
-    }
+.entry .edit-btn:hover {
+  background-color: #9ecae1;
+}
 
-// MOBILE RESPONSIVENESS
+/**
+=========================================
+
+          📱 RESPONSIVE DESIGN 📱
+
+=========================================
+**/
+
+/* 💻 Medium Screens (≤ 960px)
+-----------------------------------------*/
+@media (max-width: 960px) {
+  body {
+    padding: 20px;
+  }
+
+  input[type="text"], textarea {
+    font-size: 1em;
+  }
+
+  .input-container, .controls, .filters {
+    max-width: 90%;
+  }
+}
+
+/* 📲 Small Screens (≤ 600px)
+-----------------------------------------*/
 @media (max-width: 600px) {
   body {
     padding: 15px;
@@ -271,24 +444,20 @@
     margin-bottom: 30px;
   }
 
-nav {
-    width: 100vw;      /* full viewport width */
-    left: 0;           /* reset any positioning */
-    padding-left: 0;   /* remove any horizontal padding */
+  nav {
+    width: 100vw;
+    left: 0;
+    padding-left: 0;
     padding-right: 0;
   }
 
-  .input-container,
-  .mood-selector,
-  .controls,
-  .filters,
+  .input-container, 
+  .mood-selector, 
+  .controls, 
+  .filters, 
   #entries {
     max-width: 100%;
     padding: 0 10px;
-  }
-
-  .input-container {
-    gap: 12px;
   }
 
   input[type="text"],
@@ -296,10 +465,6 @@ nav {
   select,
   input[type="search"] {
     font-size: 1em;
-  }
-
-  .mood-selector {
-    justify-content: flex-start;
   }
 
   .mood-option {
@@ -338,24 +503,68 @@ nav {
     margin-right: 4%;
   }
 
-.entry-buttons .edit-btn,
-.entry-buttons .delete-btn {
-  flex: 1;           /* equal width */
-  padding: 8px 0;    /* vertical padding */
-  font-size: 14px;
-  margin: 0;         /* margin handled by gap */
-  height: 36px;
-}
+  /* 🧭 Journal Header Adjustments */
+  .journal-header {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+  }
 
-  /* Stack buttons vertically if still too narrow */
-  @media (max-width: 350px) {
-    .entry .edit-btn,
-    .entry .delete-btn {
-      width: 100%;
-      margin-right: 0;
-    }
+  .journal-logo span {
+    font-size: 1.1rem;
+  }
+
+  .journal-nav a i {
+    font-size: 1.6rem; /* larger tap targets */
+    padding: 6px;      /* spacing around icons */
+  }
+
+  .journal-nav a {
+    margin: 0 8px;
+  }
+
+  /* 🌙 Footer adjustments */
+  .journal-footer {
+    font-size: 0.85rem;
+    padding: 14px;
+    color: #fff;
   }
 }
 
+/* 📞 Extra Small Screens (≤ 480px)
+-----------------------------------------*/
+@media (max-width: 480px) {
+  input[type="text"],
+  textarea {
+    font-size: 0.95em;
+    padding: 10px;
+  }
 
+  textarea {
+    min-height: 100px;
+  }
 
+  h1 {
+    font-size: 2em;
+  }
+
+  .journal-nav a i {
+    font-size: 1.8rem;
+  }
+
+  .journal-header {
+    padding: 16px 20px;
+  }
+
+  .journal-logo span {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .entry .edit-btn,
+  .entry .delete-btn {
+    width: 100%;
+    margin-right: 0;
+  }
+}
