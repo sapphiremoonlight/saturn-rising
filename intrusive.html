@@ -33,10 +33,13 @@
             <form id="logForm">
                 <label for="category">Category</label>
                 <select id="category" required>
-                    <option value="intrusiveThoughts">Intrusive Thought</option>
+                    <option value="intrusive-thoughts">Intrusive Thought</option>
+		    <option value="emotional-numbness">Emotional Numbness </option>
                     <option value="compulsion">Compulsion</option>
                     <option value="impulse">ADHD Impulse</option>
                     <option value="forgetfulness">Forgetfulness</option>
+   		    <option value="skin-picking"> Skin Picking</option>
+                    <option value="trauma-response">Trauma Response </option>
                     <option value="trichotillomania">Trichotillomania / Skin Picking</option>
                 </select>
 
@@ -82,13 +85,19 @@
 
         <!-- Coping Tools Section -->
         <section class="coping-tools">
-            <h2>Suggested Coping Tools</h2>
-            <ul>
-                <li><button onclick="showTool('fidget')">Fidgeting / Stress Ball</button></li>
-                <li><button onclick="showTool('breathing')">Breathing Exercises</button></li>
-                <li><button onclick="showTool('distraction')">Distraction Activities</button></li>
-            </ul>
-        </section>
+  	<h2>Suggested Coping Tools</h2>
+  	<ul>
+   		<li><button onclick="showTool('fidget')">Fidgeting / Stress Ball</button></li>
+   		 <li><button onclick="showTool('breathing')">Breathing Exercises</button></li>
+  		  <li><button onclick="showTool('distraction')">Distraction Activities</button></li>
+      		  <li><button onclick="showTool('journaling')">Journaling / Brain Dump</button></li>
+      		  <li><button onclick="showTool('music')">Music & Sound</button></li>
+       	 </ul>
+  		<div id="toolDisplay" class="tool-display">
+    		Click a tool above to see how it can help 💙
+  		</div>
+	</section>
+
 
         <!-- Affirmations Section -->
         <section class="affirmations" id="affirmationsSection">
