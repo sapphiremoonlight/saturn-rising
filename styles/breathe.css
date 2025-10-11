@@ -1,4 +1,8 @@
-/* Colors */
+/**
+=========================================
+          🎨 COLORS & GLOBAL STYLES 🎨
+=========================================
+**/
 :root {
   --navy: #0a1931;
   --light-blue: #cfe7f5;
@@ -17,7 +21,7 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #ffe4f0, #b3cfe5); /* prettier background */
+  background: linear-gradient(to bottom, #ffe4f0, #b3cfe5);
   color: var(--text);
   font-family: 'Segoe UI', sans-serif;
   display: flex;
@@ -28,7 +32,11 @@ body {
   padding: 0;
 }
 
-/* Nav */
+/**
+=========================================
+          🟦 NAVIGATION BAR 🟦
+=========================================
+**/
 nav {
     position: fixed;
     bottom: 0;
@@ -48,13 +56,18 @@ nav a {
 }
 
 nav a.active{
-color: var(--pink);
+  color: var(--pink);
 }
 
 nav a:hover {
     color: var(--hot-pink);
 }
 
+/**
+=========================================
+          🌟 SCREEN TITLE & MAIN 🌟
+=========================================
+**/
 .screen-title {
   margin: 40px 0 20px;
   font-size: 2em;
@@ -68,40 +81,43 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 80px; /* Give space above bubble */
+  padding-bottom: 80px;
   text-align: center;
 }
 
+/**
+=========================================
+          🟣 BUBBLE ANIMATION 🟣
+=========================================
+**/
+.bubble-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
 
- .bubble-container {
-      position: relative;
-      width: 300px;
-      height: 300px;
-    }
+.bubble {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--hot-pink);
+    box-shadow: 0 0 30px rgba(255, 170, 200, 0.6);
+    background: radial-gradient(circle at 30% 30%, #ffc4d6, #ff8ab1);
+    animation: breathe 12s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .bubble {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 2px solid var(--hot-pink);
-      box-shadow: 0 0 40px rgba(255, 170, 200, 0.8);
-      background: radial-gradient(circle at 30% 30%, #ffc4d6, #ff8ab1);
-      animation: breathe 12s infinite ease-in-out;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 30px rgba(255, 170, 200, 0.6);
-    }
+@keyframes breathe {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.3); }
+  50%  { transform: scale(1.3); }
+  75%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
 
-    @keyframes breathe {
-      0%   { transform: scale(1); }
-      25%  { transform: scale(1.3); } /* Inhale */
-      50%  { transform: scale(1.3); } /* Hold */
-      75%  { transform: scale(1); }   /* Exhale */
-      100% { transform: scale(1); }
-    }
-
-   .prompt {
+.prompt {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -114,15 +130,18 @@ main {
   transition: opacity 0.4s ease;
 }
 
-    .instructions {
-      margin-top: 30px;
-      font-size: 1.1em;
-      color: #666;
-      text-align: center;
-    }
+.instructions {
+  margin-top: 30px;
+  font-size: 1.1em;
+  color: #666;
+  text-align: center;
+}
 
-
-/* Controls */
+/**
+=========================================
+          🎛️ CONTROLS & AUDIO 🎛️
+=========================================
+**/
 .controls {
     margin-top: 40px;
     background-color: var(--dark-blue);
@@ -149,7 +168,7 @@ main {
 }
 
 #volume {
-  width: 120px;
+  width: 180px; /* longer slider */
   accent-color: var(--hot-pink);
 }
 
@@ -161,6 +180,11 @@ input[type="range"]::-moz-range-thumb {
   background: var(--hot-pink);
 }
 
+/**
+=========================================
+          ✨ BACKGROUND SPARKLES ✨
+=========================================
+**/
 .sparkles {
   position: fixed;
   top: 0; left: 0;
@@ -178,26 +202,27 @@ input[type="range"]::-moz-range-thumb {
   to   { background-position: 100% 100%; }
 }
 
-
-
-/* 🔵🔵🔵 BUTTONS & SELECT STYLING 🔵🔵🔵 */
-  button {
-  background-color: #b3cfe5; /* slate blue */
+/**
+=========================================
+          🔵 BUTTONS & SELECT STYLING 🔵
+=========================================
+**/
+button {
+  background-color: #b3cfe5;
   color: white;
   border: none;
   border-radius: 8px;
   padding: 0.8rem 1.2rem;
-  margin-bottom: 30px; /* Adjust the value here as needed */
+  margin-bottom: 30px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 3px 6px rgba(90, 130, 214, 0.4);
   outline: none;
-  appearance: none; /* remove default arrow for select */
+  appearance: none;
 }
 
-/* Dropdown arrow for select */
 select {
   background-image:
    background-color: #92bde7; 
@@ -210,16 +235,18 @@ select {
   padding-right: 2.5rem;
 }
 
-/* Hover & focus states */
 select:hover, select:focus,
 button:hover, button:focus {
-  background-color: #4a7fa7; /* darker blue */
+  background-color: #4a7fa7;
   box-shadow: 0 6px 12px rgba(61, 99, 199, 0.6);
 }
 
-/* MOBILE RESPONSIVENESS */
+/**
+=========================================
+          📱 MOBILE RESPONSIVENESS 📱
+=========================================
+**/
 @media (max-width: 600px) {
-  /* Shrink bubble container and bubble */
   .bubble-container {
     width: 200px;
     height: 200px;
@@ -230,52 +257,51 @@ button:hover, button:focus {
     box-shadow: 0 0 20px rgba(255, 170, 200, 0.6);
   }
 
-  /* Scale down prompt font */
   .prompt {
     font-size: 1.2em;
   }
 
-  /* Reduce margins for screen title */
   .screen-title {
     margin: 20px 0 15px;
     font-size: 1.6em;
   }
 
-  /* Controls - make full width and padding adjustments */
   .controls {
-    width: 90vw;
+    width: 95vw;
     padding: 15px;
   }
 
-  /* Audio controls - stack vertically */
   .audio-controls {
     flex-direction: column;
-    align-items: stretch;
+    align-items: stretch
   }
 
-  .audio-controls label,
+  .audio-controls label {
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
   .audio-controls select {
     margin-right: 0;
     margin-bottom: 10px;
     width: 100%;
+    text-align: center;
   }
 
-  /* Buttons and selects - full width */
   button, select {
     width: 100%;
     font-size: 1rem;
     padding: 0.7rem 1rem;
   }
 
-  /* Navigation links - bigger targets */
   nav a {
     font-size: 1.8rem;
     padding: 8px 12px;
   }
 
-  /* Reduce bottom nav padding */
   nav {
     padding: 8px 0;
   }
 }
-
