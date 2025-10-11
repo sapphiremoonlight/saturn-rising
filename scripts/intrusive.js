@@ -1,9 +1,7 @@
 /**
-================================
-
-        🧘🏽‍♂️ AFFIRMATIONS 🙇🏽‍♀️
-
-================================
+=========================================
+        💭 AFFIRMATIONS & SELF-TALK 💙
+=========================================
 **/
 
 // Global affirmation array
@@ -37,7 +35,13 @@ function showAffirmation() {
     document.getElementById("affirmationBox").textContent = affirmations[randomIndex];
 }
 
-// Log form behavior (single function)
+
+/**
+=========================================
+       🧾 LOG FORM BEHAVIOR & INPUTS ✍️
+=========================================
+**/
+
 document.getElementById("logForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -48,7 +52,6 @@ document.getElementById("logForm").addEventListener("submit", function(event) {
     const coping = document.getElementById("coping").value;
     const outcome = document.getElementById("outcome").value;
 
-    // Create a new log entry object with timestamp
     const newLogEntry = {
         category,
         description,
@@ -59,41 +62,31 @@ document.getElementById("logForm").addEventListener("submit", function(event) {
         timestamp: new Date().toISOString()
     };
 
-    // Save to local storage
     saveLogEntry(newLogEntry);
-
-    // Reload entries AND update charts
     refreshDataAndCharts();
-
-    // Clear form fields after submission
     document.getElementById("logForm").reset();
 });
 
 
 /**
-================================
-
-         LOCAL STORAGE 🗂
-
-================================
+=========================================
+             💾 LOCAL STORAGE 🗂
+=========================================
 **/
 
-// Save the log entry to local storage
 function saveLogEntry(logEntry) {
     let logs = JSON.parse(localStorage.getItem('logEntries')) || [];
     logs.push(logEntry);
     localStorage.setItem('logEntries', JSON.stringify(logs));
 }
 
-// Load log entries from local storage and display them
 function loadLogEntries() {
     const logs = JSON.parse(localStorage.getItem('logEntries')) || [];
     const logEntriesContainer = document.getElementById('logEntries');
-    logEntriesContainer.innerHTML = ''; // Clear existing entries
+    logEntriesContainer.innerHTML = '';
     logs.forEach((log, index) => {
         const logEntryDiv = document.createElement('div');
         logEntryDiv.classList.add('log-entry');
-        // Format date nicely for display
         const formattedDate = new Date(log.timestamp).toLocaleString();
         logEntryDiv.innerHTML = `
             <h3>${log.category} <small style="font-weight: normal; font-size: 0.8em; color: #666;">(${formattedDate})</small></h3>
@@ -109,16 +102,13 @@ function loadLogEntries() {
     });
 }
 
+
 /**
-====================================
-
-       ❌ EDIT + DELETE BUTTONS ✏
-
-====================================
-
+=========================================
+           ✏️ EDIT & DELETE ENTRIES ❌
+=========================================
 **/
 
-// Edit an existing log entry
 function editEntry(index) {
     const logs = JSON.parse(localStorage.getItem('logEntries')) || [];
     const log = logs[index];
@@ -129,66 +119,45 @@ function editEntry(index) {
     document.getElementById('coping').value = log.coping;
     document.getElementById('outcome').value = log.outcome;
 
-    // Remove the entry from local storage to edit
     logs.splice(index, 1);
     localStorage.setItem('logEntries', JSON.stringify(logs));
     refreshDataAndCharts();
 }
 
-// Delete a log entry
 function deleteEntry(index) {
     let logs = JSON.parse(localStorage.getItem('logEntries')) || [];
     logs.splice(index, 1);
     localStorage.setItem('logEntries', JSON.stringify(logs));
-    refreshDataAndCharts(); // update display and charts after deletion
+    refreshDataAndCharts();
 }
 
 
 /**
-================================
-
-        🥧 PIE CHART 🥧
-
-================================
+=========================================
+              🥧 PIE CHART 📊
+=========================================
 **/
 
 let pieChartInstance = null;
 
-// Function to prepare data and render pie chart
 function renderPieChart() {
     const logs = JSON.parse(localStorage.getItem('logEntries')) || [];
-    
-    // Count logs by category
     const counts = {};
     logs.forEach(log => {
         counts[log.category] = (counts[log.category] || 0) + 1;
     });
 
-    // Prepare data for Chart.js
     const labels = Object.keys(counts);
     const data = Object.values(counts);
 
-   const backgroundColors = [
-    '#ffc1cc', // light pink
-    '#ff8aa1', // medium pink
-    '#ff5c77', // strong pink
-    '#e64a6e', // darker pink
-    '#cc395e', // deep pink
-    '#b82e55',
-    '#a3244a',
-    '#8c1c41',
-    '#741539',
-    '#5c0f30'
-];
+    const backgroundColors = [
+        '#ffc1cc', '#ff8aa1', '#ff5c77', '#e64a6e', '#cc395e',
+        '#b82e55', '#a3244a', '#8c1c41', '#741539', '#5c0f30'
+    ];
 
     const ctx = document.getElementById('pieChart').getContext('2d');
+    if (pieChartInstance) pieChartInstance.destroy();
 
-    // Destroy previous chart instance if exists (to avoid duplicates)
-    if (pieChartInstance) {
-        pieChartInstance.destroy();
-    }
-
-    // Create new pie chart
     pieChartInstance = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -203,23 +172,18 @@ function renderPieChart() {
         options: {
             responsive: true,
             plugins: {
-                legend: {
-                    position: 'bottom'
-                },
-                tooltip: {
-                    enabled: true
-                }
+                legend: { position: 'bottom' },
+                tooltip: { enabled: true }
             }
         }
     });
 }
 
+
 /**
-================================
-
-        📈 LINE GRAPH 📊
-
-================================
+=========================================
+              📈 LINE GRAPH 📉
+=========================================
 **/
 
 let lineChartInstance = null;
@@ -227,26 +191,19 @@ let lineChartInstance = null;
 function renderLineGraph() {
     const logs = JSON.parse(localStorage.getItem('logEntries')) || [];
 
-    // Parse timestamps, fallback to entry index if invalid
     const labels = logs.map((log, index) => {
         if (log.timestamp) {
             const date = new Date(log.timestamp);
             if (!isNaN(date)) {
-                // Format date as 'MM/DD' or 'MMM D' for readability
                 return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
             }
         }
         return `Entry ${index + 1}`;
     });
 
-    // Prepare intensity data
     const intensityData = logs.map(log => Number(log.intensity) || 0);
-
     const ctx = document.getElementById('lineGraph').getContext('2d');
-
-    if (lineChartInstance) {
-        lineChartInstance.destroy();
-    }
+    if (lineChartInstance) lineChartInstance.destroy();
 
     lineChartInstance = new Chart(ctx, {
         type: 'line',
@@ -269,22 +226,14 @@ function renderLineGraph() {
                 y: {
                     beginAtZero: true,
                     max: 10,
-                    title: {
-                        display: true,
-                        text: 'Intensity Level'
-                    }
+                    title: { display: true, text: 'Intensity Level' }
                 },
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
+                    title: { display: true, text: 'Date' }
                 }
             },
             plugins: {
-                legend: {
-                    position: 'top',
-                },
+                legend: { position: 'top' },
                 tooltip: {
                     enabled: true,
                     callbacks: {
@@ -303,12 +252,51 @@ function renderLineGraph() {
     });
 }
 
-// Refresh logs and charts together
-function refreshDataAndCharts() {
-    loadLogEntries();  // display logs
-    renderPieChart();  // update pie chart
-    renderLineGraph(); // update line graph
+
+/**
+=========================================
+        🧰 COPING TOOLS & STRATEGIES 🌿
+=========================================
+**/
+
+function showTool(tool) {
+    const toolDisplay = document.getElementById("toolDisplay");
+    let message = "";
+
+    switch (tool) {
+        case "fidget":
+            message = "Try using a fidget toy, putty, or stress ball to release tension through movement. Focus on how it feels in your hands.";
+            break;
+        case "breathing":
+            message = "Slow down and take deep breaths — in for 4, hold for 4, out for 6. Repeat until your body feels calmer.";
+            break;
+        case "distraction":
+            message = "Try doing something that shifts your focus — go for a walk, doodle, play a short game, or listen to music you love.";
+            break;
+	case "journaling":
+            message = "Write freely — no filter, no judgment. Let your thoughts spill out until they feel lighter. You don’t have to keep it tidy.";
+            break;
+	case "music":
+            message = "Put on music that matches how you *want* to feel, not how you currently feel. Let rhythm guide your mood shift.";
+            break;
+        default:
+            message = "Pick a tool to see suggestions for coping.";
+    }
+
+    toolDisplay.textContent = message;
 }
 
-// On page load, refresh everything
+
+/**
+=========================================
+           🔁 PAGE INITIALIZATION 🚀
+=========================================
+**/
+
+function refreshDataAndCharts() {
+    loadLogEntries();
+    renderPieChart();
+    renderLineGraph();
+}
+
 window.addEventListener('DOMContentLoaded', refreshDataAndCharts);
