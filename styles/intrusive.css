@@ -1,4 +1,10 @@
-/* Global Styles */
+/**
+=========================================
+
+          🎨 GLOBAL STYLES 🎨
+
+=========================================
+**/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -24,8 +30,16 @@ h1 {
     color: #fff;
 }
 
-/* Form Section */
-.log-form, .coping-tools, .affirmations {
+/**
+=========================================
+
+          🧾 FORM + SECTIONS 🧘🏽
+
+=========================================
+**/
+.log-form, 
+.coping-tools, 
+.affirmations {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -33,12 +47,67 @@ h1 {
     margin-bottom: 30px;
 }
 
-.log-form label, .coping-tools li {
+/**
+=========================================
+
+          💭 COPING TOOLS 💭
+
+=========================================
+**/
+.coping-tools ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.coping-tools button {
+  background-color: #ffd6e8;
+  color: #4a2040;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  width: 80%; /* make buttons take up most of the width */
+  max-width: 400px;
+}
+
+.coping-tools button:hover {
+  background-color: #ffb3d9;
+  transform: translateY(-2px);
+}
+
+.tool-display {
+  margin-top: 15px;
+  background-color: #f0f8ff;
+  border: 1px solid #b3d1ff;
+  border-radius: 10px;
+  padding: 15px;
+  color: #003366;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/**
+=========================================
+
+          📝 FORM ELEMENTS ✏️
+
+=========================================
+**/
+.log-form label, 
+.coping-tools li {
     display: block;
     margin-bottom: 10px;
 }
 
-.log-form input, .log-form select, .log-form textarea {
+.log-form input, 
+.log-form select, 
+.log-form textarea {
     width: 20%;
     padding: 10px;
     margin-bottom: 15px;
@@ -47,7 +116,7 @@ h1 {
 }
 
 select, button {
-    background-color: #4a7fa7;
+    background-color: #126180;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -57,19 +126,16 @@ select, button {
 }
 
 button:hover {
-    background-color: #3d63c7;
+    background-color: #87ceeb;
 }
 
-.affirmation-box {
-    padding: 20px;
-    font-size: 1.2em;
-    background-color: #ffffff;
-    border: 1px solid #b3d1ff;
-    border-radius: 8px;
-    color: #003366;
-}
+/**
+=========================================
 
-/* Behavior Log */
+          📔 BEHAVIOR LOG 📔
+
+=========================================
+**/
 .behavior-log {
     margin-bottom: 30px;
 }
@@ -87,18 +153,31 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Analytics Section */
+/**
+=========================================
+
+          📊 ANALYTICS 📈
+
+=========================================
+**/
 .analytics {
     margin-bottom: 30px;
 }
 
-#pieChart, #lineGraph {
+#pieChart, 
+#lineGraph {
     height: 300px;
     background-color: #fff;
     margin-bottom: 20px;
 }
 
-/* Affirmation Section */
+/**
+=========================================
+
+          💬 AFFIRMATIONS 💬
+
+=========================================
+**/
 .affirmations {
     text-align: center;
     padding: 20px;
@@ -110,7 +189,22 @@ button:hover {
     margin-right: auto;
 }
 
-/* 🦶🦶🦶 FOOTER STYLES 🦶🦶🦶 */
+.affirmation-box {
+    padding: 20px;
+    font-size: 1.2em;
+    background-color: #ffffff;
+    border: 1px solid #b3d1ff;
+    border-radius: 8px;
+    color: #003366;
+}
+
+/**
+=========================================
+
+          🦶 FOOTER STYLES 🦶
+
+=========================================
+**/
 footer {
   text-align: center;
   padding: 1rem;
@@ -118,28 +212,50 @@ footer {
   color: white;
 }
 
+/**
+=========================================
+
+          📱 MOBILE RESPONSIVE 📱
+
+=========================================
+**/
 @media (max-width: 600px) {
     .container {
         padding: 10px;
         margin: 10px;
-	width: 90%;
+        width: 90%;
     }
 
     h1 {
         font-size: 1.6rem;
     }
 
-    /* Form inputs slightly smaller */
+    /* Inputs full width */
     .log-form input,
-    .log-form select,
-    .log-form textarea {
+    .log-form select {
         width: 100% !important;
         box-sizing: border-box;
         padding: 8px;
         font-size: 0.9rem;
     }
 
-    /* Buttons smaller padding and font */
+    .log-form textarea {
+        resize: vertical;
+        min-height: 100px;
+        width: 100% !important;
+        box-sizing: border-box;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Coping buttons stacked nicely */
+    .coping-tools button {
+        width: 100%;
+        max-width: none;
+        font-size: 1rem;
+        padding: 12px;
+    }
+
     select, button {
         width: 60%;
         padding: 12px;
@@ -161,7 +277,8 @@ footer {
         font-size: 0.9rem;
     }
 
-    #pieChart, #lineGraph {
+    #pieChart, 
+    #lineGraph {
         height: 180px;
     }
 
@@ -169,5 +286,3 @@ footer {
         padding: 0 8px;
     }
 }
-
-
