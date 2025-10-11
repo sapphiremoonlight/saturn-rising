@@ -7,56 +7,80 @@
   <title>Game Lobby</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* General Styles */
-    /* General Styles */
+/**
+=========================================
+          🎨 COLORS & GLOBAL STYLES 🎨
+=========================================
+**/
 body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #4a7fa7, #7aabd2);
-  color: #fff; /* fixed typo */
+  color: #fff;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  position: relative;
 }
 
-h1 {
-  font-size: 3em;
-  text-align: center;
-  margin-top: 20px;
+/**
+=========================================
+          🖼️ PARTICLE BACKGROUND 🖼️
+=========================================
+**/
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(#ffffff30 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveParticles 60s linear infinite;
+  z-index: 0;
 }
 
-p {
-  text-align: center;
-  font-size: 1.2em;
-  margin-bottom: 30px;
+@keyframes moveParticles {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
 }
 
-footer {
-  text-align: center;
-  font-size: 1em;
-  margin-top: 40px;
-  color: white;
-  padding: 20px 0;
-  background: linear-gradient(135deg, #1a3d63, #4a7fa7);
-  box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.15);
-  border-radius: 12px 12px 0 0;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
+/**
+=========================================
+          🗂️ NAVBAR & FOOTER STYLES 🗂️
+=========================================
+**/
 
-/* 🚀 NAVBAR STYLES */
+/* Navbar spanning full width */
 .navbar {
+  position: relative;           /* scrolls naturally */
+  width: 75vw;                 /* full viewport width */
+  left: 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(45deg, #0a1931, #b3cfe5, #4a7fa7, #1a3d63, #f6fafd);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(45deg, #0a1931, #b3cfe5, #4a7fa7, #1a3d63, #f6fafd);
-  color: white; /* fixed typo */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  margin-bottom: 20px;
+  border-radius: 0;             /* flush edges */
+  z-index: 100;
+  margin-bottom: 40px;          /* more spacing below navbar */
 }
 
+
+/* If the logo + nav links are inside a container that limits width */
+.navbar .container {
+  max-width: 1200px; /* optional, centers content */
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navbar links */
 .navbar nav a {
-  color: white; /* fixed typo */
+  color: white;
   margin-left: 1.5rem;
   text-decoration: none;
   font-size: 1.4rem;
@@ -65,7 +89,7 @@ footer {
 
 .navbar nav a:hover,
 .navbar nav a:hover i {
-  color: #ffc4d6; /* fixed typo */
+  color: #ffc4d6;
 }
 
 .navbar nav a i {
@@ -74,40 +98,99 @@ footer {
   color: #fff;
 }
 
-/* Logo Section */
+/* Main content spacing */
+main {
+  min-height: 60vh; /* ensures some vertical space before footer */
+  margin-bottom: 60px; /* space above footer */
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  width: 100%;                 /* use 100% instead of 100vw */
+  max-width: 100%;             /* ensure it doesn’t exceed container */
+  margin: 60px 0 0 0;          /* space above footer */
+  padding: 20px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #1a3d63, #4a7fa7);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px 12px 0 0;
+  box-sizing: border-box;      /* ensures padding doesn’t push it out */
+}
+
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+.logo img { width: 50px; height: auto; }
+.logo span { font-size: 2em; font-weight: bold; }
 
-.logo img {
-  width: 50px;
-  height: auto;
+footer {
+  bottom: 0;
+  text-align: center;
+  font-size: 1.1em;
+  padding: 25px 0;
+  background: linear-gradient(135deg, #1a3d63, #4a7fa7, #7aabd2);
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulseFooter 3s infinite alternate;
 }
 
-.logo span {
-  font-size: 2em;
-  font-weight: bold;
+@keyframes pulseFooter {
+  0% { box-shadow: 0 -4px 10px rgba(0,0,0,0.25); transform: scale(1); }
+  50% { box-shadow: 0 -6px 20px rgba(0,0,0,0.35); transform: scale(1.02); }
+  100% { box-shadow: 0 -4px 10px rgba(0,0,0,0.25); transform: scale(1); }
 }
 
-/* Main Game Lobby Container */
+/**
+=========================================
+          🖌️ HEADER & TITLE ANIMATIONS 🖌️
+=========================================
+**/
+header h1 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 3em;
+  background: linear-gradient(90deg, #f6fafd, #0a1931, #4a7fa7, #b3cfe5, #1a3d63);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+header p {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+/**
+=========================================
+          🎮 GAME OPTIONS STYLING 🎮
+=========================================
+**/
 .game-lobby-container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.1); /* fixed typo */
+  background-color: rgba(255,255,255,0.1);
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* Game Options Section */
 .game-options {
   display: flex;
   justify-content: space-between;
@@ -116,7 +199,7 @@ header {
 }
 
 .game-option {
-  background-color: rgba(255, 255, 255, 0.15); /* fixed typo */
+  background-color: rgba(255,255,255,0.15);
   padding: 20px;
   border-radius: 15px;
   width: 30%;
@@ -125,37 +208,29 @@ header {
 }
 
 .game-option:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-12px) rotateZ(-1deg) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
 
-.game-option h3 {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-.game-option p {
-  font-size: 1em;
-  margin-bottom: 20px;
-}
+.game-option h3 { font-size: 2em; margin-bottom: 10px; }
+.game-option p { font-size: 1em; margin-bottom: 20px; }
 
 button {
   padding: 15px 25px;
-  background-color: #4a7fa7; /* fixed typo */
-  color: white; /* fixed typo */
+  background-color: #4a7fa7;
+  color: white;
   font-size: 1.1em;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover {
-  background-color: #7aabd2; /* fixed typo */
-}
-
-button:focus {
-  outline: none;
+  background-color: #7aabd2;
+  box-shadow: 0 0 15px #ffc4d6, 0 0 30px #ff8ab1;
 }
 
 button i {
@@ -168,46 +243,30 @@ button i {
   to { transform: rotate(360deg); }
 }
 
-/* Responsive Fix */
+/**
+=========================================
+          📱 RESPONSIVENESS 📱
+=========================================
+**/
 @media (max-width: 900px) {
-  .game-option {
-    width: 100%;
-  }
+  .game-option { width: 100%; }
 }
 
-/* Mobile Navbar Stack */
 @media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  .navbar nav {
-    margin-top: 10px;
-  }
-  .navbar nav a {
-    margin-left: 0.8rem;
-    font-size: 1.2rem;
-  }
+  .navbar { flex-direction: column; align-items: center; gap: 10px; }
+  .navbar nav { margin-top: 10px; }
+  .navbar nav a { margin-left: 0.8rem; font-size: 1.2rem; }
 }
 
-/* Mobile padding and spacing */
 @media (max-width: 480px) {
-  .game-lobby-container {
-    padding: 20px;
-  }
-  button {
-    width: 100%;
-    padding: 15px 0;
-  }
-  .game-option {
-    padding: 15px;
-  }
+  .game-lobby-container { padding: 20px; }
+  button { width: 100%; padding: 15px 0; }
+  .game-option { padding: 15px; }
 }
   </style>
 </head>
 <body>
-  <!-- Main Container -->
+
   <div class="game-lobby-container">
 
     <!-- NAVBAR -->
@@ -217,11 +276,11 @@ button i {
         <span>Saturn Rising</span>
       </div>
       <nav>
-        <a href="index.html" title="Dashboard"><i class="fas fa-home"></i></a> 
-	<a href="journal.html" title="Journal"><i class="fas fa-book"></i></a> 
-	<a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a> 
-	<a href="#" title="Games" class="active"><i class="fas fa-gamepad"></i></a> 
-	<a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a> </nav>
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <a href="journal.html"><i class="fas fa-book"></i></a>
+        <a href="calendar.html"><i class="fas fa-calendar-alt"></i></a>
+        <a href="#" class="active"><i class="fas fa-gamepad"></i></a>
+        <a href="breathe.html"><i class="fas fa-wind"></i></a>
       </nav>
     </div>
 
@@ -240,32 +299,28 @@ button i {
           <i class="fas fa-puzzle-piece"></i>Play Puzzle
         </button>
       </div>
-
       <div class="game-option" id="pomodoro-option">
-    <h3>Pomodoro Timer</h3>
-    <p>Boost your focus with adjustable sessions and theme modes!</p>
-    <button onclick="startGame('pomodoro')">
-      <i class="fas fa-clock"></i> Open Pomodoro
-    </button>
-  </div>
-
-    <div class="game-option" id="solitaire-option">
-    <h3>Solitaire</h3>
-    <p>Play the classic game of patience and strategy.</p>
-    <button onclick="startGame('solitaire')">
-      <i class="fas fa-layer-group"></i> Play Solitaire
-    </button>
-  </div>
-
-   <!-- ✅ Dungeon Crawler -->
-  <div class="game-option" id="dungeon-option">
-    <h3>Mini Dungeon Crawler 🏰</h3>
-    <p>Dodge enemies, reach the treasure, and test your tactics!</p>
-    <button onclick="startGame('dungeon')">
-      <i class="fas fa-dungeon"></i> Enter Dungeon
-    </button>
-  </div>
-</section>
+        <h3>Pomodoro Timer</h3>
+        <p>Boost your focus with adjustable sessions and theme modes!</p>
+        <button onclick="startGame('pomodoro')">
+          <i class="fas fa-clock"></i> Open Pomodoro
+        </button>
+      </div>
+      <div class="game-option" id="solitaire-option">
+        <h3>Solitaire</h3>
+        <p>Play the classic game of patience and strategy.</p>
+        <button onclick="startGame('solitaire')">
+          <i class="fas fa-layer-group"></i> Play Solitaire
+        </button>
+      </div>
+      <div class="game-option" id="dungeon-option">
+        <h3>Mini Dungeon Crawler 🏰</h3>
+        <p>Dodge enemies, reach the treasure, and test your tactics!</p>
+        <button onclick="startGame('dungeon')">
+          <i class="fas fa-dungeon"></i> Enter Dungeon
+        </button>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -273,26 +328,70 @@ button i {
     </footer>
   </div>
 
-  <!-- JS: Handle Game Navigation -->
+  <!-- JS -->
   <script>
-    function startGame(gameType) {
-      switch(gameType) {
-        case 'puzzle':
-          window.location.href = 'games/puzzle.html';
-          break;
-        case 'pomodoro':
-          window.location.href = 'games/pomodoro.html';
-          break;
-        case 'solitaire':
-          window.location.href = 'games/solitaire.html';
-          break;
- 	case 'dungeon':
-          window.location.href = 'games/dungeon.html';
-          break;
-        default:
-          console.error('Unknown game type');
-      }
-    }
+/**
+=========================================
+          ⚡ GAME NAVIGATION & SPARKLES ⚡
+=========================================
+**/
+function startGame(gameType) {
+  switch(gameType) {
+    case 'puzzle': window.location.href = 'games/puzzle.html'; break;
+    case 'pomodoro': window.location.href = 'games/pomodoro.html'; break;
+    case 'solitaire': window.location.href = 'games/solitaire.html'; break;
+    case 'dungeon': window.location.href = 'games/dungeon.html'; break;
+    default: console.error('Unknown game type');
+  }
+}
+
+/**
+=========================================
+          ✨ BUTTON CLICK SPARKLES ✨
+=========================================
+**/
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const sparkle = document.createElement('span');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = e.offsetX + 'px';
+    sparkle.style.top = e.offsetY + 'px';
+    btn.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 500);
+  });
+});
+
+/* Sparkle styles */
+const style = document.createElement('style');
+style.innerHTML = `
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+  animation: sparkleAnim 0.5s ease-out;
+}
+@keyframes sparkleAnim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+/**
+=========================================
+          🌌 FLOATING ICON ANIMATION 🌌
+=========================================
+**/
+const gameIcons = document.querySelectorAll(".game-option button i");
+gameIcons.forEach(icon => {
+  let angle = 0;
+  setInterval(() => {
+    angle += 0.5;
+    icon.style.transform = `rotate(${angle}deg) translateY(${Math.sin(angle/10)*5}px)`;
+  }, 50);
+});
   </script>
 </body>
 </html>
