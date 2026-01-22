@@ -148,29 +148,156 @@ textarea {
 
 =========================================
 **/
+
 .mood-selector {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr); /* 4 per row on small screens */
+ gap: 6px;
+}
+
+.mood-pill {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  max-width: 600px;
-  margin: 0 auto 20px auto;
-}
-
-.mood-option {
-  font-size: 1.8em;
+  align-items: center;
+  background: white;
+  border-radius: 999px;
+  padding: 4px 10px 4px 0; /* leave space for tab */
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
   cursor: pointer;
-  padding: 12px 18px;
-  border-radius: 10px;
-  background: #d6ebff;
-  transition: background 0.25s ease;
-  user-select: none;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  width: 40%;
 }
 
-.mood-option.selected {
-  background: #4da6ff;
-  color: white;
+.mood-pill::before {
+  content: '';
+  display: inline-block;
+  width: 6px; /* tab thickness */
+  height: 100%;
+  background-color: var(--mood);
+  border-radius: 999px 0 0 999px; /* round only left edge */
+  margin-right: 6px;
+  flex-shrink: 0;
 }
+
+.mood-pill.selected {
+  font-weight: 600;
+  border-color: var(--mood);
+}
+
+/* modal full text styling */
+#modalContent p {
+  max-height: none;
+  overflow: visible;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+  color: #333;
+  white-space: pre-wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+
+/* ✨ ENTRY CARD REDESIGN ✨ */
+
+
+.entry {
+  background: linear-gradient(to bottom right, #ffffff, #f4f8ff);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entry:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+
+.entry h3 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+/* 🌫️ Preview text (peek effect) */
+.entry-preview {
+  max-height: 5.5em;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.6;
+  cursor: pointer;
+  color: #444;
+}
+
+.entry-preview::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2em;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+}
+
+/* 💭 Modal text formatting */
+#modalContent p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+  color: #333;
+}
+
+.entry .mood-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px 2px 0;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  margin: 2px 4px 4px 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  position: relative;
+}
+
+.entry .mood-chip::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 100%;
+  background-color: currentColor;
+  border-radius: 999px 0 0 999px;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+/* prettier text in preview & modal */
+.entry p,
+.entry .preview-text {
+  max-height: 4.5em;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  padding-right: 4px; /* prevent clipping */
+  margin: 0 0 10px 0;
+}
+
+.entry p::after,
+.entry .preview-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.2em;
+  background: linear-gradient(to bottom, transparent, #f7faff);
+  border-radius: 0 0 10px 10px;
+}
+
 
 /**
 =========================================
@@ -430,34 +557,34 @@ select, input[type="search"] {
   .input-container, .controls, .filters {
     max-width: 90%;
   }
+
+{
+  .mood-pill,
+  .entry .mood-chip {
+    font-size: 0.65rem;
+    padding: 2px 6px 2px 0;
+  }
+
+  .mood-pill::before,
+  .entry .mood-chip::before {
+    width: 5px;
+    margin-right: 4px;
+  }
+
+  .entry p::after,
+  .entry .preview-text::after {
+    height: 1em;
+  }
 }
 
-/* 📲 Small Screens (≤ 600px)
------------------------------------------*/
-@media (max-width: 600px) {
+/* =========================================
+           📲 SMALLER RESPONSIVENESS
+========================================= */
+
+/* Small screens ≤ 750px */
+@media (max-width: 750px) {
   body {
     padding: 15px;
-  }
-
-  h1 {
-    font-size: 2em;
-    margin-bottom: 30px;
-  }
-
-  nav {
-    width: 100vw;
-    left: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .input-container, 
-  .mood-selector, 
-  .controls, 
-  .filters, 
-  #entries {
-    max-width: 100%;
-    padding: 0 10px;
   }
 
   input[type="text"],
@@ -467,75 +594,127 @@ select, input[type="search"] {
     font-size: 1em;
   }
 
-  .mood-option {
-    font-size: 1.5em;
-    padding: 10px 14px;
+  .input-container,
+  .controls,
+  .filters,
+  #entries {
+    max-width: 100%;
+    padding: 0 10px;
   }
 
-  button {
-    width: 100%;
-    max-width: 300px;
-    padding: 12px;
-    font-size: 1.1em;
+  /* ===============================
+     Mood pills – FIXED (not squashed)
+  =============================== */
+
+   .mood-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 per row */
+  gap: 6px;
+  margin-bottom: 15px;
   }
 
-  .filters {
+  .mood-pill {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 999px;
+  padding: 4px 10px 4px 0;
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  width: 12vh;
+  margin-left: 10px;
+}
+
+.mood-pill::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 100%;
+  background-color: var(--mood);
+  border-radius: 999px 0 0 999px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Selected state */
+.mood-pill.selected {
+  background: white;
+  font-weight: 600;
+  border-color: var(--mood);
+}
+
+
+  /* Journal header & logo adjustments */
+  .journal-header {
     flex-direction: column;
-    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+    align-items: center;
   }
 
-  .filters select,
-  .filters input[type="search"] {
-    width: 100%;
+  .journal-logo {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
   }
 
+  .journal-logo img {
+    height: 60px;
+    width: 60px;
+  }
+
+  .journal-logo span {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  /* Navigation adjustments */
+  .journal-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .journal-nav a {
+    margin: 0;
+  }
+
+  .journal-nav a i {
+    font-size: 1.6rem;
+    padding: 4px;
+  }
+
+  /* Entry buttons */
   .entry .edit-btn,
   .entry .delete-btn {
     width: 48%;
     height: 36px;
     padding: 8px 0;
     font-size: 14px;
-    margin-right: 0;
     margin-bottom: 10px;
   }
 
   .entry .edit-btn {
     margin-right: 4%;
   }
-
-  /* 🧭 Journal Header Adjustments */
-  .journal-header {
-    flex-direction: column;
-    gap: 8px;
-    padding: 14px;
-  }
-
-  .journal-logo span {
-    font-size: 1.1rem;
-  }
-
-  .journal-nav a i {
-    font-size: 1.6rem; /* larger tap targets */
-    padding: 6px;      /* spacing around icons */
-  }
-
-  .journal-nav a {
-    margin: 0 8px;
-  }
-
-  /* 🌙 Footer adjustments */
-  .journal-footer {
-    font-size: 0.85rem;
-    padding: 14px;
-    color: #fff;
-  }
 }
 
-/* 📞 Extra Small Screens (≤ 480px)
------------------------------------------*/
+/* =========================================
+        📲 EXTRA SMALL SCREENS ≤ 480px
+========================================= */
 @media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+
   input[type="text"],
-  textarea {
+  textarea,
+  select,
+  input[type="search"] {
     font-size: 0.95em;
     padding: 10px;
   }
@@ -544,24 +723,63 @@ select, input[type="search"] {
     min-height: 100px;
   }
 
-  h1 {
-    font-size: 2em;
+   .mood-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 per row */
+  gap: 6px;
+  margin-bottom: 15px;
   }
 
-  .journal-nav a i {
-    font-size: 1.8rem;
-  }
+  .mood-pill {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 999px;
+  padding: 4px 10px 4px 0;
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  width: 10vh;
+  margin-left: 10px;
+}
 
-  .journal-header {
-    padding: 16px 20px;
+.mood-pill::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 100%;
+  background-color: var(--mood);
+  border-radius: 999px 0 0 999px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+/* Selected state */
+.mood-pill.selected {
+  background: white;
+  font-weight: 600;
+  border-color: var(--mood);
+}
+
+
+  /* Logo smaller */
+  .journal-logo img {
+    height: 50px;
+    width: 50px;
   }
 
   .journal-logo span {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 1.5rem;
   }
 
+  .journal-nav a i {
+    font-size: 1.4rem;
+    padding: 4px;
+  }
+
+  /* Entry buttons full width */
   .entry .edit-btn,
   .entry .delete-btn {
     width: 100%;
