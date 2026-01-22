@@ -5,7 +5,8 @@
 **/
 :root {
   --light-blue: #d0e5f3;  /* Soft sky blue */
-  --dark-blue: #035067;   /* Deep navy */
+  --dark-blue: #035067;   /* Deep blue */
+  --label: #0889b1; 
   --pale-pink: #ffb3d9;   /* Soft blush */
   --lavender: #c5a9e6;    /* Light lavender */
   --mint: #a9d6c9;        /* Mint green */
@@ -132,6 +133,17 @@ main {
   text-shadow: 0 0 8px var(--highlight);
   pointer-events: none;
   transition: opacity 0.4s ease;
+}
+
+.instructions {
+  color: var(--dark-blue);
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+.bubble-theme {
+  color: var(--label);
+  margin-bottom: 1.2em;
 }
 
 /**
