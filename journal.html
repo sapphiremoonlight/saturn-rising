@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title> Journal Entries — Saturn Rising</title>
-<link rel="icon" href="assets/images/favicon.ico" type="image/png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal Entries — Saturn Rising</title>
+
+  <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
   <link rel="stylesheet" href="styles/styles.css" />
- <link rel="stylesheet" href="styles/journal.css" />
-  <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
- </head>
+  <link rel="stylesheet" href="styles/journal.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
 <body>
+
 <header class="journal-header">
   <div class="journal-logo">
     <img src="assets/images/logo.png" alt="Saturn Rising Logo" />
@@ -17,7 +21,7 @@
   </div>
   <nav class="journal-nav">
     <a href="index.html" title="Home"><i class="fas fa-home"></i></a>
-    <a href="#" title="Journal" class="active"><i class="fas fa-book"></i></a>
+    <a href="#" class="active" title="Journal"><i class="fas fa-book"></i></a>
     <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
     <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
     <a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a>
@@ -26,8 +30,9 @@
 
 <main class="content">
   <h1>📔 Journal Entries</h1>
- <div class="input-container">
-    <input type="text" id="entryTitle" placeholder="Entry Title (optional)" />
+
+  <div class="input-container">
+    <input type="text" id="entryTitle" placeholder="Entry title (optional)" />
     <textarea id="journalText" placeholder="Write your thoughts..."></textarea>
   </div>
 
@@ -35,79 +40,119 @@
 
   <div class="controls">
     <div class="media-choice">
-  <select id="mediaTypeSelect" onchange="toggleMediaInput()">
-    <option value="none">No Media</option>
-    <option value="upload">Upload File</option>
-    <option value="url">Paste URL</option>
-  </select>
-  <input type="file" id="mediaUpload" accept="image/*,audio/*,video/*" style="display: none;" />
-  <input type="url" id="mediaURL" placeholder="Paste image/audio/video URL" style="display: none;" />
-</div>
+      <select id="mediaTypeSelect" onchange="toggleMediaInput()">
+        <option value="none">No Media</option>
+        <option value="upload">Upload File</option>
+        <option value="url">Paste URL</option>
+      </select>
+
+      <input type="file" id="mediaUpload"
+             accept="image/*,audio/*,video/*" style="display:none" />
+
+      <input type="url" id="mediaURL"
+             placeholder="Paste image / audio / video URL"
+             style="display:none" />
+    </div>
 
     <button onclick="saveEntry()">Save Entry</button>
     <button onclick="showRandomEntry()">🎲 Random Entry</button>
   </div>
 
   <div class="filters">
-    <input type="search" id="searchInput" placeholder="Search by title..." oninput="renderEntries()" />
+    <input type="search" id="searchInput"
+           placeholder="Search by title..."
+           oninput="renderEntries()" />
+
     <select id="sortSelect" onchange="renderEntries()">
       <option value="date">Sort by Date</option>
       <option value="title">Sort by Title</option>
     </select>
+
     <select id="moodFilter" onchange="renderEntries()">
       <option value="">Filter by Mood</option>
     </select>
   </div>
 
   <div id="entries"></div>
-<!-- Modal for full entry preview -->
-<div id="modalOverlay" onclick="closeModal(event)">
-  <div id="modalContent" onclick="event.stopPropagation()">
-    <button id="modalCloseBtn" onclick="closeModal()">×</button>
-    <!-- Full content will be injected here -->
+
+  <!-- Modal -->
+  <div id="modalOverlay" onclick="closeModal(event)">
+    <div id="modalContent" onclick="event.stopPropagation()">
+      <button id="modalCloseBtn" onclick="closeModal()">×</button>
+    </div>
   </div>
-</div>
 </main>
 
 <footer class="journal-footer">
-    <p>© 2025 Saturn Rising. You are safe and supported here.</p>
+  <p>© 2025 Saturn Rising. You are safe and supported here.</p>
 </footer>
 
-  <script>// ----------- Data and Constants -----------
+<script>
+/* ==============================
+   🌈 MOODS (single source of truth)
+   ============================== */
+const moods = {
+  // Positive
+  happy: { label: "Happy", color: "#ffd166" },
+  energetic: { label: "Energetic", color: "#7ce577" },
+  motivated: { label: "Motivated", color: "#ffb347" },
+  productive: { label: "Productive", color: "#6ed3cf" },
+  comforted: { label: "Comforted", color: "#ff8fab" },
+  focused: { label: "Focused", color: "#5ab2ff" },
+  grateful: { label: "Grateful", color: "#f0a6ff" },
+  inspired: { label: "Inspired", color: "#ff9f43" },
+  relaxed: { label: "Relaxed", color: "#92dce5" },
 
-const moodEmojis = {
-  angry: "😡", average: "😐", happy: "😊", sad: "😢", energetic: "⚡", productive: "✅",
-  anxious: "😰", annoyed: "😒", stressed: "😫", drained: "😩", numb: "😶", reflective: "🤔",
-  motivated: "💪", comforted: "🤗", focused: "🎯"
+  // Neutral / Mixed
+  average: { label: "Average", color: "#b0b0b0" },
+  reflective: { label: "Reflective", color: "#b088f9" },
+  curious: { label: "Curious", color: "#82caff" },
+  tired: { label: "Tired", color: "#c0b0a0" },
+
+  // Heavy / Negative
+  sad: { label: "Sad", color: "#78a1bb" },
+  anxious: { label: "Anxious", color: "#f39c9c" },
+  stressed: { label: "Stressed", color: "#f97575" },
+  overwhelmed: { label: "Overwhelmed", color: "#f28c8c" },
+  hopeless: { label: "Hopeless", color: "#6f7aa8" },
+  drained: { label: "Drained", color: "#8c8ca1" },
+  burntOut: { label: "Burnt Out", color: "#7d7d91" },
+  numb: { label: "Numb", color: "#bfb6aa" },
+  angry: { label: "Angry", color: "#ff4e4e" },
+  annoyed: { label: "Annoyed", color: "#d68fd6" },
+  frustrated: { label: "Frustrated", color: "#e06666" },
+  lonely: { label: "Lonely", color: "#9a9ae0" }
 };
 
 let selectedMoods = new Set();
 let entries = [];
 
-// ----------- DOM references -----------
-
 const moodSelector = document.getElementById("moodSelector");
 const moodFilter = document.getElementById("moodFilter");
 
-// ----------- Initialize mood buttons & filter options -----------
+/* ==============================
+   🌈 INIT MOODS
+   ============================== */
+for (const key in moods) {
+  const mood = moods[key];
 
-for (const mood in moodEmojis) {
-  // Mood selection buttons
-  const btn = document.createElement("div");
-  btn.className = "mood-option";
-  btn.title = mood;
-  btn.textContent = moodEmojis[mood];
-  btn.onclick = () => {
-    btn.classList.toggle("selected");
-    if (selectedMoods.has(mood)) selectedMoods.delete(mood);
-    else selectedMoods.add(mood);
+  const pill = document.createElement("div");
+  pill.className = "mood-pill";
+  pill.style.setProperty("--mood", mood.color);
+  pill.textContent = mood.label;
+
+  pill.onclick = () => {
+    pill.classList.toggle("selected");
+    selectedMoods.has(key)
+      ? selectedMoods.delete(key)
+      : selectedMoods.add(key);
   };
-  moodSelector.appendChild(btn);
 
-  // Filter dropdown options
+  moodSelector.appendChild(pill);
+
   const opt = document.createElement("option");
-  opt.value = mood;
-  opt.textContent = mood;
+  opt.value = key;
+  opt.textContent = mood.label;
   moodFilter.appendChild(opt);
 }
 
@@ -224,12 +269,14 @@ document.getElementById("mediaURL").value = "";
 
 // ----------- Reset form -----------
 
+// ----------- Reset form -----------
 function resetForm() {
   document.getElementById("entryTitle").value = "";
   document.getElementById("journalText").value = "";
   document.getElementById("mediaUpload").value = "";
+  document.getElementById("mediaURL").value = "";
   selectedMoods.clear();
-  document.querySelectorAll(".mood-option").forEach(el => el.classList.remove("selected"));
+  document.querySelectorAll(".mood-pill").forEach(el => el.classList.remove("selected"));
 }
 
 // ----------- Render media -----------
@@ -250,20 +297,27 @@ function renderMedia(media) {
 
 function editTitle(id, newTitle) {
   const entry = entries.find(e => e.id === id);
-  if (entry) entry.title = newTitle;
+  if (entry) {
+    entry.title = newTitle;
+    saveEntriesToStorage(); // <-- persist
+  }
 }
 
 // ----------- Edit text -----------
 
 function editText(id, newText) {
   const entry = entries.find(e => e.id === id);
-  if (entry) entry.text = newText;
+  if (entry) {
+    entry.text = newText;
+    saveEntriesToStorage(); // <-- persist
+  }
 }
 
 // ----------- Delete entry -----------
 
 function deleteEntry(id) {
   entries = entries.filter(e => e.id !== id);
+  saveEntriesToStorage(); // <-- persist
   renderEntries();
 }
 
@@ -290,13 +344,14 @@ function openModal(entryId) {
     <button id="modalCloseBtn" onclick="closeModal()">×</button>
     <h2>${entry.title || "(No Title)"}</h2>
     <div class="timestamp">${new Date(entry.date).toLocaleString()}</div>
-    <div>${entry.moods.map(m => `<span class="mood-chip">${moodEmojis[m]}</span>`).join(" ")}</div>
+    <div>${entry.moods.map(m => `<span class="mood-chip" style="background-color: white; border-left: 8px solid ${moods[m].color}; color:#333;">${moods[m].label}</span>`).join(" ")}</div>
     <p style="white-space: pre-wrap; max-height:none; cursor: default;">${entry.text || "(No text)"}</p>
     ${renderMedia(entry.media)}
   `;
 
   document.getElementById("modalOverlay").style.display = "flex";
 }
+
 
 // ----------- Close modal -----------
 
@@ -331,16 +386,16 @@ function renderEntries() {
     div.className = "entry";
 
     div.innerHTML = `
-      <h3 contenteditable="false" class="entry-title">${entry.title || "(No Title)"}</h3>
-      <div class="timestamp">${new Date(entry.date).toLocaleString()}</div>
-      <div>${entry.moods.map(m => `<span class="mood-chip">${moodEmojis[m]}</span>`).join(" ")}</div>
-      <p contenteditable="false" class="preview-text">${entry.text}</p>
-      ${renderMedia(entry.media)}
-     <div class="entry-buttons">
+  <h3 contenteditable="false" class="entry-title">${entry.title || "(No Title)"}</h3>
+  <div class="timestamp">${new Date(entry.date).toLocaleString()}</div>
+  <div>${entry.moods.map(m => `<span class="mood-chip" style="background-color: white; border-left: 8px solid ${moods[m].color}; color:#333;">${moods[m].label}</span>`).join(" ")}</div>
+  <p contenteditable="false" class="preview-text">${entry.text}</p>
+  ${renderMedia(entry.media)}
+  <div class="entry-buttons">
     <button class="edit-btn">Edit</button>
     <button class="delete-btn">Delete</button>
   </div>
-    `;
+`;
 
     container.appendChild(div);
 
@@ -391,5 +446,6 @@ loadEntriesFromStorage();
 renderEntries();
 
 </script>
+
 </body>
 </html>
