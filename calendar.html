@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="styles/styles.css" />
 <!-- Font Awesome 6 (latest free version) -->
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<!-- jsPDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 <body>
   <header class="navbar">
@@ -39,17 +42,17 @@
   <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
 </div>
 <div id="calendarGrid" class="calendar-grid"></div>
+<div id="monthWrapped" class="month-wrapped hidden"></div>
 
 <!-- Mood selection modal -->
 <div id="moodModal" class="modal hidden">
   <div class="modal-content">
     <h3>Select Moods</h3>
     <div id="moodOptions" class="mood-options">
-
-	</div>
+</div>
     <button id="saveMoodsBtn">Save</button>
     <button id="closeModalBtn">Cancel</button>
-  </div>
+    </div>
 </div>
 </section>
   <footer>
