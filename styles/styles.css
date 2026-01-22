@@ -87,23 +87,6 @@ nav a:hover {
     color: var(--hot-pink);
 }
 
-/* Small screen adjustments */
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .navbar nav {
-    margin-top: 1rem;
-  }
-
-  .navbar nav a {
-    margin: 0.5rem;
-  }
-}
-
 h1 {
    font-family: 'healing', serif;
    color: #003366;
@@ -154,30 +137,64 @@ color: white;
   font-size: 1.2rem;
 }
 
+/* 📅 CALENDAR BASE */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  background: #eee;
-  border-radius: 10px;
+  gap: 6px;
+  background: #f4f4f6;
+  border-radius: 14px;
   padding: 10px;
 }
 
+/* Day cells */
 .calendar-day {
   background: white;
-  border-radius: 6px;
-  height: 80px;
-  padding: 5px;
-  font-size: 0.8rem;
-  position: relative;
+  border-radius: 10px;
+  min-height: 72px;
+  padding: 6px;
+  font-size: 0.75rem;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .calendar-day.inactive {
-  opacity: 0.3;
+  opacity: 0.35;
+}
+
+/* Today highlight */
+.calendar-day.today {
+  outline: 2px solid var(--accent);
+  background: #faf7ff;
+}
+
+/* Day number */
+.calendar-day > div:first-child {
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Mood dots */
+.mood-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.mood-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
 }
 
 /* 📅📅📅 WEEKDAY LABELS 📅📅📅 */
@@ -191,15 +208,35 @@ color: white;
  margin-bottom: 10px;
 }
 
-/* Assign colors to each day */
-.calendar-grid .weekday-label:nth-child(1) { background-color: #930000; } /* Sunday - red */
-.calendar-grid .weekday-label:nth-child(2) { background-color: #f35e0c; } /* Monday - orange */
-.calendar-grid .weekday-label:nth-child(3) { background-color: #f0ff4b; color: #333;} /* Tuesday - yellow */
-.calendar-grid .weekday-label:nth-child(4) { background-color: #29862d; } /* Wednesday - green */
-.calendar-grid .weekday-label:nth-child(5) { background-color: #6a89cc; } /* Thursday - blue */
-.calendar-grid .weekday-label:nth-child(6) { background-color: #ff69b4; } /* Friday - pink */
-.calendar-grid .weekday-label:nth-child(7) { background-color: #872a7c; } /* Saturday - purple */
+/* 🌈 PRETTIER WEEKDAY COLORS (Celestial Soft) */
+.calendar-grid .weekday-label:nth-child(1) { 
+  background-color: #c36a6a;  /* Sunday – soft rose */
+}
 
+.calendar-grid .weekday-label:nth-child(2) { 
+  background-color: #e2a36b;  /* Monday – muted peach */
+}
+
+.calendar-grid .weekday-label:nth-child(3) { 
+  background-color: #e6d96c;  /* Tuesday – soft gold */
+  color: #3a3a3a;
+}
+
+.calendar-grid .weekday-label:nth-child(4) { 
+  background-color: #7fb69c;  /* Wednesday – sage green */
+}
+
+.calendar-grid .weekday-label:nth-child(5) { 
+  background-color: #7a9cc6;  /* Thursday – periwinkle blue */
+}
+
+.calendar-grid .weekday-label:nth-child(6) { 
+  background-color: #d89acb;  /* Friday – dusty pink */
+}
+
+.calendar-grid .weekday-label:nth-child(7) { 
+  background-color: #9b7bb8;  /* Saturday – lavender purple */
+}
 
 .mood-dots {
   display: flex;
@@ -264,6 +301,43 @@ color: white;
 .mood-checkbox.checked {
   background-color: var(--accent);
   color: white;
+}
+
+/**
+=========================================
+
+          📊 MONTHLY & YEARLY WRAPPED
+
+=========================================
+**/
+
+.month-wrapped {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    #ff7eb3,
+    #ffb347,
+    #7afcff
+  );
+
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(255, 126, 179, 0.35);
+}
+
+.stat {
+  background: rgba(255,255,255,0.22);
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+}
+
+body.dark .month-wrapped {
+  box-shadow:
+    0 14px 40px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 
 
@@ -357,17 +431,6 @@ color: white;
 
 .scroll-markers .marker.active {
   background-color: #6a5acd; /* Active marker color */
-}
-
-/* Responsive layout for smaller screens */
-@media (max-width: 768px) {
-  .catalogue-wrapper {
-    flex-direction: column;
-  }
-  .scroll-arrow {
-    top: 10px;
-    transform: translateY(0);
-  }
 }
 
     .card {
@@ -503,7 +566,6 @@ select:disabled, button:disabled {
   background-color: #3399ff;
 }
 
-
 /* 🌙🌙🌙 DARK MODE 🌙🌙🌙 */
 body.dark {
   background-color: var(--bg-dark);
@@ -513,4 +575,87 @@ body.dark {
 body.dark footer,
 body.dark .navbar {
   background-color: #4b3b8d;
+}
+
+
+/* =========================================
+           📲 SMALLER SCREENS
+========================================= */
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .catalogue-wrapper {
+    flex-direction: column;
+  }
+  .scroll-arrow {
+    top: 10px;
+    transform: translateY(0);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .navbar nav {
+    margin-top: 1rem;
+  }
+
+  .navbar nav a {
+    margin: 0.5rem;
+}
+
+ .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px; 
+    padding: 20px;
+  }
+
+  .calendar-day {
+    height: 60px;
+    font-size: 0.7rem;
+    padding: 13px;
+}
+
+  .weekday-label {
+    font-size: 0.7rem;
+    padding: 3px 0;
+   border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .mood-dots {
+    gap: 2px;
+  }
+
+  .mood-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    padding: 2px;
+  }
+
+  .calendar-day {
+    height: 50px;
+    font-size: 0.65rem;
+    padding: 3px;
+    padding-left: 6px;
+    
+  }
+
+  .mood-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .weekday-label {
+    font-size: 0.65rem;
+  }
 }
