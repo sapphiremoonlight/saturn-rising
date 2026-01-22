@@ -1,22 +1,37 @@
 /* =====================================================
    🎨🎨🎨 MOOD COLORS
 ===================================================== */
-const moodColors = {
-  angry: "#ff4e4e",
-  average: "#b0b0b0",
-  happy: "#ffd166",
-  sad: "#78a1bb",
-  energetic: "#7ce577",
-  productive: "#6ed3cf",
-  anxious: "#f39c9c",
-  annoyed: "#d68fd6",
-  stressed: "#f97575",
-  drained: "#8c8ca1",
-  numb: "#bfb6aa",
-  reflective: "#b088f9",
-  motivated: "#ffb347",
-  comforted: "#ff8fab",
-  focused: "#5ab2ff"
+const moods = {
+  // Positive
+  happy: { label: "Happy", color: "#ffd166" },
+  energetic: { label: "Energetic", color: "#7ce577" },
+  motivated: { label: "Motivated", color: "#ffb347" },
+  productive: { label: "Productive", color: "#6ed3cf" },
+  comforted: { label: "Comforted", color: "#ff8fab" },
+  focused: { label: "Focused", color: "#5ab2ff" },
+  grateful: { label: "Grateful", color: "#f0a6ff" },
+  inspired: { label: "Inspired", color: "#ff9f43" },
+  relaxed: { label: "Relaxed", color: "#92dce5" },
+
+  // Neutral / Mixed
+  average: { label: "Average", color: "#b0b0b0" },
+  reflective: { label: "Reflective", color: "#b088f9" },
+  curious: { label: "Curious", color: "#82caff" },
+  tired: { label: "Tired", color: "#c0b0a0" },
+
+  // Heavy / Negative
+  sad: { label: "Sad", color: "#78a1bb" },
+  anxious: { label: "Anxious", color: "#f39c9c" },
+  stressed: { label: "Stressed", color: "#f97575" },
+  overwhelmed: { label: "Overwhelmed", color: "#f28c8c" },
+  hopeless: { label: "Hopeless", color: "#6f7aa8" },
+  drained: { label: "Drained", color: "#8c8ca1" },
+  burntOut: { label: "Burnt Out", color: "#7d7d91" },
+  numb: { label: "Numb", color: "#bfb6aa" },
+  angry: { label: "Angry", color: "#ff4e4e" },
+  annoyed: { label: "Annoyed", color: "#d68fd6" },
+  frustrated: { label: "Frustrated", color: "#e06666" },
+  lonely: { label: "Lonely", color: "#9a9ae0" }
 };
 
 /* =====================================================
@@ -589,3 +604,4 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
   updateMarkers();
 });
+
