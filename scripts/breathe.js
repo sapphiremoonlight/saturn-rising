@@ -73,5 +73,3 @@ window.onload = function() {
 document.querySelector('#theme-select').addEventListener('change', function(e) {
   changeTheme(e.target.value);
 });
-
-
