@@ -1,10 +1,10 @@
 /* 🌟🌟🌟 VARIABLES & ROOT COLORS 🌟🌟🌟 */
 :root {
-  --bg-light: #7096d1;
+  --bg-light: #a0d4ff;
   --bg-dark: #1f1f2f;
   --text-light: #1e1e1e;
   --text-dark: #eaeaea;
-  --accent: #5ab2ff; 
+  --accent: #57c6fa; 
   --transition-speed: 0.3s;
 }
 
@@ -207,36 +207,18 @@ color: white;
   font-size: 0.8rem;
  margin-bottom: 10px;
 }
+/* ========================
+  📅📅 DAYS OF THE WEEK 
+==========================*/
+.calendar-grid .weekday-label:nth-child(1) { background-color: #cfa28d; color: #fff; } /* Sun – clay */
+.calendar-grid .weekday-label:nth-child(2) { background-color: #d6b98b; color: #fff; } /* Mon – sand */
+.calendar-grid .weekday-label:nth-child(3) { background-color: #b5c99a; color: #fff; } /* Tue – moss */
+.calendar-grid .weekday-label:nth-child(4) { background-color: #a3c6c4; color: #fff; } /* Wed – muted teal */
+.calendar-grid .weekday-label:nth-child(5) { background-color: #bfa4d8; color: #fff; } /* Thu – soft violet */
+.calendar-grid .weekday-label:nth-child(6) { background-color: #f1a3c6; color: #fff; } /* Fri – rose */
+.calendar-grid .weekday-label:nth-child(7) { background-color: #e6c7a1; color: #fff; } /* Sat – caramel */
 
-/* 🌈 PRETTIER WEEKDAY COLORS (Celestial Soft) */
-.calendar-grid .weekday-label:nth-child(1) { 
-  background-color: #c36a6a;  /* Sunday – soft rose */
-}
 
-.calendar-grid .weekday-label:nth-child(2) { 
-  background-color: #e2a36b;  /* Monday – muted peach */
-}
-
-.calendar-grid .weekday-label:nth-child(3) { 
-  background-color: #e6d96c;  /* Tuesday – soft gold */
-  color: #3a3a3a;
-}
-
-.calendar-grid .weekday-label:nth-child(4) { 
-  background-color: #7fb69c;  /* Wednesday – sage green */
-}
-
-.calendar-grid .weekday-label:nth-child(5) { 
-  background-color: #7a9cc6;  /* Thursday – periwinkle blue */
-}
-
-.calendar-grid .weekday-label:nth-child(6) { 
-  background-color: #d89acb;  /* Friday – dusty pink */
-}
-
-.calendar-grid .weekday-label:nth-child(7) { 
-  background-color: #9b7bb8;  /* Saturday – lavender purple */
-}
 
 .mood-dots {
   display: flex;
