@@ -309,17 +309,19 @@ function renderMonthWrapped(month, year) {
 
   wrap.classList.remove("hidden");
   wrap.innerHTML = `
-    <h3>${new Date(year, month).toLocaleString("default", { month: "long" })} Wrapped</h3>
-    <p>${getMonthPersonality(stats)}</p>
+  <h3>${new Date(year, month).toLocaleString("default", { month: "long" })} Wrapped</h3>
+  <p>${getMonthPersonality(stats)}</p>
 
-    <div class="stat preview-stat">
-      <strong>Top mood:</strong> ${topMood}
-    </div>
+  <div class="stat preview-stat">
+    <strong>Top mood:</strong> ${topMood}
+  </div>
 
-    <button onclick="downloadMonthPDF(${month}, ${year})">
-      Unlock Full Wrapped 📄
-    </button>
-  `;
+  <button 
+    onclick="downloadMonthPDF(${month}, ${year})" 
+    style="margin-top: 16px;">
+    Unlock Full Wrapped 📄
+  </button>
+`;
 }
 
 /* =====================================================
@@ -416,7 +418,7 @@ function downloadMonthPDF(month, year) {
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
     doc.setTextColor("#1f1f2f");
-    doc.text("Saturn Mood Tracker", 40, 60);
+    doc.text("Attic Mood Tracker", 40, 60);
 
     y += 70;
 
@@ -587,4 +589,3 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
   updateMarkers();
 });
-
