@@ -416,7 +416,7 @@ function downloadMonthPDF(month, year) {
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
     doc.setTextColor("#1f1f2f");
-    doc.text("Attic Mood Tracker", 40, 60);
+    doc.text("Saturn Mood Tracker", 40, 60);
 
     y += 70;
 
@@ -587,3 +587,4 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
   updateMarkers();
 });
+
