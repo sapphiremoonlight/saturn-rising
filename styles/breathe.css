@@ -1,27 +1,29 @@
-/**
+/** 
 =========================================
           🎨 COLORS & GLOBAL STYLES 🎨
 =========================================
 **/
 :root {
-  --navy: #0a1931;
-  --light-blue: #cfe7f5;
-  --mid-blue: #92bde7;
-  --dark-blue: #2d4c7a;
+  --light-blue: #d0e5f3;  /* Soft sky blue */
+  --dark-blue: #035067;   /* Deep navy */
+  --pale-pink: #ffb3d9;   /* Soft blush */
+  --lavender: #c5a9e6;    /* Light lavender */
+  --mint: #a9d6c9;        /* Mint green */
   --white: #ffffff;
-  --pink: #ffc4d6;
-  --hot-pink: #ff8ab1;
-  --text: #fff0f5;
+  --text: #ffffff;
+  --accent: #f7c1bb;      /* Warm peach */
+  --highlight: #e28a8a;   /* Coral pink */
 }
 
+/* Reset default margin, padding, and box-sizing */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(to bottom, #ffe4f0, #b3cfe5);
+  background: linear-gradient(to bottom, var(--light-blue), var(--mint));
   color: var(--text);
   font-family: 'Segoe UI', sans-serif;
   display: flex;
@@ -38,29 +40,29 @@ body {
 =========================================
 **/
 nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: var(--dark-blue);
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    border-top: 2px solid var(--mid-blue);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--dark-blue);
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  border-top: 3px solid var(--accent);
 }
 
 nav a {
-    color: var(--light-blue);
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: var(--light-blue);
+  font-size: 1.6rem;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
-nav a.active{
-  color: var(--pink);
+nav a.active {
+  color: var(--accent);
 }
 
 nav a:hover {
-    color: var(--hot-pink);
+  color: var(--highlight);
 }
 
 /**
@@ -70,9 +72,10 @@ nav a:hover {
 **/
 .screen-title {
   margin: 40px 0 20px;
-  font-size: 2em;
-  color: var(--mid-blue);
+  font-size: 2.2em;
+  color: var(--dark-blue);
   text-align: center;
+  font-weight: 600;
 }
 
 main {
@@ -91,22 +94,184 @@ main {
 =========================================
 **/
 .bubble-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 20px;
 }
 
 .bubble {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--hot-pink);
-    box-shadow: 0 0 30px rgba(255, 170, 200, 0.6);
-    background: radial-gradient(circle at 30% 30%, #ffc4d6, #ff8ab1);
-    animation: breathe 12s infinite ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--highlight);
+  box-shadow: 0 0 30px rgba(255, 170, 200, 0.6);
+  background: radial-gradient(circle at 30% 30%, var(--pale-pink), var(--accent));
+  animation: breathe 12s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1.2); }
+  75% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+  color: var(--white);
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--highlight);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/**
+=========================================
+          🎛️ CONTROLS & AUDIO 🎛️
+=========================================
+**/
+.controls {
+  margin-top: 40px;
+  background-color: var(--dark-blue);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 120vh;
+  text-align: center;
+}
+
+.audio-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.audio-controls label,
+.audio-controls select {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: var(--dark-blue);
+  color: var(--accent);
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#volume {
+  width: 100%;
+  max-width: 300px;
+  accent-color: var(--highlight);
+}
+
+/**
+=========================================
+          ✨ BACKGROUND SPARKLES ✨
+=========================================
+**/
+.sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: floatBG 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatBG {
+  from { background-position: 0 0; }
+  to { background-position: 100% 100%; }
+}
+
+/**
+=========================================
+       🌊 WATER RIPPLE EFFECT 🌊
+=========================================
+*/
+
+.ripple-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1; /* above background, below UI */
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(160, 210, 255, 0.6),
+    rgba(176, 214, 246, 0.6),
+    rgba(160, 210, 255, 0.3),
+    transparent 70%
+  );
+  transform: scale(0);
+  animation: ripple-expand 2.4s ease-out forwards;
+}
+
+
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/**
+=========================================
+       🌊 BUBBLE THEMES 🌊 
+========================================= */
+
+/* Default Theme: Round Bubble */
+.theme-default .bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffc4d6, #ff8ab1);
+}
+
+/* Theme 1: Heart Bubble */
+.theme-heart .bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle, #73dcee, #4d94a1);
+  clip-path: polygon(50% 0%, 0% 35%, 50% 100%, 100% 35%);
+}
+
+/* Theme 2: Star Bubble */
+.theme-star .bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle, #c6e8cf, #73b687);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Theme 3: Sunset Colors */
+.theme-sunset .bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff6f61, #ff8a3d);
+}
+
+/* Common Theme Styles */
+.bubble {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 30px rgba(255, 170, 200, 0.6);
+  animation: breathe 12s infinite ease-in-out;
 }
 
 @keyframes breathe {
@@ -117,128 +282,42 @@ main {
   100% { transform: scale(1); }
 }
 
-.prompt {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5em;
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 0 0 5px #ff8ab1;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.instructions {
-  margin-top: 30px;
-  font-size: 1.1em;
-  color: #666;
-  text-align: center;
-}
 
 /**
 =========================================
-          🎛️ CONTROLS & AUDIO 🎛️
-=========================================
-**/
-.controls {
-    margin-top: 40px;
-    background-color: var(--dark-blue);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.audio-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.audio-controls label,
-.audio-controls select {
-  font-size: 1.1rem;
-  font-weight: 600;
-  background-color: var(--dark-blue);
-  color: var(--pink);
-  margin-right: 10px;
-  white-space: nowrap;
-}
-
-#volume {
-  width: 180px; /* longer slider */
-  accent-color: var(--hot-pink);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  background: var(--hot-pink);
-}
-
-input[type="range"]::-moz-range-thumb {
-  background: var(--hot-pink);
-}
-
-/**
-=========================================
-          ✨ BACKGROUND SPARKLES ✨
-=========================================
-**/
-.sparkles {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: floatBG 30s linear infinite;
-  z-index: 0;
-}
-
-@keyframes floatBG {
-  from { background-position: 0 0; }
-  to   { background-position: 100% 100%; }
-}
-
-/**
-=========================================
-          🔵 BUTTONS & SELECT STYLING 🔵
+    🔵 BUTTONS & SELECT STYLING 🔵
 =========================================
 **/
 button {
-  background-color: #b3cfe5;
-  color: white;
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
   border: none;
   border-radius: 8px;
-  padding: 0.8rem 1.2rem;
+  padding: 0.9rem 1.4rem;
   margin-bottom: 30px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 3px 6px rgba(90, 130, 214, 0.4);
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 3px 8px rgba(60, 75, 100, 0.3);
   outline: none;
-  appearance: none;
+}
+
+button:hover {
+  background-color: var(--mint);
+  transform: scale(1.05);
 }
 
 select {
-  background-image:
-   background-color: #92bde7; 
-    background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    calc(100% - 25px) 0.5em;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
-  background-repeat: no-repeat;
-  padding-right: 2.5rem;
+  background-color: var(--mint);
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
-select:hover, select:focus,
-button:hover, button:focus {
-  background-color: #4a7fa7;
-  box-shadow: 0 6px 12px rgba(61, 99, 199, 0.6);
+select:hover, select:focus {
+  background-color: var(--highlight);
 }
 
 /**
@@ -248,60 +327,22 @@ button:hover, button:focus {
 **/
 @media (max-width: 600px) {
   .bubble-container {
-    width: 200px;
-    height: 200px;
-  }
-
-  .bubble {
-    border-width: 1.5px;
-    box-shadow: 0 0 20px rgba(255, 170, 200, 0.6);
-  }
-
-  .prompt {
-    font-size: 1.2em;
+    width: 220px;
+    height: 220px;
   }
 
   .screen-title {
-    margin: 20px 0 15px;
-    font-size: 1.6em;
+    font-size: 1.8em;
   }
 
   .controls {
-    width: 95vw;
-    padding: 15px;
-  }
-
-  .audio-controls {
-    flex-direction: column;
-    align-items: stretch
-  }
-
-  .audio-controls label {
-    margin-right: 0;
-    margin-bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .audio-controls select {
-    margin-right: 0;
-    margin-bottom: 10px;
-    width: 100%;
-    text-align: center;
+    width: 90%;
+    padding: 20px;
   }
 
   button, select {
     width: 100%;
     font-size: 1rem;
-    padding: 0.7rem 1rem;
-  }
-
-  nav a {
-    font-size: 1.8rem;
-    padding: 8px 12px;
-  }
-
-  nav {
-    padding: 8px 0;
+    padding: 0.8rem 1.2rem;
   }
 }
