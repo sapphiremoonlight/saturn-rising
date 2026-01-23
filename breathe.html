@@ -16,6 +16,7 @@
     <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
     <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
     <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+    <a href="behavior-lab.html" title="Behaviour"><i class="fas fa-flask"></i></a>
     <a href="#" title="Breathe" class="active"><i class="fas fa-wind"></i></a>
   </nav>
 
@@ -49,10 +50,8 @@
           <option value="rain.mp3">Rain</option>
           <option value="reiki.mp3">Reiki</option>
           <option value="waves.mp3">Waves</option>
-          <option value="asmr.mp3">ASMR</option>
           <option value="guided-meditation.mp3">Guided Meditation</option>
           <option value="pink-noise.mp3">Pink Noise</option>
-          <option value="brown-noise.mp3">Brown Noise</option>
         </select>
 
         <button id="play-pause"><i class="fas fa-play"></i></button>
@@ -62,14 +61,13 @@
 
   <audio id="bg-audio" loop></audio>
   </main>
-
-  <div class="sparkles"> </div>
-  <div class="ripple-layer"></div>
+<div class="sparkles"> </div>
+<div class="ripple-layer"></div>
 
   <!-- 🔽 Scripts -->
   <script src="scripts/breathe.js"></script>
   <script>
-      const promptText = document.getElementById('prompt-text');
+    const promptText = document.getElementById('prompt-text');
     const prompts = ["Breathe in...", "Hold...", "Breathe out...", "Hold..."];
     let i = 0;
 
@@ -103,9 +101,4 @@
   });
   </script>
 </body>
-
 </html>
-
-
-
-
