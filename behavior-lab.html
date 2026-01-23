@@ -36,52 +36,126 @@
   </header>
 
   <main class="app-content">
-  
+
     <!-- 🧪 LAB HEADER -->
-  <section class="lab-hero">
-    <h1>Behavior Lab</h1>
-    <p>
-      Observe. Record. Notice patterns.  
-      No judgment. Just data.
-    </p>
-  </section>
+    <section class="lab-hero">
+      <h1>Behavior Lab</h1>
+      <p>Observe. Record. Notice patterns. No judgment. Just data.</p>
+    </section>
 
-  <!-- 📊 LAB STATS -->
-  <section class="lab-stats">
-    <div class="stat-card">
-      <i class="fas fa-fire"></i>
-      <h3>Current Streak</h3>
-      <p><span id="streakCount">0</span> days</p>
-    </div>
+    <!-- 📊 LAB STATS -->
+    <section class="lab-stats">
+      <div class="stat-card">
+        <i class="fas fa-fire"></i>
+        <h3>Current Streak</h3>
+        <p><span id="streakCount">0</span> days</p>
+      </div>
 
-    <div class="stat-card">
-      <i class="fas fa-star"></i>
-      <h3>Lab XP</h3>
-      <p><span id="xpCount">0</span> XP</p>
-    </div>
+      <div class="stat-card">
+        <i class="fas fa-star"></i>
+        <h3>Lab XP</h3>
+        <p><span id="xpCount">0</span> XP</p>
+      </div>
 
-    <div class="stat-card">
-      <i class="fas fa-level-up-alt"></i>
-      <h3>Level</h3>
-      <p><span id="level">1</span></p>
-    </div>
+      <div class="stat-card">
+        <i class="fas fa-level-up-alt"></i>
+        <h3>Level</h3>
+        <p><span id="level">1</span></p>
+      </div>
 
-    <div class="stat-card">
-      <i class="fas fa-microscope"></i>
-      <h3>Observations</h3>
-      <p><span id="entryCount">0</span></p>
-    </div>
-  </section>
+      <div class="stat-card">
+        <i class="fas fa-microscope"></i>
+        <h3>Observations</h3>
+        <p><span id="entryCount">0</span></p>
+      </div>
+    </section>
 
-  <!-- 🧾 LOG OBSERVATION -->
-  <section class="log-observation">
-    <h2>Log an Observation</h2>
+    <!-- 🧾 LOG OBSERVATION -->
+    <section class="log-observation">
+      <h2>Log an Observation</h2>
+      <form id="behaviorForm">
 
-    <form id="behaviorForm">
+        <div class="form-row">
+          <label>Category</label>
+          <select id="category">
+            <optgroup label="🧠 OCD / Anxiety">
+              <option value="intrusive-thought">Intrusive Thoughts</option>
+              <option value="compulsion">Compulsions</option>
+              <option value="rumination">Rumination</option>
+              <option value="reassurance-seeking">Reassurance Seeking</option>
+              <option value="mental-checking">Mental Checking</option>
+            </optgroup>
 
-      <div class="form-row">
-       <label>Category</label>
-        <select id="category">
+            <optgroup label="🌀 ADHD">
+              <option value="impulse">Impulses</option>
+              <option value="executive-dysfunction">Executive Dysfunction</option>
+              <option value="time-blindness">Time Blindness</option>
+              <option value="task-paralysis">Task Paralysis</option>
+              <option value="hyperfocus">Hyperfocus</option>
+              <option value="forgetfulness">Forgetfulness</option>
+            </optgroup>
+
+            <optgroup label="🌊 PMDD / Hormonal">
+              <option value="emotional-volatility">Emotional Volatility</option>
+              <option value="irritability-rage">Irritability / Rage</option>
+              <option value="hopelessness">Hopelessness</option>
+              <option value="rejection-sensitivity">Rejection Sensitivity</option>
+              <option value="energy-crash">Energy Crash</option>
+            </optgroup>
+
+            <optgroup label="🛡 CPTSD / Trauma">
+              <option value="emotional-flashback">Emotional Flashback</option>
+              <option value="dissociation-numbness">Dissociation / Numbness</option>
+              <option value="hypervigilance">Hypervigilance</option>
+              <option value="breath-holding">Subconscious Breath-Holding</option>
+              <option value="freeze-response">Freeze Response</option>
+              <option value="shame-spiral">Shame Spiral</option>
+            </optgroup>
+
+            <optgroup label="✋ Body-Focused Repetitive Behaviors">
+              <option value="skin-picking">Excoriation (Skin Picking)</option>
+              <option value="trichotillomania">Trichotillomania</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>What happened?</label>
+          <textarea id="description" placeholder="Describe the observation..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>Trigger (if known)</label>
+          <textarea id="trigger" placeholder="Optional"></textarea>
+        </div>
+
+        <div class="form-row split">
+          <div>
+            <label>Intensity</label>
+            <input type="range" min="1" max="10" value="5" id="intensity" />
+          </div>
+
+          <div>
+            <label>Outcome</label>
+            <select id="outcome">
+              <option value="passed">Passed</option>
+              <option value="lingered">Lingered</option>
+              <option value="escalated">Escalated</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="primary-btn">Log Observation</button>
+      </form>
+    </section>
+
+    <!-- 🗂 OBSERVATION TIMELINE -->
+    <section class="observation-timeline">
+      <h2>Timeline</h2>
+
+      <div class="timeline-filters">
+        <select id="filterCategory">
+          <option value="">All Categories</option>
           <optgroup label="🧠 OCD / Anxiety">
             <option value="intrusive-thought">Intrusive Thoughts</option>
             <option value="compulsion">Compulsions</option>
@@ -116,149 +190,76 @@
             <option value="shame-spiral">Shame Spiral</option>
           </optgroup>
 
-          <optgroup label="✋ Body-Focused Repetitive Behaviors.">
-            <option value="skin-picking">Excoriation (Skin Picking)</option>
-            <option value="trichotillomania">Trichotillomania</option>
+          <optgroup label="✋ BFRBs">
+            <option value="skin-picking">Skin Picking</option>
+            <option value="trichotillomania">Hair Pulling (Trich)</option>
           </optgroup>
         </select>
-    </div>
 
-      <div class="form-row">
-        <label>What happened?</label>
-        <textarea id="description" placeholder="Describe the observation..."></textarea>
+        <select id="filterTime">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="highest">Highest Intensity</option>
+        </select>
       </div>
-
-      <div class="form-row">
-        <label>Trigger (if known)</label>
-        <textarea id="trigger" placeholder="Optional"></textarea>
-      </div>
-
-      <div class="form-row split">
-        <div>
-          <label>Intensity</label>
-          <input type="range" min="1" max="10" value="5" id="intensity" />
-        </div>
-
-        <div>
-          <label>Outcome</label>
-          <select id="outcome">
-            <option value="passed">Passed</option>
-            <option value="lingered">Lingered</option>
-            <option value="escalated">Escalated</option>
-          </select>
-        </div>
-      </div>
-
-      <button type="submit" class="primary-btn">
-        Log Observation
-      </button>
-    </form>
-  </section>
-
-  <!-- 🗂 OBSERVATION TIMELINE -->
-  <section class="observation-timeline">
-    <h2>Timeline</h2>
-
-    <div class="timeline-filters">
-      <select id="filterCategory">
-        <option value="">All Categories</option>
-        <optgroup label="🧠 OCD / Anxiety">
-          <option value="intrusive-thought">Intrusive Thoughts</option>
-          <option value="compulsion">Compulsions</option>
-          <option value="rumination">Rumination</option>
-          <option value="reassurance-seeking">Reassurance Seeking</option>
-          <option value="mental-checking">Mental Checking</option>
-        </optgroup>
-
-        <optgroup label="🌀 ADHD">
-          <option value="impulse">Impulses</option>
-          <option value="executive-dysfunction">Executive Dysfunction</option>
-          <option value="time-blindness">Time Blindness</option>
-          <option value="task-paralysis">Task Paralysis</option>
-          <option value="hyperfocus">Hyperfocus</option>
-          <option value="forgetfulness">Forgetfulness</option>
-        </optgroup>
-
-        <optgroup label="🌊 PMDD / Hormonal">
-          <option value="emotional-volatility">Emotional Volatility</option>
-          <option value="irritability-rage">Irritability / Rage</option>
-          <option value="hopelessness">Hopelessness</option>
-          <option value="rejection-sensitivity">Rejection Sensitivity</option>
-          <option value="energy-crash">Energy Crash</option>
-        </optgroup>
-
-        <optgroup label="🛡 CPTSD / Trauma">
-          <option value="emotional-flashback">Emotional Flashback</option>
-          <option value="dissociation-numbness">Dissociation / Numbness</option>
-          <option value="hypervigilance">Hypervigilance</option>
-          <option value="breath-holding">Subconscious Breath-Holding</option>
-          <option value="freeze-response">Freeze Response</option>
-          <option value="shame-spiral">Shame Spiral</option>
-        </optgroup>
-
-        <optgroup label="✋ BFRBs">
-          <option value="skin-picking">Skin Picking</option>
-          <option value="trichotillomania">Hair Pulling (Trich)</option>
-        </optgroup>
-      </select>
-
-    <select id="filterTime">
-      <option value="newest">Newest First</option>
-      <option value="oldest">Oldest First</option>
-      <option value="highest">Highest Intensity</option>
-    </select>
-  </div>
-
 
       <div id="timelineEntries" class="timeline-entries">
         <!-- Dynamic observation cards -->
       </div>
     </section>
 
-  <!-- 🔍 PATTERN LAB -->
-  <section class="pattern-lab">
-    <h2>Pattern Scanner</h2>
+    <!-- 🔍 PATTERN LAB -->
+    <section class="pattern-lab">
+      <h2>Pattern Scanner</h2>
+      <div class="pattern-cards">
+        <div class="pattern-card">
+          <h4>Most Frequent Category</h4>
+          <p id="topCategory">—</p>
+        </div>
 
-    <div class="pattern-cards">
-      <div class="pattern-card">
-        <h4>Most Frequent Category</h4>
-        <p id="topCategory">—</p>
+        <div class="pattern-card">
+          <h4>Average Intensity</h4>
+          <p id="avgIntensity">—</p>
+        </div>
+
+        <div class="pattern-card">
+          <h4>Common Trigger</h4>
+          <p id="commonTrigger">—</p>
+        </div>
       </div>
+    </section>
 
-      <div class="pattern-card">
-        <h4>Average Intensity</h4>
-        <p id="avgIntensity">—</p>
+    <!-- 🔔 FLOATING NOTIFICATION BUTTON -->
+    <button id="notificationButton" class="floating-notification-btn">
+      <i class="fas fa-bell"></i>
+      <span class="notification-badge" id="notificationCount">0</span>
+    </button>
+
+    <!-- 🧾 NOTIFICATIONS INBOX -->
+    <section id="notificationPanel" class="notification-panel hidden">
+      <h3 class="lab-messages-heading">Lab Messages</h3>
+      <div id="notificationContainer" class="notification-list">
+        <!-- Example notification template for JS:
+        <div class="notification-item" data-id="123">
+          <div class="notif-content">
+            <p>Notification text here</p>
+            <span class="timestamp">12:34 PM</span>
+          </div>
+          <button class="delete-note"><i class="fas fa-trash"></i></button>
+        </div>
+        -->
       </div>
-
-      <div class="pattern-card">
-        <h4>Common Trigger</h4>
-        <p id="commonTrigger">—</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 🔔 FLOATING NOTIFICATION BUTTON -->
- <button id="notificationButton" class="floating-notification-btn">
-  <i class="fas fa-bell"></i>
-  <span class="notification-badge" id="notificationCount">0</span>
-</button>
-
- <!-- 🧾 NOTIFICATIONS INBOX -->
-  <section id="notificationPanel" class="notification-panel hidden">
-  <h3 class="lab-messages-heading">Lab Messages</h3>
-  <div id="notificationList" class="notification-list">
-    <!-- Stored notifications -->
-  </div>
-  <button id="closeNotifications">Close</button>
-</section>
+      <button id="closeNotifications">Close</button>
+    </section>
 
   </main>
+
   <!-- 🦶 FOOTER -->
   <footer class="lab-footer">
     <p>Saturn Rising 🪐 · Data over judgment · Curiosity over shame</p>
   </footer>
 
-  <!-- JS (later) -->
+  <!-- JS -->
   <script src="scripts/behavior-lab.js"></script>
 </body>
 </html>
