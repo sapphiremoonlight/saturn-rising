@@ -20,7 +20,7 @@ const moodColors = {
   tired: "#abab40",
 
   // Heavy / Negative
-  sad: "#4a6fa5",
+  sad: "#5cb0cc",
   anxious: "#ffcad4",
   stressed: "#ff595e",
   overwhelmed: "#ff106b",
@@ -604,6 +604,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
   updateMarkers();
 });
+
 
 
 
