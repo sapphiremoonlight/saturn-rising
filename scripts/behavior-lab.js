@@ -459,3 +459,77 @@ document.addEventListener("DOMContentLoaded", () => {
   notifBtn?.addEventListener("click", () => notifPanel?.classList.toggle("hidden"));
   closeBtn?.addEventListener("click", () => notifPanel?.classList.add("hidden"));
 });
+
+/* ===========================
+   SCROLLER INTENSITY
+=========================== */
+
+document.addEventListener("DOMContentLoaded", () => { 
+  const intensitySlider = document.getElementById("intensity");
+  const intensityDisplay = document.getElementById("intensityValue");
+  if (!intensitySlider || !intensityDisplay) return;
+
+  // set initial display
+  intensityDisplay.textContent = intensitySlider.value;
+
+  // update in real time
+  intensitySlider.addEventListener("input", () => {
+    intensityDisplay.textContent = intensitySlider.value;
+
+    const percent = ((intensitySlider.value - intensitySlider.min) / (intensitySlider.max - intensitySlider.min)) * 100;
+    intensitySlider.style.background = `linear-gradient(90deg, #d19dff ${percent}%, #444 ${percent}%)`;
+  });
+});
+
+/* ===========================
+   🔍 PATTERN LAB
+=========================== */
+function updatePatternLab() {
+  const observations = state.observations;
+
+  if (observations.length === 0) {
+    document.getElementById("topCategory").textContent = "—";
+    document.getElementById("avgIntensity").textContent = "—";
+    document.getElementById("commonTrigger").textContent = "—";
+    return;
+  }
+
+  // Most Frequent Category
+  const categoryCounts = {};
+  observations.forEach(o => {
+    categoryCounts[o.category] = (categoryCounts[o.category] || 0) + 1;
+  });
+  const topCategory = Object.entries(categoryCounts)
+    .sort((a, b) => b[1] - a[1])[0][0];
+  document.getElementById("topCategory").textContent = `${topCategory} ✨`;
+
+  // Average Intensity
+  const avgIntensity = (observations.reduce((sum, o) => sum + o.intensity, 0) / observations.length).toFixed(1);
+  document.getElementById("avgIntensity").textContent = `${avgIntensity} 🧠`;
+
+  // Common Trigger
+  const triggerCounts = {};
+  observations.forEach(o => {
+    if (o.trigger) {
+      triggerCounts[o.trigger] = (triggerCounts[o.trigger] || 0) + 1;
+    }
+  });
+  const commonTrigger = Object.entries(triggerCounts)
+    .sort((a, b) => b[1] - a[1])[0]?.[0] || "—";
+  document.getElementById("commonTrigger").textContent = `${commonTrigger} 💡`;
+}
+
+/* ===========================
+   🔄 PATCH: integrate Pattern Lab
+=========================== */
+// Update Pattern Lab whenever observations change
+const originalRenderObservations = renderObservations;
+renderObservations = function() {
+  originalRenderObservations();
+  updatePatternLab();
+};
+
+// Also update on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  updatePatternLab();
+});
