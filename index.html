@@ -20,6 +20,7 @@
         <a href="journal.html" title="Journal"><i class="fas fa-book"></i></a>
         <a href="calendar.html" title="Calendar"><i class="fas fa-calendar-alt"></i></a>
         <a href="game.html" title="Games"><i class="fas fa-gamepad"></i></a>
+        <a href="behavior-lab.html" title="Behaviour"><i class="fas fa-flask"></i></a>
         <a href="breathe.html" title="Breathe"><i class="fas fa-wind"></i></a>
     </nav>
 </header>
@@ -35,26 +36,20 @@
         <div class="card" onclick="goTo('journal.html')">
             <span>📔</span>
             <h2>Journal Entries</h2>
-            <p>Write your thoughts, reflect, release.</p>
+            <p>Pour out your thoughts, celebrate little wins, and breathe.</p>
         </div>
 
-        <!-- Card to navigate to the Affirmations section in intrusive.html -->
-	<div class="card" onclick="scrollToAffirmations()">
- 		<span>💙</span>
-  		<h2>Affirmations</h2>
-  		<p>Kind reminders for your mind and soul.</p>
-	</div>
-
-        <div class="card" onclick="goTo('breathe.html')">
+        <!-- Card to navigate to the Affirmations section in behavior-lab.html -->
+	        <div class="card" onclick="goTo('breathe.html')">
             <span>🌬</span>
             <h2>Breathing</h2>
-            <p>Calm your nervous system gently.</p>
+            <p>Slow down, inhale peace, exhale stress. 🌿</p>
         </div>
 
-        <div class="card" onclick="goTo('intrusive.html')">
+        <div class="card" onclick="goTo('behavior-lab.html')">
             <span>🧠</span>
             <h2>Thought Reframer</h2>
-            <p>Reframe and let go of intrusive thoughts.</p>
+            <p>Catch those pesky thoughts and give them a kinder twist. 💜</p>
         </div>
     </div>
   </div>
@@ -116,9 +111,7 @@
         updateSpotifyPlayer(e.target.value);
       });
     });
-  </script>
 
-<script>
   // Function to scroll to the Affirmations section
   function scrollToAffirmations() {
     const affirmationSection = document.getElementById('affirmationsSection');
