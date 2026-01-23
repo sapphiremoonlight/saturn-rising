@@ -1,0 +1,829 @@
+/* ================================
+   🧪 BEHAVIOR LAB – AESTHETIC CORE
+================================ */
+
+:root {
+  --bg-main: #0f1020;
+  --bg-soft: rgba(255, 255, 255, 0.08);
+  --bg-card: rgba(255, 255, 255, 0.12);
+  --border-glass: rgba(255, 255, 255, 0.2);
+
+  --accent-pink: #ff8fab;
+  --accent-purple: #b088f9;
+  --accent-blue: #5ab2ff;
+  --accent-green: #7ce577;
+
+  --text-main: #f4f4f8;
+  --text-soft: #cfcfe6;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, #1b1c3a, #0f1020 70%);
+  color: var(--text-main);
+}
+
+.app-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ================================
+   🧪 LAB HERO
+================================ */
+
+.lab-hero {
+  text-align: center;
+  margin: 2rem 0 3rem;
+}
+
+.lab-hero h1 {
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+}
+
+.lab-hero p {
+  color: var(--text-soft);
+  max-width: 420px;
+  margin: 0.5rem auto 0;
+}
+
+/* ================================
+   📊 STATS BAR
+================================ */
+
+.lab-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.stat-card i {
+  font-size: 1.4rem;
+  color: var(--accent-purple);
+  margin-bottom: 6px;
+}
+
+.stat-card h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.stat-card p {
+  font-size: 1.2rem;
+  margin-top: 4px;
+}
+
+/* ================================
+   🧾 LOG OBSERVATION
+================================ */
+
+.log-observation {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 3rem;
+}
+
+.log-observation h2 {
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-row.split {
+  flex-direction: row;
+  gap: 12px;
+}
+
+.form-row label {
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  margin-bottom: 4px;
+}
+
+.log-observation textarea,
+.log-observation select,
+.log-observation input[type="range"] {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 10px;
+  color: var(--text-main);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.primary-btn {
+  margin-top: 10px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 143, 171, 0.4);
+}
+
+/* ==============================
+   Observation Entry Previews
+============================== */
+
+.observation-card {
+  background: linear-gradient(135deg, rgba(92, 171, 255, 0.1), rgba(255, 156, 244, 0.1));
+  border: 1px solid rgba(255, 156, 244, 0.3);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  max-height: 80px; /* collapsed height */
+  position: relative;
+  box-shadow: 0 4px 15px rgba(92, 171, 255, 0.15);
+}
+
+.observation-card:hover {
+  box-shadow: 0 8px 25px rgba(92, 171, 255, 0.3);
+}
+
+/* Preview row (collapsed) */
+.obs-preview {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #fff;
+}
+
+.obs-preview span {
+  margin-right: 10px;
+}
+
+/* Expanded details */
+.observation-card.expanded {
+  max-height: 500px; /* enough to show details */
+  background: linear-gradient(135deg, rgba(92, 171, 255, 0.2), rgba(255, 156, 244, 0.2));
+  box-shadow: 0 6px 30px rgba(92, 171, 255, 0.25);
+  max-height: 100%; 
+}
+
+.observation-card.expanded .obs-details {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #f4f4f8;
+  transition: all 0.3s ease;
+}
+
+/* Hide details when collapsed */
+.obs-details {
+  display: none;
+}
+
+/* Action buttons container */
+.obs-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+/* Edit & Delete buttons */
+.obs-actions button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Edit button */
+.obs-actions .edit-btn {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.obs-actions .edit-btn:hover {
+  background: #5a9ce0;
+}
+
+/* Delete button */
+.obs-actions .delete-btn {
+  background: var(--accent-pink);
+  color: white;
+}
+
+.obs-actions .delete-btn:hover {
+  background: #ff6f9f;
+}
+
+/* Read / greyed out card */
+.observation-card.read {
+  background: rgba(255, 255, 255, 0.05);
+  color: #d19dff; /* lighter purple for read messages */
+}
+
+/* Optional: smooth height transition */
+.observation-card,
+.observation-card.expanded {
+  transition: max-height 0.35s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* ===========================
+   Notifications
+=========================== */
+#notificationButton {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  padding: 14px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #ff3d00;
+  color: white;
+  font-size: 0.8em;
+  padding: 2px 5px;
+  border-radius: 50%;
+}
+
+#notificationPanel {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  width: 300px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  padding: 12px;
+  z-index: 1400;
+}
+
+#notificationPanel.hidden {
+  display: none;
+}
+
+.notification-item {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-left: 4px solid #920ba6;
+  background: linear-gradient(135deg, rgba(92, 171, 255, 0.3), rgba(255, 156, 244, 0.3));
+  color: #480268; /* dark purple for text */
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+  font-size: 0.9em;
+}
+
+.notification-item.read {
+  background: #e0e0e0;
+  color: #666666;
+}
+
+.notification-item .delete-note {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===========================
+   Toasts (temporary alerts)
+=========================== */
+.toast {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #0a8aca;
+  color: rgb(14, 1, 1);
+  padding: 10px 20px;
+  border-radius: 20px;
+  opacity: 0;
+  z-index: 2000;
+  transition: all 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ================================
+   🗂 TIMELINE
+================================ */
+
+.observation-timeline {
+  margin-bottom: 3rem;
+}
+
+.timeline-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.timeline-filters select {
+  flex: 1;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 8px;
+  color: var(--text-main);
+}
+
+.timeline-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Card placeholder styling */
+.timeline-entries::after {
+  content: "No observations yet — the lab is quiet 👀";
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+.timeline-filters optgroup {
+  color: var(--text-soft);
+  font-style: normal;
+}
+
+/* ================================
+   🔍 PATTERN LAB
+================================ */
+
+.pattern-lab {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 4rem;
+}
+
+.pattern-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.pattern-card {
+  background: linear-gradient(
+    135deg,
+    rgba(176,136,249,0.25),
+    rgba(255,143,171,0.15)
+  );
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.pattern-card h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.pattern-card p {
+  font-size: 1.1rem;
+  margin-top: 6px;
+}
+
+/* ================================
+   🔔 NOTIFICATIONS
+================================ */
+
+.floating-notification-btn {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    var(--accent-blue),
+    var(--accent-purple)
+  );
+  color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--accent-pink);
+  color: white;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+/* ===============================
+   🔔 FLOATING NOTIFICATIONS PANEL
+   =============================== */
+#notificationBell {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #ff9cf4, #b37aff);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 156, 244, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
+}
+
+#notificationBell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 28px rgba(255, 156, 244, 0.6);
+}
+
+/* Panel container – shades of pink & blue */
+.notification-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 320px;
+    max-height: 450px;
+    background: linear-gradient(145deg, rgba(92, 171, 255, 0.15), rgba(255, 156, 244, 0.15));
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 15px;
+    overflow-y: auto;
+    box-shadow: 0 8px 30px rgba(92, 171, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+    animation: slideUp 0.3s ease forwards;
+}
+
+.notification-panel.hidden {
+  display: none;
+}
+
+.lab-messages-heading {
+  color: var(--accent-pink); /* uses your defined pink */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* Individual notifications – now matching panel theme */
+.notification-item {
+    background: linear-gradient(135deg, rgba(92, 171, 255, 0.3), rgba(255, 156, 244, 0.3));
+    color: #fff;
+    padding: 12px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(92, 171, 255, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s forwards;
+}
+
+/* Timestamp in notifications */
+.notification-item span.timestamp {
+    color: #480268; /* same dark purple */
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-left: 10px;
+}
+
+
+/* Toast popup (temporary) */
+.toast {
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+    background: linear-gradient(135deg, #ff9cf4, #b37aff);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(180, 122, 255, 0.5);
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 1001;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+/* Toast active state */
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar style for panel */
+.notification-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.notification-panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 156, 244, 0.4);
+    border-radius: 10px;
+}
+
+/* ================================
+            SLIDER
+================================ */
+/* Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--accent-purple);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--accent-purple);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--accent-purple),
+    var(--accent-pink)
+  );
+  outline: none;
+}
+
+/* ================================
+   📱 MOBILE LOVE
+================================ */
+
+@media (max-width: 700px) {
+
+    .app-content {
+    padding: 0 14px;
+  }
+
+   .lab-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card p {
+    font-size: 1.1rem;
+  }
+
+  .timeline-filters {
+    flex-direction: column;
+  }
+
+  .timeline-entries {
+    gap: 18px;
+  }
+
+  .timeline-entries::after {
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 1rem;
+  }
+
+  .navbar .logo {
+    font-size: 1.2rem;
+  }
+
+  .navbar nav {
+    display: flex;
+    gap: 18px;
+  }
+
+  .navbar nav a {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+
+    .app-content {
+    padding: 0 14px;
+  }
+
+   .lab-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card p {
+    font-size: 1.1rem;
+  }
+
+  .timeline-filters {
+    flex-direction: column;
+  }
+
+  .timeline-entries {
+    gap: 18px;
+  }
+
+  .timeline-entries::after {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .form-row.split {
+    flex-direction: column;
+  }
+
+  .lab-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .log-observation {
+    padding: 18px;
+  }
+
+  .log-observation textarea,
+  .log-observation select {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .primary-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+   .timeline-filters {
+    flex-direction: column;
+  }
+
+  input[type="range"] {
+    height: 8px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+
+    .app-content {
+    padding: 0 14px;
+  }
+
+   .lab-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card p {
+    font-size: 1.1rem;
+  }
+
+    .pattern-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pattern-card {
+    padding: 18px;
+  }
+
+   .floating-notification-btn {
+    margin-bottom: 20vw;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+.floating-notification-btn i {
+  line-height: 1;
+}
+
+}
