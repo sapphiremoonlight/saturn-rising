@@ -4,34 +4,34 @@
 const moodColors = {
   // Positive
   happy: "#ffd166",
-  energetic: "#7ce577",
-  motivated: "#ffb347",
-  productive: "#6ed3cf",
-  comforted: "#ff8fab",
-  focused: "#5ab2ff",
-  grateful: "#f0a6ff",
-  inspired: "#ff9f43",
-  relaxed: "#92dce5",
+  energetic: "#0ea448",
+  motivated: "#f77f00",
+  productive: "#118ab2",
+  comforted: "#dcfa96",
+  focused: "#3a86ff",
+  grateful: "#c77dff",
+  inspired: "#ff025f",
+  relaxed: "#a2e0f5",
 
   // Neutral / Mixed
   average: "#b0b0b0",
-  reflective: "#b088f9",
-  curious: "#82caff",
-  tired: "#c0b0a0",
+  reflective: "#6d6875",
+  curious: "#0da4d1",
+  tired: "#abab40",
 
   // Heavy / Negative
-  sad: "#78a1bb",
-  anxious: "#f39c9c",
-  stressed: "#f97575",
-  overwhelmed: "#f28c8c",
-  hopeless: "#6f7aa8",
-  drained: "#8c8ca1",
-  burntOut: "#7d7d91",
-  numb: "#bfb6aa",
-  angry: "#ff4e4e",
-  annoyed: "#d68fd6",
-  frustrated: "#e06666",
-  lonely: "#9a9ae0"
+  sad: "#4a6fa5",
+  anxious: "#ffcad4",
+  stressed: "#ff595e",
+  overwhelmed: "#ff106b",
+  hopeless: "#0918c0",
+  drained: "#495c87",
+  burntOut: "#343a40",
+  numb: "#ced4da",
+  angry: "#b31108",
+  annoyed: "#9f86c0",
+  frustrated: "#d0510c",
+  lonely: "#5f0f40"
 };
 
 /* =====================================================
@@ -604,5 +604,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
   updateMarkers();
 });
+
 
 
