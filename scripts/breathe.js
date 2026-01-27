@@ -53,7 +53,7 @@ document.querySelector('.bubble-container').addEventListener('click', function(e
 });
 
 // BUBBLE THEMES
-const themes = ['theme-default', 'theme-heart', 'theme-star', 'theme-sunset'];
+const themes = ['theme-default', 'theme-diamond', 'theme-star', 'theme-sunset'];
 
 // Function to change theme
 function changeTheme(theme) {
@@ -64,9 +64,9 @@ function changeTheme(theme) {
   document.body.classList.add(theme);
 }
 
-// Example usage: set to heart theme on page load
+// Example usage: set to diamond theme on page load
 window.onload = function() {
-  changeTheme('theme-heart');
+  changeTheme('theme-diamond');
 };
 
 // Assuming you have a dropdown or buttons to change themes
