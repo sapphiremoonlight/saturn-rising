@@ -66,10 +66,11 @@ function changeTheme(theme) {
 
 // Example usage: set to diamond theme on page load
 window.onload = function() {
-  changeTheme('theme-diamond');
+  changeTheme('theme-default');
 };
 
 // Assuming you have a dropdown or buttons to change themes
 document.querySelector('#theme-select').addEventListener('change', function(e) {
   changeTheme(e.target.value);
 });
+
