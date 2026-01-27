@@ -54,7 +54,10 @@
              placeholder="Paste image / audio / video URL"
              style="display:none" />
     </div>
-
+  </div>
+  
+     <!-- 👇 NEW wrapper -->
+  <div class="button-row">
     <button onclick="saveEntry()">Save Entry</button>
     <button onclick="showRandomEntry()">🎲 Random Entry</button>
   </div>
@@ -182,6 +185,8 @@ function loadEntriesFromStorage() {
   }
 }
 
+let editingEntryId = null;
+
 // ----------- Save Entry -----------
 
 function saveEntry() {
@@ -215,6 +220,13 @@ function saveEntry() {
       type,
       data: mediaURL
     };
+
+if (editingEntryId) {
+  entries = entries.filter(e => e.id !== editingEntryId);
+  entry.id = editingEntryId;
+  editingEntryId = null;
+}
+
     entries.unshift(entry);
     saveEntriesToStorage();
     resetForm();
@@ -408,28 +420,38 @@ function renderEntries() {
     let isEditing = false;
 
     editBtn.onclick = () => {
-      if (!isEditing) {
-        titleEl.contentEditable = "true";
-        textEl.contentEditable = "true";
-        titleEl.focus();
-        editBtn.textContent = "Save";
-        // Disable modal open on click while editing
-        textEl.onclick = null;
-        const img = div.querySelector("img");
-        if (img) img.onclick = null;
-      } else {
-        titleEl.contentEditable = "false";
-        textEl.contentEditable = "false";
-        editBtn.textContent = "Edit";
-        editTitle(entry.id, titleEl.textContent.trim());
-        editText(entry.id, textEl.textContent.trim());
-        // Restore modal open on click
-        textEl.onclick = () => openModal(entry.id);
-        const img = div.querySelector("img");
-        if (img) img.onclick = () => openModal(entry.id);
-      }
-      isEditing = !isEditing;
-    };
+  // Load entry into form
+  document.getElementById("entryTitle").value = entry.title || "";
+  document.getElementById("journalText").value = entry.text || "";
+
+  // Restore moods
+  selectedMoods.clear();
+  document.querySelectorAll(".mood-pill").forEach(p => p.classList.remove("selected"));
+  entry.moods.forEach(m => {
+    selectedMoods.add(m);
+    [...document.querySelectorAll(".mood-pill")]
+      .find(p => p.textContent === moods[m].label)
+      ?.classList.add("selected");
+  });
+
+  // Reset media UI
+  document.getElementById("mediaTypeSelect").value = "none";
+  document.getElementById("mediaUpload").value = "";
+  document.getElementById("mediaURL").value = "";
+
+  if (entry.media) {
+    if (entry.media.data.startsWith("data:")) {
+      document.getElementById("mediaTypeSelect").value = "upload";
+    } else {
+      document.getElementById("mediaTypeSelect").value = "url";
+      document.getElementById("mediaURL").value = entry.media.data;
+    }
+    toggleMediaInput();
+  }
+
+  editingEntryId = entry.id;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
     deleteBtn.onclick = () => {
       deleteEntry(entry.id);
