@@ -1,8 +1,6 @@
 /**
 =========================================
-
-          ✨ FONT & BASE STYLES ✨
-
+       ✨ FONT & BASE STYLES ✨
 =========================================
 **/
 @font-face {
@@ -331,6 +329,13 @@ button:hover {
   background-color: #3399ff;
 }
 
+.button-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
 /**
 =========================================
 
@@ -558,7 +563,6 @@ select, input[type="search"] {
     max-width: 90%;
   }
 
-{
   .mood-pill,
   .entry .mood-chip {
     font-size: 0.65rem;
@@ -588,12 +592,19 @@ select, input[type="search"] {
   }
 
   input[type="text"],
-  textarea,
   select,
   input[type="search"] {
     font-size: 1em;
   }
 
+  textarea {
+    min-height: 220px;
+    max-height: 320px;
+    font-size: 1em;
+    font-size: 0.95em;
+    padding: 10px;
+  }
+  
   .input-container,
   .controls,
   .filters,
@@ -701,6 +712,19 @@ select, input[type="search"] {
   .entry .edit-btn {
     margin-right: 4%;
   }
+
+  textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #bcdcff;
+  border-radius: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #f4f8ff;
+}
 }
 
 /* =========================================
@@ -712,7 +736,6 @@ select, input[type="search"] {
   }
 
   input[type="text"],
-  textarea,
   select,
   input[type="search"] {
     font-size: 0.95em;
@@ -720,7 +743,12 @@ select, input[type="search"] {
   }
 
   textarea {
-    min-height: 100px;
+    min-height: 280px;
+    max-height: 360px;
+    resize: vertical;
+    overflow-y: auto; 
+    font-size: 0.95em;
+    padding: 10px;
   }
 
    .mood-selector {
@@ -735,7 +763,7 @@ select, input[type="search"] {
   align-items: center;
   background: white;
   border-radius: 999px;
-  padding: 4px 10px 4px 0;
+  padding: 4px 15px 4px 0;
   font-size: 0.75rem;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -759,10 +787,15 @@ select, input[type="search"] {
 /* Selected state */
 .mood-pill.selected {
   background: white;
-  font-weight: 600;
+  font-weight: 300;
   border-color: var(--mood);
 }
 
+ .button-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 
   /* Logo smaller */
   .journal-logo img {
@@ -784,5 +817,46 @@ select, input[type="search"] {
   .entry .delete-btn {
     width: 100%;
     margin-right: 0;
+  }
+
+  textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #bcdcff;
+  border-radius: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #f4f8ff;
+}
+
+}
+
+/* =========================================
+        📲 EXTRA SMALL SCREENS ≤ 480px
+========================================= */
+@media (max-width: 320px) {
+.mood-pill {
+    width: 100%;
+    white-space: normal;        /* allow wrapping */
+    line-height: 1.2;
+    height: auto;
+    padding: 6px 10px 6px 0;
+  }
+
+  .mood-pill span {
+    display: block;
+  }
+
+  .mood-selector {
+    grid-template-columns: repeat(2, 1fr); /* fewer per row = more room */
+  }
+
+   .button-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }
