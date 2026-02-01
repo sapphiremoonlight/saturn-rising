@@ -19,8 +19,8 @@ const puzzleData = {
     'Expert': 'nature_expert.jpg'
   },
   'Animals': {
-    'Easy': 'animal_easy.jpeg',
-    'Medium': 'animal_medium.jpeg',
+    'Easy': 'animal_easy.jpg',
+    'Medium': 'animal_medium.jpg',
     'Hard': 'animal_hard.jpg',
     'Expert': 'animal_expert.jpg'
   },
@@ -284,3 +284,4 @@ document.getElementById('next-puzzle').addEventListener('click', () => {
 document.getElementById('back-lobby-btn').addEventListener('click', () => {
   window.location.href = '../game.html'; // Update as needed
 });
+
