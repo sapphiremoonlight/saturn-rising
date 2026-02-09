@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Breathe | Saturn Rising</title>
   <link rel="icon" href="assets/images/favicon.ico" type="image/png" />
   <link rel="stylesheet" href="styles/breathe.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
@@ -35,12 +36,12 @@
     </div>
 
     <label for="theme-select" class="bubble-theme">Choose Bubble Theme:</label>
-      <select id="theme-select">
-        <option value="theme-default">Default</option>
-        <option value="theme-diamond">Diamond</option>
-        <option value="theme-star">Star</option>
-        <option value="theme-sunset">Sunset</option>
-      </select>
+    <select id="theme-select">
+      <option value="theme-default">Default</option>
+      <option value="theme-diamond">Diamond</option>
+      <option value="theme-star">Star</option>
+      <option value="theme-sunset">Sunset</option>
+    </select>
 
     <!-- 🎧 Background Audio Controls -->
     <section class="controls">
@@ -50,11 +51,18 @@
           <option value="rain.mp3">Rain</option>
           <option value="reiki.mp3">Reiki</option>
           <option value="waves.mp3">Waves</option>
-          <option value="asmr.mp3">ASMR</option
+
+          <label for="asmr-sub-select" class="asmr-sub-label">Choose ASMR Variation:</label>
+          <select id="asmr-sub-select" style="display: none;">
+            <option value="soft-spoken.mp3">Soft Spoken</option>
+            <option value="mouth.mp3">Mouth Sounds</option>
+            <option value="clicky-whisper.mp3">Clicky Whisper</option>
+            <option value="8D-asmr.mp3">8D Sounds</option>
+          </select>
+
           <option value="guided-meditation.mp3">Guided Meditation</option>
           <option value="pink-noise.mp3">Pink Noise</option>
           <option value="brown-noise.mp3">Brown Noise</option>
-          
         </select>
 
         <button id="play-pause"><i class="fas fa-play"></i></button>
@@ -62,10 +70,10 @@
       </div>
     </section>
 
-  <audio id="bg-audio" loop></audio>
+    <audio id="bg-audio" loop></audio>
   </main>
-<div class="sparkles"> </div>
-<div class="ripple-layer"></div>
+  <div class="sparkles"> </div>
+  <div class="ripple-layer"></div>
 
   <!-- 🔽 Scripts -->
   <script src="scripts/breathe.js"></script>
@@ -84,26 +92,24 @@
       i = (i + 1) % prompts.length;
     }, 3000);
 
-  const rippleLayer = document.querySelector('.ripple-layer');
+    const rippleLayer = document.querySelector('.ripple-layer');
 
-  document.addEventListener('pointerdown', (e) => {
-    // Ignore clicks on buttons / controls
-    if (e.target.closest('button, select, nav')) return;
+    document.addEventListener('pointerdown', (e) => {
+      // Ignore clicks on buttons / controls
+      if (e.target.closest('button, select, nav')) return;
 
-    const ripple = document.createElement('div');
-    const size = Math.max(window.innerWidth, window.innerHeight) * 0.25;
+      const ripple = document.createElement('div');
+      const size = Math.max(window.innerWidth, window.innerHeight) * 0.25;
 
-    ripple.className = 'ripple';
-    ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${e.clientX - size / 2}px`;
-    ripple.style.top = `${e.clientY - size / 2}px`;
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - size / 2}px`;
+      ripple.style.top = `${e.clientY - size / 2}px`;
 
-    rippleLayer.appendChild(ripple);
+      rippleLayer.appendChild(ripple);
 
-    setTimeout(() => ripple.remove(), 1800);
-  });
+      setTimeout(() => ripple.remove(), 1800);
+    });
   </script>
 </body>
 </html>
-
-
