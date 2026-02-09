@@ -1,15 +1,22 @@
+/*************************************************
+ * 🎧 AUDIO CONTROLS + ASMR SUB-OPTIONS
+ *************************************************/
+
 const audio = document.getElementById('bg-audio');
 const soundSelect = document.getElementById('sound-select');
+const asmrSubSelect = document.getElementById('asmr-sub-select');
 const playPauseBtn = document.getElementById('play-pause');
 const volumeSlider = document.getElementById('volume');
+const asmrLabel = document.getElementById('asmr-label');
+
 
 let isPlaying = false;
 
 // Initial audio setup
-audio.src = `assets/audios/${soundSelect.value}`;
 audio.volume = volumeSlider.value;
+updateAudioSource();
 
-// Toggle play/pause
+// ▶️ Play / Pause
 playPauseBtn.addEventListener('click', () => {
   if (isPlaying) {
     audio.pause();
@@ -21,19 +28,42 @@ playPauseBtn.addEventListener('click', () => {
   isPlaying = !isPlaying;
 });
 
-// Sound change
-soundSelect.addEventListener('change', () => {
-  audio.src = `assets/audios/${soundSelect.value}`;
-  if (isPlaying) audio.play();
-});
-
-// Volume control
+// 🔊 Volume control
 volumeSlider.addEventListener('input', () => {
   audio.volume = volumeSlider.value;
 });
 
-// 🌊 Function to add ripple effect on click 🌊 
-document.querySelector('.bubble-container').addEventListener('click', function(e) {
+// 🎵 ASMR sub-option change
+asmrSubSelect.addEventListener('change', updateAudioSource);
+
+// 🔁 Single source of truth for audio
+function updateAudioSource() {
+  let src;
+
+  if (soundSelect.value === 'asmr') {
+    src = `assets/audios/${asmrSubSelect.value}`;
+  } else {
+    src = `assets/audios/${soundSelect.value}`;
+  }
+
+  audio.src = src;
+  if (isPlaying) audio.play();
+}
+
+soundSelect.addEventListener('change', () => {
+  const isASMR = soundSelect.value === 'asmr';
+
+  asmrSubSelect.style.display = isASMR ? 'block' : 'none';
+  asmrLabel.style.display = isASMR ? 'block' : 'none';
+
+  updateAudioSource();
+});
+
+/*************************************************
+ * 🌊 RIPPLE EFFECT (BUBBLE)
+ *************************************************/
+
+document.querySelector('.bubble-container').addEventListener('click', function (e) {
   const ripple = document.createElement('div');
   const size = Math.max(this.offsetWidth, this.offsetHeight);
   const x = e.clientX - this.offsetLeft - size / 2;
@@ -46,31 +76,31 @@ document.querySelector('.bubble-container').addEventListener('click', function(e
   ripple.classList.add('ripple');
   this.appendChild(ripple);
 
-  // Remove the ripple effect after the animation
-  setTimeout(() => {
-    ripple.remove();
-  }, 1200);
+  setTimeout(() => ripple.remove(), 1200);
 });
 
-// BUBBLE THEMES
-const themes = ['theme-default', 'theme-diamond', 'theme-star', 'theme-sunset'];
+/*************************************************
+ * 🎨 BUBBLE THEMES
+ *************************************************/
 
-// Function to change theme
+const themes = [
+  'theme-default',
+  'theme-diamond',
+  'theme-star',
+  'theme-sunset'
+];
+
 function changeTheme(theme) {
-  // Remove all themes
   themes.forEach(t => document.body.classList.remove(t));
-
-  // Add selected theme
   document.body.classList.add(theme);
 }
 
-// Example usage: set to diamond theme on page load
-window.onload = function() {
+// Default theme on load
+window.addEventListener('load', () => {
   changeTheme('theme-default');
-};
-
-// Assuming you have a dropdown or buttons to change themes
-document.querySelector('#theme-select').addEventListener('change', function(e) {
-  changeTheme(e.target.value);
 });
 
+// Theme selector
+document.getElementById('theme-select').addEventListener('change', (e) => {
+  changeTheme(e.target.value);
+});
