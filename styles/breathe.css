@@ -4,16 +4,23 @@
 =========================================
 **/
 :root {
-  --light-blue: #d0e5f3;  /* Soft sky blue */
-  --dark-blue: #035067;   /* Deep blue */
-  --label: #0889b1; 
-  --pale-pink: #ffb3d9;   /* Soft blush */
-  --lavender: #c5a9e6;    /* Light lavender */
-  --mint: #a9d6c9;        /* Mint green */
+  --light-blue: #d0e5f3;
+  /* Soft sky blue */
+  --dark-blue: #035067;
+  /* Deep blue */
+  --label: #0889b1;
+  --pale-pink: #ffb3d9;
+  /* Soft blush */
+  --lavender: #c5a9e6;
+  /* Light lavender */
+  --mint: #a9d6c9;
+  /* Mint green */
   --white: #ffffff;
   --text: #ffffff;
-  --accent: #f7c1bb;      /* Warm peach */
-  --highlight: #e28a8a;   /* Coral pink */
+  --accent: #f7c1bb;
+  /* Warm peach */
+  --highlight: #e28a8a;
+  /* Coral pink */
 }
 
 /* Reset default margin, padding, and box-sizing */
@@ -131,6 +138,17 @@ main {
   accent-color: var(--highlight);
 }
 
+#asmr-sub-select {
+  display: none;
+  margin-top: 15px;
+}
+
+.asmr-sub-label {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
 /**
 =========================================
           ✨ BACKGROUND SPARKLES ✨
@@ -150,8 +168,13 @@ main {
 }
 
 @keyframes floatBG {
-  from { background-position: 0 0; }
-  to { background-position: 100% 100%; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100% 100%;
+  }
 }
 
 /**
@@ -165,19 +188,18 @@ main {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
-  z-index: 1; /* above background, below UI */
+  z-index: 1;
+  /* above background, below UI */
 }
 
 .ripple {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(160, 210, 255, 0.6),
-    rgba(176, 214, 246, 0.6),
-    rgba(160, 210, 255, 0.3),
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(160, 210, 255, 0.6),
+      rgba(176, 214, 246, 0.6),
+      rgba(160, 210, 255, 0.3),
+      transparent 70%);
   transform: scale(0);
   animation: ripple-expand 2.4s ease-out forwards;
 }
@@ -215,11 +237,25 @@ main {
 }
 
 @keyframes breathe {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.2); }
-  50% { transform: scale(1.2); }
-  75% { transform: scale(1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  75% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .prompt {
@@ -261,7 +297,8 @@ main {
 
 /* Diamond Theme */
 .theme-diamond .bubble {
-  border-radius: 0; /* optional */
+  border-radius: 0;
+  /* optional */
   background: radial-gradient(circle, #8fbec7, #5a7c83);
   border: 2px solid #4d94a1;
   clip-path: polygon(50% 0%, 0% 35%, 50% 100%, 100% 35%);
@@ -270,13 +307,12 @@ main {
 
 /* Star Theme */
 .theme-star .bubble {
-  border-radius: 0; /* optional */
+  border-radius: 0;
+  /* optional */
   background: radial-gradient(circle, #7a9d83, #597c62);
   border: 2px solid #4c795a;
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
-    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
-  );
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+      50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   filter: drop-shadow(0 0 15px rgba(115, 182, 135, 0.8));
 }
 
@@ -321,7 +357,8 @@ select {
   transition: background-color 0.3s ease;
 }
 
-select:hover, select:focus {
+select:hover,
+select:focus {
   background-color: var(--highlight);
 }
 
@@ -345,7 +382,8 @@ select:hover, select:focus {
     padding: 20px;
   }
 
-  button, select {
+  button,
+  select {
     width: 100%;
     font-size: 1rem;
     padding: 0.8rem 1.2rem;
