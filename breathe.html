@@ -51,21 +51,27 @@
           <option value="rain.mp3">Rain</option>
           <option value="reiki.mp3">Reiki</option>
           <option value="waves.mp3">Waves</option>
-
-          <label for="asmr-sub-select" class="asmr-sub-label">Choose ASMR Variation:</label>
-          <select id="asmr-sub-select" style="display: none;">
-            <option value="soft-spoken.mp3">Soft Spoken</option>
-            <option value="mouth.mp3">Mouth Sounds</option>
-            <option value="clicky-whisper.mp3">Clicky Whisper</option>
-            <option value="8D-asmr.mp3">8D Sounds</option>
-          </select>
-
+          <option value="asmr">ASMR</option>
           <option value="guided-meditation.mp3">Guided Meditation</option>
           <option value="pink-noise.mp3">Pink Noise</option>
           <option value="brown-noise.mp3">Brown Noise</option>
         </select>
 
-        <button id="play-pause"><i class="fas fa-play"></i></button>
+        <label for="asmr-sub-select" class="asmr-sub-label" id="asmr-label" style="display:none;">
+          Choose ASMR Variation:
+        </label>
+
+        <select id="asmr-sub-select" style="display:none;">
+          <option value="soft-spoken.mp3">Soft Spoken</option>
+          <option value="mouth.mp3">Mouth Sounds</option>
+          <option value="clicky-whisper.mp3">Clicky Whisper</option>
+          <option value="8D-asmr.mp3">8D Sounds</option>
+        </select>
+
+        <button id="play-pause">
+          <i class="fas fa-play"></i>
+        </button>
+
         <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" />
       </div>
     </section>
@@ -112,4 +118,5 @@
     });
   </script>
 </body>
+
 </html>
