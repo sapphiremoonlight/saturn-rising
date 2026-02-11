@@ -7,330 +7,394 @@
   <title>Game Lobby</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-/**
+    /**
 =========================================
           🎨 COLORS & GLOBAL STYLES 🎨
 =========================================
 **/
-body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #4a7fa7, #7aabd2);
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  position: relative;
-}
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #4a7fa7, #7aabd2);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-/**
+    /**
 =========================================
           🖼️ PARTICLE BACKGROUND 🖼️
 =========================================
 **/
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: radial-gradient(#ffffff30 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: moveParticles 60s linear infinite;
-  z-index: 0;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: radial-gradient(#ffffff30 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveParticles 60s linear infinite;
+      z-index: 0;
+    }
 
-@keyframes moveParticles {
-  from { background-position: 0 0; }
-  to { background-position: 100% 100%; }
-}
+    @keyframes moveParticles {
+      from {
+        background-position: 0 0;
+      }
 
-/**
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+    /**
 =========================================
           🗂️ NAVBAR & FOOTER STYLES 🗂️
 =========================================
 **/
 
-/* Navbar spanning full width */
-.navbar {
-  position: relative;           /* scrolls naturally */
-  width: 75vw;                 /* full viewport width */
-  left: 0;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(45deg, #0a1931, #b3cfe5, #4a7fa7, #1a3d63, #f6fafd);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 0;             /* flush edges */
-  z-index: 100;
-  margin-bottom: 40px;          /* more spacing below navbar */
-}
+    /* Navbar spanning full width */
+    .navbar {
+      position: relative;
+      /* scrolls naturally */
+      width: 75vw;
+      /* full viewport width */
+      left: 0;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(45deg, #0a1931, #b3cfe5, #4a7fa7, #1a3d63, #f6fafd);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 0;
+      /* flush edges */
+      z-index: 100;
+      margin-bottom: 40px;
+      /* more spacing below navbar */
+    }
 
 
-/* If the logo + nav links are inside a container that limits width */
-.navbar .container {
-  max-width: 1200px; /* optional, centers content */
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    /* If the logo + nav links are inside a container that limits width */
+    .navbar .container {
+      max-width: 1200px;
+      /* optional, centers content */
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* Navbar links */
-.navbar nav a {
-  color: white;
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-size: 1.4rem;
-  transition: transform 0.3s, color 0.3s;
-}
+    /* Navbar links */
+    .navbar nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-size: 1.4rem;
+      transition: transform 0.3s, color 0.3s;
+    }
 
-.navbar nav a:hover,
-.navbar nav a:hover i {
-  color: #ffc4d6;
-}
+    .navbar nav a:hover,
+    .navbar nav a:hover i {
+      color: #ffc4d6;
+    }
 
-.navbar nav a i {
-  font-size: 1.6rem;
-  margin-right: 8px;
-  color: #fff;
-}
+    .navbar nav a i {
+      font-size: 1.6rem;
+      margin-right: 8px;
+      color: #fff;
+    }
 
-/* Main content spacing */
-main {
-  min-height: 60vh; /* ensures some vertical space before footer */
-  margin-bottom: 60px; /* space above footer */
-  padding: 20px;
-}
+    /* Main content spacing */
+    main {
+      min-height: 60vh;
+      /* ensures some vertical space before footer */
+      margin-bottom: 60px;
+      /* space above footer */
+      padding: 20px;
+    }
 
-/* Footer */
-footer {
-  width: 100%;                 /* use 100% instead of 100vw */
-  max-width: 100%;             /* ensure it doesn’t exceed container */
-  margin: 60px 0 0 0;          /* space above footer */
-  padding: 20px 0;
-  text-align: center;
-  background: linear-gradient(135deg, #1a3d63, #4a7fa7);
-  color: white;
-  font-weight: 600;
-  border-radius: 12px 12px 0 0;
-  box-sizing: border-box;      /* ensures padding doesn’t push it out */
-}
+    /* Footer */
+    footer {
+      width: 100%;
+      /* use 100% instead of 100vw */
+      max-width: 100%;
+      /* ensure it doesn’t exceed container */
+      margin: 60px 0 0 0;
+      /* space above footer */
+      padding: 20px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #1a3d63, #4a7fa7);
+      color: white;
+      font-weight: 600;
+      border-radius: 12px 12px 0 0;
+      box-sizing: border-box;
+      /* ensures padding doesn’t push it out */
+    }
 
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo img { width: 50px; height: auto; }
-.logo span { font-size: 2em; font-weight: bold; }
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-footer {
-  bottom: 0;
-  text-align: center;
-  font-size: 1.1em;
-  padding: 25px 0;
-  background: linear-gradient(135deg, #1a3d63, #4a7fa7, #7aabd2);
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: pulseFooter 3s infinite alternate;
-}
+    .logo img {
+      width: 50px;
+      height: auto;
+    }
 
-@keyframes pulseFooter {
-  0% { box-shadow: 0 -4px 10px rgba(0,0,0,0.25); transform: scale(1); }
-  50% { box-shadow: 0 -6px 20px rgba(0,0,0,0.35); transform: scale(1.02); }
-  100% { box-shadow: 0 -4px 10px rgba(0,0,0,0.25); transform: scale(1); }
-}
+    .logo span {
+      font-size: 2em;
+      font-weight: bold;
+    }
 
-/**
+    footer {
+      bottom: 0;
+      text-align: center;
+      font-size: 1.1em;
+      padding: 25px 0;
+      background: linear-gradient(135deg, #1a3d63, #4a7fa7, #7aabd2);
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulseFooter 3s infinite alternate;
+    }
+
+    @keyframes pulseFooter {
+      0% {
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+        transform: scale(1);
+      }
+
+      50% {
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.35);
+        transform: scale(1.02);
+      }
+
+      100% {
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.25);
+        transform: scale(1);
+      }
+    }
+
+    /**
 =========================================
           🖌️ HEADER & TITLE ANIMATIONS 🖌️
 =========================================
 **/
-header h1 {
-  text-align: center;
-  margin-top: 100px;
-  font-size: 3em;
-  background: linear-gradient(90deg, #f6fafd, #0a1931, #4a7fa7, #b3cfe5, #1a3d63);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 5s linear infinite;
-}
+    header h1 {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 3em;
+      background: linear-gradient(90deg, #f6fafd, #0a1931, #4a7fa7, #b3cfe5, #1a3d63);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+    }
 
-@keyframes shine {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
-}
+    @keyframes shine {
+      0% {
+        background-position: 0% 50%;
+      }
 
-header p {
-  text-align: center;
-  font-size: 1.2em;
-  margin-bottom: 30px;
-}
+      100% {
+        background-position: 300% 50%;
+      }
+    }
 
-/**
+    header p {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    /**
 =========================================
           🎮 GAME OPTIONS STYLING 🎮
 =========================================
 **/
-.game-lobby-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: rgba(255,255,255,0.1);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-  position: relative;
-  z-index: 10;
-}
+    .game-lobby-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 10;
+    }
 
-.game-options {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+    .game-options {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-.game-option {
-  background-color: rgba(255,255,255,0.15);
-  padding: 20px;
-  border-radius: 15px;
-  width: 30%;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+    .game-option {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      border-radius: 15px;
+      width: 30%;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-.game-option:hover {
-  transform: translateY(-12px) rotateZ(-1deg) scale(1.02);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-}
+    .game-option:hover {
+      transform: translateY(-12px) rotateZ(-1deg) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+    }
 
-.game-option h3 { font-size: 2em; margin-bottom: 10px; }
-.game-option p { font-size: 1em; margin-bottom: 20px; }
+    .game-option h3 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
 
-button {
-  padding: 15px 25px;
-  background-color: #4a7fa7;
-  color: white;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-}
+    .game-option p {
+      font-size: 1em;
+      margin-bottom: 20px;
+    }
 
-button:hover {
-  background-color: #7aabd2;
-  box-shadow: 0 0 15px #ffc4d6, 0 0 30px #ff8ab1;
-}
+    button {
+      padding: 15px 25px;
+      background-color: #4a7fa7;
+      color: white;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
 
-button i {
-  margin-right: 10px;
-  animation: spin 4s linear infinite;
-}
+    button:hover {
+      background-color: #7aabd2;
+      box-shadow: 0 0 15px #ffc4d6, 0 0 30px #ff8ab1;
+    }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+    button i {
+      margin-right: 10px;
+      animation: spin 4s linear infinite;
+    }
 
-/**
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /**
 =========================================
           📱 RESPONSIVENESS 📱
 =========================================
 **/
 
-/* 📱 900 PX📱 */
-@media (max-width: 900px) {
-  .game-option { width: 100%; }
-}
+    /* 📱 900 PX📱 */
+    @media (max-width: 900px) {
+      .game-option {
+        width: 100%;
+      }
+    }
 
-/* 📱 600 PX📱 */
-@media (max-width: 600px) {
-  /* Navbar full width */
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 115%;           /* full width */
-    left: -5%;        
-    padding: 1rem;         /* inner spacing */
-    box-sizing: border-box; 
-  }
+    /* 📱 600 PX📱 */
+    @media (max-width: 600px) {
 
-  .navbar nav {
-    margin-top: 5px;
-    width: 100%;           /* nav links span full width */
-    display: flex;
-    justify-content: space-around; /* evenly spaced links */
-  }
+      /* Navbar full width */
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 115%;
+        /* full width */
+        left: -5%;
+        padding: 1rem;
+        /* inner spacing */
+        box-sizing: border-box;
+      }
 
-  .navbar nav a {
-    margin-left: 0;
-    font-size: 1.2rem;
-  }
+      .navbar nav {
+        margin-top: 5px;
+        width: 100%;
+        /* nav links span full width */
+        display: flex;
+        justify-content: space-around;
+        /* evenly spaced links */
+      }
 
-  /* Footer full width */
-  footer {
-    width: 120%;    
-    left: -5%; 
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 12px 12px 0 0;
-  }
-}
+      .navbar nav a {
+        margin-left: 0;
+        font-size: 1.2rem;
+      }
 
-/* 📱 480 PX📱 */
-@media (max-width: 480px) {
-  .game-lobby-container {
-    padding: 20px;
-  }
+      /* Footer full width */
+      footer {
+        width: 120%;
+        left: -5%;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 12px 12px 0 0;
+      }
+    }
 
-  button {
-    width: 100%;
-    padding: 15px 0;
-  }
+    /* 📱 480 PX📱 */
+    @media (max-width: 480px) {
+      .game-lobby-container {
+        padding: 20px;
+      }
 
-  .game-option {
-    padding: 15px;
-  }
+      button {
+        width: 100%;
+        padding: 15px 0;
+      }
 
- .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 110%;           /* full width */
-    left: -5%;     
-    padding: 1rem;         /* inner spacing */
-    box-sizing: border-box; 
-  }
+      .game-option {
+        padding: 15px;
+      }
 
-  .navbar nav {
-    margin-top: 10px;
-    width: 100%;           /* nav links span full width */
-    display: flex;
-    justify-content: space-around; /* evenly spaced links */
-  }
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 110%;
+        /* full width */
+        left: -5%;
+        padding: 1rem;
+        /* inner spacing */
+        box-sizing: border-box;
+      }
 
-  .navbar nav a {
-    margin-left: 0;
-    font-size: 1.2rem;
-  }
+      .navbar nav {
+        margin-top: 10px;
+        width: 100%;
+        /* nav links span full width */
+        display: flex;
+        justify-content: space-around;
+        /* evenly spaced links */
+      }
 
-}
+      .navbar nav a {
+        margin-left: 0;
+        font-size: 1.2rem;
+      }
 
+    }
   </style>
 </head>
+
 <body>
 
   <div class="game-lobby-container">
@@ -366,13 +430,22 @@ button i {
           <i class="fas fa-puzzle-piece"></i>Play Puzzle
         </button>
       </div>
-      <div class="game-option" id="pomodoro-option">
-        <h3>Pomodoro Timer</h3>
-        <p>Boost your focus with adjustable sessions and theme modes!</p>
-        <button onclick="startGame('pomodoro')">
-          <i class="fas fa-clock"></i> Open Pomodoro
+      <div class="game-option" id="chess-option">
+        <h3>Chess</h3>
+        <p>Play classic chess against the computer or a friend.</p>
+        <button onclick="startGame('chess')">
+          <i class="fas fa-chess"></i> Play Chess
         </button>
       </div>
+
+      <div class="game-option" id="wordsearch-option">
+        <h3>Word Search</h3>
+        <p>Find hidden words in a fun puzzle grid.</p>
+        <button onclick="startGame('wordsearch')">
+          <i class="fas fa-font"></i> Play Word Search
+        </button>
+      </div>
+
       <div class="game-option" id="solitaire-option">
         <h3>Solitaire</h3>
         <p>Play the classic game of patience and strategy.</p>
@@ -381,10 +454,17 @@ button i {
         </button>
       </div>
       <div class="game-option" id="dungeon-option">
-        <h3>Mini Dungeon Crawler 🏰</h3>
+        <h3>Mini Dungeon Crawler</h3>
         <p>Dodge enemies, reach the treasure, and test your tactics!</p>
         <button onclick="startGame('dungeon')">
           <i class="fas fa-dungeon"></i> Enter Dungeon
+        </button>
+      </div>
+      <div class="game-option" id="pomodoro-option">
+        <h3>Pomodoro Timer</h3>
+        <p>Boost your focus with adjustable sessions and theme modes!</p>
+        <button onclick="startGame('pomodoro')">
+          <i class="fas fa-clock"></i> Open Pomodoro
         </button>
       </div>
     </section>
@@ -397,40 +477,43 @@ button i {
 
   <!-- JS -->
   <script>
-/**
-=========================================
-          ⚡ GAME NAVIGATION & SPARKLES ⚡
-=========================================
-**/
-function startGame(gameType) {
-  switch(gameType) {
-    case 'puzzle': window.location.href = 'games/puzzle.html'; break;
-    case 'pomodoro': window.location.href = 'games/pomodoro.html'; break;
-    case 'solitaire': window.location.href = 'games/solitaire.html'; break;
-    case 'dungeon': window.location.href = 'games/dungeon.html'; break;
-    default: console.error('Unknown game type');
-  }
-}
+    /**
+    =========================================
+              ⚡ GAME NAVIGATION & SPARKLES ⚡
+    =========================================
+    **/
+    function startGame(gameType) {
+      switch (gameType) {
+        case 'puzzle': window.location.href = 'games/puzzle.html'; break;
+        case 'pomodoro': window.location.href = 'games/pomodoro.html'; break;
+        case 'solitaire': window.location.href = 'games/solitaire.html'; break;
+        case 'dungeon': window.location.href = 'games/dungeon.html'; break;
+        case 'chess': window.location.href = 'games/chess.html'; break;  // ✅ Chess
+        case 'wordsearch': alert('COMING SOON!'); break;               // ✅ Word Search
+        default: console.error('Unknown game type');
+      }
+    }
 
-/**
-=========================================
-          ✨ BUTTON CLICK SPARKLES ✨
-=========================================
-**/
-document.querySelectorAll('button').forEach(btn => {
-  btn.addEventListener('click', e => {
-    const sparkle = document.createElement('span');
-    sparkle.className = 'sparkle';
-    sparkle.style.left = e.offsetX + 'px';
-    sparkle.style.top = e.offsetY + 'px';
-    btn.appendChild(sparkle);
-    setTimeout(() => sparkle.remove(), 500);
-  });
-});
 
-/* Sparkle styles */
-const style = document.createElement('style');
-style.innerHTML = `
+    /**
+    =========================================
+              ✨ BUTTON CLICK SPARKLES ✨
+    =========================================
+    **/
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const sparkle = document.createElement('span');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = e.offsetX + 'px';
+        sparkle.style.top = e.offsetY + 'px';
+        btn.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 500);
+      });
+    });
+
+    /* Sparkle styles */
+    const style = document.createElement('style');
+    style.innerHTML = `
 .sparkle {
   position: absolute;
   width: 6px;
@@ -444,21 +527,22 @@ style.innerHTML = `
   0% { transform: scale(1); opacity: 1; }
   100% { transform: scale(3); opacity: 0; }
 }`;
-document.head.appendChild(style);
+    document.head.appendChild(style);
 
-/**
-=========================================
-          🌌 FLOATING ICON ANIMATION 🌌
-=========================================
-**/
-const gameIcons = document.querySelectorAll(".game-option button i");
-gameIcons.forEach(icon => {
-  let angle = 0;
-  setInterval(() => {
-    angle += 0.5;
-    icon.style.transform = `rotate(${angle}deg) translateY(${Math.sin(angle/10)*5}px)`;
-  }, 50);
-});
+    /**
+    =========================================
+              🌌 FLOATING ICON ANIMATION 🌌
+    =========================================
+    **/
+    const gameIcons = document.querySelectorAll(".game-option button i");
+    gameIcons.forEach(icon => {
+      let angle = 0;
+      setInterval(() => {
+        angle += 0.5;
+        icon.style.transform = `rotate(${angle}deg) translateY(${Math.sin(angle / 10) * 5}px)`;
+      }, 50);
+    });
   </script>
 </body>
+
 </html>
