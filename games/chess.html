@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Kingsgrave Chess</title>
+  <link rel="stylesheet" href="styles/chess.css">
+</head>
+
+<body>
+  <div id="loadingScreen">
+    <img src="kingsgrave-logo.png" alt="logo" class="loading-piece">
+    <h1>Kingsgrave Chess</h1>
+    <div class="loading-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <main>
+    <div class="controls">
+      <button class="modal-btn play-again" id="playAgainBtn">Play Again</button>
+      <button class="modal-btn go-lobby" id="goLobbyBtn">Go to Lobby</button>
+
+      <select id="themeSelector">
+        <option value="classic">Classic</option>
+        <option value="midnight">Midnight</option>
+        <option value="pastel">Pastel</option>
+        <option value="forest">Forest</option>
+      </select>
+      <select id="sideSelector">
+        <option value="white">Play White</option>
+        <option value="black">Play Black</option>
+      </select>
+      <select id="difficultySelector">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <button id="undoBtn">Undo</button>
+      <button id="redoBtn">Redo</button>
+      <button id="helpBtn">Help</button>
+      <div class="turn" id="turnIndicator">White to move</div>
+    </div>
+
+    <div class="game">
+      <div class="graveyard" id="whiteGrave"></div>
+      <div class="board-wrapper">
+        <div class="board" id="board"></div>
+      </div>
+      <div class="graveyard" id="blackGrave"></div>
+    </div>
+
+    <div class="modal" id="helpModal">
+      <div class="modal-content">
+        <h3>How to Play</h3>
+        <ul>
+          <li>Click one of your pieces, then click a highlighted legal square.</li>
+          <li>Pawns move forward 1 square (2 on first move) and capture diagonally.</li>
+          <li>Rooks move straight, bishops diagonally, knights in L-shapes.</li>
+          <li>The queen combines rook + bishop movement.</li>
+          <li>The king moves one square in any direction.</li>
+          <li>You cannot capture your own pieces.</li>
+          <li>The game ends when a king is captured.</li>
+          <li>Undo/Redo lets you rewind moves (player moves only).</li>
+          <li>Winning earns points shown in the lobby.</li>
+          <li>Difficulty affects how aggressively the computer plays.</li>
+        </ul>
+        <button onclick="helpModal.style.display='none'">Close</button>
+      </div>
+    </div>
+
+    <div class="modal" id="lobbyModal">
+      <div class="modal-content">
+        <h3>Lobby</h3>
+        <p><strong>Total Points:</strong> <span id="pointsDisplay">0</span></p>
+        <p>Win games to earn points. Higher difficulties give more.</p>
+        <button onclick="startGame()">Start Game</button>
+      </div>
+    </div>
+
+    <div class="modal" id="endModal">
+      <div class="modal-content" id="endMessage"></div>
+    </div>
+  </main>
+  <script src="scripts/chess.js"></script>
+</body>
+
+</html>
