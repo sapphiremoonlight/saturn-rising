@@ -101,7 +101,11 @@ function createDayCell(date, inactive) {
   day.className = "calendar-day";
   if (inactive) day.classList.add("inactive");
 
-  const key = date.toISOString().split("T")[0];
+  const key = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join("-");
   const moods = moodData[key] || [];
 
   const num = document.createElement("div");
@@ -209,7 +213,7 @@ function getMonthStats(month, year) {
 }
 
 function getMonthPersonality(stats) {
-  if (!stats.total) return "Quiet Reset Era 🌱";
+  if (!stats.total) return "Quiet Reset Era";
 
   // Sort moods by frequency
   const sorted = Object.entries(stats.stats).sort((a, b) => b[1] - a[1]);
@@ -219,7 +223,7 @@ function getMonthPersonality(stats) {
   if (diversity >= 6) return "Emotional Multiverse :)";
   if (count / stats.total > 0.65) return "Singular Focus Era :)";
 
-  return "Main Character Month 🎬";
+  return "Main Character Month";
 }
 
 /* =====================================================
@@ -314,90 +318,140 @@ function downloadMonthPDF(month, year) {
 
   const personality = getMonthPersonality(stats);
   const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
+
   const pageWidth = doc.internal.pageSize.width;
   const pageHeight = doc.internal.pageSize.height;
 
-  let y = 60;
+  const moodsArray = Object.entries(stats.stats)
+    .sort((a, b) => b[1] - a[1]); // Sort highest → lowest
 
-  // Background Gradient
-  doc.setFillColor(255, 214, 233);
-  doc.rect(0, 0, pageWidth, pageHeight / 2, "F");
-  doc.setFillColor(214, 234, 255);
-  doc.rect(0, pageHeight / 2, pageWidth, pageHeight / 2, "F");
+  const moodsPerPage = 10;
+  let moodIndex = 0;
 
-  // Header
-  doc.setFillColor(255, 255, 255, 0.9);
-  doc.roundedRect(30, 30, pageWidth - 60, 80, 18, 18, "F");
+  function drawBackground() {
+    doc.setFillColor(255, 214, 233);
+    doc.rect(0, 0, pageWidth, pageHeight / 2, "F");
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(26);
-  doc.setTextColor(255, 85, 160);
-  doc.text(`${monthName} ${year}`, 50, 70);
+    doc.setFillColor(214, 234, 255);
+    doc.rect(0, pageHeight / 2, pageWidth, pageHeight / 2, "F");
+  }
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(14);
-  doc.setTextColor(208, 232, 242);
-  doc.text("Your Mood Wrapped :)", 50, 95);
+  function drawHeader() {
+    doc.setFillColor(255, 255, 255, 0.9);
+    doc.roundedRect(30, 30, pageWidth - 60, 80, 18, 18, "F");
 
-  y = 140;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(26);
+    doc.setTextColor(255, 85, 160);
+    doc.text(`${monthName} ${year}`, 50, 70);
 
-  // Personality Card
-  doc.setFillColor(255, 240, 248);
-  doc.roundedRect(40, y, pageWidth - 80, 70, 16, 16, "F");
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(14);
+    doc.setTextColor(208, 232, 242);
+    doc.text("Your Mood Wrapped :)", 50, 95);
+  }
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.setTextColor(255, 70, 150);
-  doc.text("Personality Arc", 60, y + 24);
+  function drawPersonalityCard(startY) {
+    doc.setFillColor(255, 240, 248);
+    doc.roundedRect(40, startY, pageWidth - 80, 70, 16, 16, "F");
 
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(16);
-  doc.setTextColor(60, 60, 90);
-  doc.text(doc.splitTextToSize(personality, pageWidth - 140), 60, y + 48);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.setTextColor(255, 70, 150);
+    doc.text("Personality Arc", 60, startY + 24);
 
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(16);
+    doc.setTextColor(60, 60, 90);
+    doc.text(
+      doc.splitTextToSize(personality, pageWidth - 140),
+      60,
+      startY + 48
+    );
+  }
+
+  function drawFooter(startY) {
+    doc.setFillColor(255, 255, 255, 0.7);
+    doc.roundedRect(40, startY, pageWidth - 80, 60, 14, 14, "F");
+
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(12);
+    doc.setTextColor(255, 255, 110);
+    doc.text(
+      doc.splitTextToSize(
+        "Tracking your emotions is an act of self-respect. Thank you for showing up for yourself this month <3",
+        pageWidth - 120
+      ),
+      60,
+      startY + 30
+    );
+  }
+
+  // ===== FIRST PAGE =====
+  drawBackground();
+  drawHeader();
+
+  let y = 140;
+  drawPersonalityCard(y);
   y += 100;
 
-  // Mood Stats
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
-  doc.setTextColor(245, 222, 250);
+  doc.setTextColor(17, 138, 178);
   doc.text("Mood Breakdown", 40, y);
   y += 20;
 
-  Object.entries(stats.stats).forEach(([mood, count], index) => {
-    const rowY = y + index * 26;
+  // ===== MOOD PAGINATION LOOP =====
+  while (moodIndex < moodsArray.length) {
 
-    doc.setFillColor(255, 255, 255, 0.85);
-    doc.roundedRect(40, rowY, pageWidth - 80, 22, 11, 11, "F");
+    // If new page needed (after first 10)
+    if (moodIndex !== 0) {
+      doc.addPage();
+      drawBackground();
 
-    const [r, g, b] = hexToRgb(moodColors[mood] || "#ccc");
-    doc.setFillColor(r, g, b);
-    doc.circle(54, rowY + 11, 6, "F");
+      y = 60;
 
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(11);
-    doc.setTextColor(249, 232, 252);
-    doc.text(mood, 70, rowY + 15);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(16);
+      doc.setTextColor(245, 222, 250);
+      doc.text("Mood Breakdown (cont.)", 40, y);
+      y += 20;
+    }
 
-    doc.setFont("helvetica", "bold");
-    doc.text(`${count} day${count > 1 ? "s" : ""}`, pageWidth - 80, rowY + 15, { align: "right" });
-  });
+    const pageSlice = moodsArray.slice(moodIndex, moodIndex + moodsPerPage);
 
-  y += Object.keys(stats.stats).length * 26 + 30;
+    pageSlice.forEach(([mood, count], i) => {
+      const rowY = y + i * 26;
 
-  // Footer
-  doc.setFillColor(255, 255, 255, 0.7);
-  doc.roundedRect(40, y, pageWidth - 80, 60, 14, 14, "F");
+      doc.setFillColor(255, 255, 255, 0.85);
+      doc.roundedRect(40, rowY, pageWidth - 80, 22, 11, 11, "F");
 
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(12);
-  doc.setTextColor(255, 255, 110);
-  doc.text(doc.splitTextToSize(
-    "Tracking your emotions is an act of self-respect. Thank you for showing up for yourself this month <3",
-    pageWidth - 120
-  ), 60, y + 30);
+      const [r, g, b] = hexToRgb(moodColors[mood] || "#ccc");
+      doc.setFillColor(r, g, b);
+      doc.circle(54, rowY + 11, 6, "F");
 
-  // Download PDF
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.setTextColor(249, 232, 252);
+      doc.text(mood, 70, rowY + 15);
+
+      doc.setFont("helvetica", "bold");
+      doc.text(
+        `${count} day${count > 1 ? "s" : ""}`,
+        pageWidth - 80,
+        rowY + 15,
+        { align: "right" }
+      );
+    });
+
+    moodIndex += moodsPerPage;
+  }
+
+  // ===== FOOTER ON LAST PAGE ONLY =====
+  const finalY = doc.internal.pageSize.height - 120;
+  drawFooter(finalY);
+
+  // ===== SAVE =====
   doc.save(`Saturn-Mood-Wrapped-${month + 1}-${year}.pdf`);
 }
 
