@@ -456,8 +456,85 @@ function downloadMonthPDF(month, year) {
 }
 
 /* =====================================================
+   📄 JSON FILE EXPORT
+===================================================== */
+function downloadMonthJSON(month, year) {
+  console.log("Downloading JSON...");
+
+  const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
+  const monthKey = `${monthName} ${year}`;
+
+  const result = {
+    [monthKey]: {
+      totalMoods: 0,
+      days: {}
+    }
+  };
+
+  Object.entries(moodData || {}).forEach(([dateStr, moods]) => {
+    const date = new Date(dateStr);
+
+    if (date.getMonth() === month && date.getFullYear() === year) {
+      const day = date.getDate();
+
+      result[monthKey].days[day] = [
+        ...(result[monthKey].days[day] || []),
+        ...(moods || [])
+      ];
+
+      result[monthKey].totalMoods += (moods || []).length;
+    }
+  });
+
+  // 🚫 No data
+  if (result[monthKey].totalMoods === 0) {
+    alert("No moods logged this month.");
+    return;
+  }
+
+  // ✅ Sort days
+  const sortedDays = Object.keys(result[monthKey].days)
+    .sort((a, b) => Number(a) - Number(b))
+    .reduce((acc, day) => {
+      acc[day] = result[monthKey].days[day];
+      return acc;
+    }, {});
+
+  result[monthKey].days = sortedDays;
+
+  // 📦 Create file
+  const blob = new Blob(
+    [JSON.stringify(result, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `moods-${month + 1}-${year}.json`;
+
+  document.body.appendChild(a); // important
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+}
+
+/* =====================================================
    🚀 INIT
 ===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   renderCalendar(currentMonth, currentYear);
-});
+
+  // ✅ Safe button hookup
+  const btn = document.getElementById("downloadJsonBtn");
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      downloadMonthJSON(currentMonth, currentYear);
+    });
+  } else {
+    console.error("Download JSON button not found");
+  }
+}); 
